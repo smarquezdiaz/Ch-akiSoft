@@ -33,4 +33,4 @@ def DR_Tarea_003_Obtener_el_error_400():
     url = f"https://collectionapi.metmuseum.org/public/collection/v1/objects/{object_id}"
     response = requests.get(url)
     assert response.status_code == 400
-    """prioridad media, resultado esperado obtener una respuesta 400"""
+    """prioridad media, resultado esperado obtener una respuesta 400""" 
