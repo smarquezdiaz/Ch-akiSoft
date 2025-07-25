@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcd0fab9-4e5a-4921-a582-b2e4de5407ca" name="Changes" comment="" />
+    <list default="true" id="dcd0fab9-4e5a-4921-a582-b2e4de5407ca" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/gitLearn/TestAutomatizacion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,7 +37,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;development&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;GCTestBranch&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/LENOVO/Documents/Diplomado/Quinto modulo/Ch-akiSoft&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -54,7 +57,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="acdf1e03-be89-400f-a333-20369c2f2f3b" name="Changes" comment="" />
+      <changelist id="dcd0fab9-4e5a-4921-a582-b2e4de5407ca" name="Changes" comment="" />
       <created>1753204362975</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -67,6 +70,7 @@
       <workItem from="1753297805493" duration="14000" />
       <workItem from="1753297992758" duration="72000" />
       <workItem from="1753298072705" duration="5000" />
+      <workItem from="1753400938432" duration="1819000" />
     </task>
     <servers />
   </component>
