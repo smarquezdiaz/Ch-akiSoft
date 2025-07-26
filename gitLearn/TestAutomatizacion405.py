@@ -9,4 +9,4 @@ def test_003_Verificar_error_405_al_usar_método_incorrecto():
 
     assert response.status_code == 405
 
-#priodad : media
+#priodad : Media

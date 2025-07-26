@@ -25,4 +25,4 @@ def test_004_Verificar_error_404_al_acceder_a_endpoint_inexistente():
 
     assert response.status_code == 404
 
-#priodad : media
+#priodad : Media
