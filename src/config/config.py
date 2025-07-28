@@ -1,6 +1,9 @@
 
+# URL BASE
+URL_BASE = "https://api.qase.io/v1"
+
 # URL PARA CASE
-URL_CASE = "https://api.qase.io/v1/case/DEMO"
+URL_CASE = "/case/DEMO"
 
 # URL PARA SUITE
-URL_SUITE = "https://api.qase.io/v1/suite/DEMO"
+URL_SUITE = "/suite/DEMO"

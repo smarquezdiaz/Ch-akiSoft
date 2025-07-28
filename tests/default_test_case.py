@@ -2,7 +2,7 @@ import requests
 import json
 import pytest
 
-from src.config.config import URL_CASE
+from src.config.config import URL_CASE, URL_BASE
 
 
 @pytest.mark.smoke
@@ -10,12 +10,12 @@ from src.config.config import URL_CASE
 @pytest.mark.regression
 def test_001_Crear_un_test_case():
 
-    url = URL_CASE
+    url = URL_BASE
 
-    list_url = url
+    list_url = url + URL_CASE
 
     payload = json.dumps({
-      "title": "Verificar que funciona el qase 3 xd",
+      "title": "Verificar que funciona el qase 4 xd",
       "suite_id": 1
     })
     headers = {
