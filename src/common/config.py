@@ -1,0 +1,29 @@
+
+# URL BASE
+URL_BASE = "https://api.qase.io/v1"
+
+# URL PARA CASE
+# TODO cambiar DEMO a parametrizable
+URL_CASE = f"{URL_BASE}/case/DEMO"
+
+# URL PARA SUITE
+# TODO cambiar DEMO a parametrizable
+URL_SUITE = f"{URL_BASE}/suite/DEMO"
+
+# URL PARA PROJECT
+URL_PROJECT = f"{URL_BASE}/project"
+
+# URL PARA ATTACHMENT
+URL_ATTACHMENT = f"{URL_BASE}/attachment"
+
+# URL PARA CUSTOM_FIELD
+URL_CUSTOM_FIELD= f"{URL_BASE}/custom_field"
+
+# TOKEN DE SOL
+TOKEN_SOL = "0cfe63bf6fab9cc50b29d323d96e1376251d2a9bf0cdb07accc5bedc3088a2c5"
+
+# TOKEN DE DIEGO
+TOKEN_DIEGO = "041a377f02f2f3b1c549adc882f03a47f84a3c2491b8a914cb6e292ac53d115d"
+
+# TOKEN DE ADRIAN
+TOKEN_ADRIAN= "0676837bed7d0effa596f6b154877cccea3008d2cd807a30d503dedd057b513b"
