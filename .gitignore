@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-.idea/
-
-_pycache_/
-=======
 # PyCharm IDE
 .idea/
 
 # Directorios de caché de Python
 __pycache__/
->>>>>>> 336f342436ffacde44ef444a7dead7da924d0dd6
