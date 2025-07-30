@@ -1,2 +1,5 @@
+# PyCharm IDE
 .idea/
 
+# Directorios de caché de Python
+__pycache__/
