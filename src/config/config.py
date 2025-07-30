@@ -7,3 +7,7 @@ URL_CASE = "/case/DEMO"
 
 # URL PARA SUITE
 URL_SUITE = "/suite/DEMO"
+
+
+# URL PARA PROYECT
+URL_PROJECT = "/proyect"
