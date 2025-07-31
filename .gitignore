@@ -3,3 +3,6 @@
 
 # Directorios de caché de Python
 __pycache__/
+
+# Directorio de reportes
+reports/

@@ -1,14 +1,15 @@
 import pytest
 import requests
 
+from src.assertions.get_suites_assertions import assert_get_suites_response_schema, assert_get_suites_assertion
+
+
 @pytest.mark.smoke
 @pytest.mark.regression
 @pytest.mark.funtional
 def test_SM001_Obtener_todos_los_casos_de_prueba_con_datos_validos(get_url, get_token):
     url = f"{get_url}/suite/DEMO"
     token = get_token
-
-    print(f"URL: {url}")
 
     headers = {
         'Token': token,
@@ -17,3 +18,41 @@ def test_SM001_Obtener_todos_los_casos_de_prueba_con_datos_validos(get_url, get_
 
     response = requests.get(url, headers=headers)
     assert response.status_code == 200
+    assert_get_suites_response_schema(response.json())
+
+
+@pytest.mark.regression
+@pytest.mark.negative
+def test_SM003_Obtener_todos_los_casos_de_prueba_sin_token(get_url):
+    url = f"{get_url}/suite/DEMO"
+
+    headers = {
+        'accept': 'application/json'
+    }
+
+    response = requests.get(url, headers=headers)
+    assert response.status_code == 401
+
+@pytest.mark.regression
+@pytest.mark.negative
+def test_SM004_Obtener_todos_los_casos_de_prueba_con_codigo_inexistente(get_url, get_token):
+    response = assert_get_suites_assertion(get_url, get_token, "TB")
+    assert response == 404
+
+@pytest.mark.regression
+@pytest.mark.negative
+def test_SM005_Obtener_todos_los_casos_de_prueba_con_codigo_de_un_caracter(get_url, get_token):
+    response = assert_get_suites_assertion(get_url, get_token, "T")
+    assert response == 404
+
+@pytest.mark.regression
+@pytest.mark.negative
+def test_SM006_Obtener_todos_los_casos_de_prueba_con_codigo_de_11_caracteres(get_url, get_token):
+    response = assert_get_suites_assertion(get_url, get_token, "TTTTTTTTTTT")
+    assert response == 404
+
+@pytest.mark.regression
+@pytest.mark.negative
+def test_SM007_Obtener_todos_los_casos_de_prueba_con_codigo_de_tipo_numerico(get_url, get_token):
+    response = assert_get_suites_assertion(get_url, get_token, 111)
+    assert response == 404
