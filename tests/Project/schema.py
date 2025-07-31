@@ -4,43 +4,42 @@ import jsonschema
 
 import json
 
-from src.common.config import URL_SUITE
-
 
 @pytest.mark.smoke
 @pytest.mark.regression
 def test_gc_tc001_Crear_un_proyecto_exitoso():
 
-    url = URL_SUITE
-    token = a3b83af57ac9486e9e1402b0aa8aca01c905c976edaa3ff1888221ffb0e2326b
+    url = "https://api.qase.io/v1/project"
+    token = "a3b83af57ac9486e9e1402b0aa8aca01c905c976edaa3ff1888221ffb0e2326b"
 
     payload_data = {
-        "title": "Suite de Pruebas - Funcionalidades de Pedidos y Entrega",
-        "description": "Contiene casos de prueba para el flujo completo de pedidos: desde la selección de productos, checkout, procesamiento de pago, hasta el seguimiento y la entrega por parte del repartidor.",
-        "preconditions": "El usuario debe estar logueado y tener una dirección de entrega configurada. Debe haber restaurantes activos y productos disponibles en la zona seleccionada."
-    }
+                      "title": "Prueba10",
+                      "code": "prueba10",
+                      "description": "mmm lolo",
+                      "access": "all"
+                    }
 
     schema_input = {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "type": "object",
         "required": [
-            "result",
-            "status"
+            "access",
+            "code",
+            "description",
+            "title"
         ],
         "properties": {
-            "status": {
-                "type": "boolean"
+            "title": {
+                "type": "string"
             },
-            "result": {
-                "type": "object",
-                "required": [
-                    "code"
-                ],
-                "properties": {
-                    "code": {
-                        "type": "string"
-                    }
-                }
+            "code": {
+                "type": "string"
+            },
+            "description": {
+                "type": "string"
+            },
+            "access": {
+                "type": "string"
             }
         }
     }
@@ -89,5 +88,8 @@ def test_gc_tc001_Crear_un_proyecto_exitoso():
 
     try:
         jsonschema.validate(instance=response.json(), schema=schema_output)
+        print("INFO: El payload de entrada es válido según el esquema.")
     except jsonschema.exceptions.ValidationError as err:
         pytest.fail(f"JSON schema dont match [{err}]")
+
+    #assert response["status"] is False
