@@ -15,12 +15,7 @@ def assert_get_suites_response_schema(response):
 
 def assert_get_suites_assertion(get_url, get_token, code):
     url = f"{get_url}/suite/{code}"
-    token = get_token
-
-    headers = {
-        'Token': token,
-        'accept': 'application/json'
-    }
+    headers = get_token
 
     response = requests.get(url, headers=headers)
     return response.status_code
