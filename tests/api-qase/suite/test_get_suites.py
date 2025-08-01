@@ -56,3 +56,10 @@ def test_SM006_Obtener_todos_los_casos_de_prueba_con_codigo_de_11_caracteres(get
 def test_SM007_Obtener_todos_los_casos_de_prueba_con_codigo_de_tipo_numerico(get_url, get_token):
     response = assert_get_suites_assertion(get_url, get_token, 111)
     assert response == 404
+
+@pytest.mark.regression
+@pytest.mark.negative
+@pytest.mark.parametrize("code", ["TB", "T", "TTTTTTTTTTT", 111])
+def test_SM007_Obtener_todos_los_casos_de_prueba_con_codigo_variado(get_url, get_token, code):
+    response = assert_get_suites_assertion(get_url, get_token, code)
+    assert response == 404
