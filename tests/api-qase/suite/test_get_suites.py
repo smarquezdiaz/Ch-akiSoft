@@ -9,12 +9,7 @@ from src.assertions.get_suites_assertions import assert_get_suites_response_sche
 @pytest.mark.funtional
 def test_SM001_Obtener_todos_los_casos_de_prueba_con_datos_validos(get_url, get_token):
     url = f"{get_url}/suite/DEMO"
-    token = get_token
-
-    headers = {
-        'Token': token,
-        'accept': 'application/json'
-    }
+    headers = get_token
 
     response = requests.get(url, headers=headers)
     assert response.status_code == 200
@@ -23,12 +18,10 @@ def test_SM001_Obtener_todos_los_casos_de_prueba_con_datos_validos(get_url, get_
 
 @pytest.mark.regression
 @pytest.mark.negative
-def test_SM003_Obtener_todos_los_casos_de_prueba_sin_token(get_url):
+def test_SM003_Obtener_todos_los_casos_de_prueba_sin_token(get_url,get_headers):
     url = f"{get_url}/suite/DEMO"
 
-    headers = {
-        'accept': 'application/json'
-    }
+    headers = get_headers
 
     response = requests.get(url, headers=headers)
     assert response.status_code == 401
