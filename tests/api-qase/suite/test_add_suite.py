@@ -12,6 +12,7 @@ def test_SM002_Crear_un_nuevo_conjunto_de_pruebas(get_url, get_token):
     url = f"{get_url}/suite/DEMO"
     token = get_token
 
+    # TODO cargar json desde load_resources
     payload = json.dumps({
         "title": "Suite de Pruebas - Funcionalidades de Pedidos y Entrega",
         "description": "Contiene casos de prueba para el flujo completo de pedidos: desde la selección de productos, checkout, procesamiento de pago, hasta el seguimiento y la entrega por parte del repartidor.",
