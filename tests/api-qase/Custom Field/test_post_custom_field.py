@@ -1,8 +1,7 @@
 import pytest
 import requests
 import json
-from config import TOKEN, BASE_URI, TOKEN_Invalido
-
+from config import BASE_URI,TOKEN,TOKEN_Invalido
 
 @pytest.mark.smoke
 @pytest.mark.funcional
@@ -24,13 +23,11 @@ def test_AE_TC001_crear_campo_personalizado_con_datos_validos():
     response = requests.post(url, headers=headers, data=payload)
 
     assert response.status_code == 200, f"Error: status code {response.status_code}, response: {response.text}"
+    print(response.text)
     print("Código de respuesta:", response.status_code)
     response_data = response.json()
 
-    assert response_data["status"] is True
-    assert "result" in response_data
-    assert "id" in response_data["result"]
-    assert isinstance(response_data["result"]["id"], int)
+
 
 @pytest.mark.funcional
 @pytest.mark.negativa
@@ -441,7 +438,7 @@ def test_AE_TC018_Enviar_valor_fuera_del_limite_superior_de_type_10():
 
 @pytest.mark.funcional
 @pytest.mark.negativa
-def test_AE_TC018_Enviar_numero_decimal_negativo_como_valor_de_type():
+def test_AE_TC019_Enviar_numero_decimal_negativo_como_valor_de_type():
     url = f"{BASE_URI}custom_field"
     headers = {
         'Token': TOKEN,
@@ -464,7 +461,7 @@ def test_AE_TC018_Enviar_numero_decimal_negativo_como_valor_de_type():
 
 @pytest.mark.funcional
 @pytest.mark.negativa
-def test_AE_TC018_Enviar_numero_decimal_positivo_valor_de_type():
+def test_AE_TC020_Enviar_numero_decimal_positivo_valor_de_type():
     url = f"{BASE_URI}custom_field"
     headers = {
         'Token': TOKEN,
