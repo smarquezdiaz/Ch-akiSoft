@@ -1,19 +1,22 @@
+import logging
+
 import pytest
 import requests
 
 from src.assertions.get_suites_assertions import assert_get_suites_response_schema, assert_get_suites_assertion
+
+logger = logging.getLogger(__name__)
 
 
 @pytest.mark.smoke
 @pytest.mark.regression
 @pytest.mark.funtional
 def test_SM001_Obtener_todos_los_casos_de_prueba_con_datos_validos(get_url, get_token):
-    url = f"{get_url}/suite/DEMO"
-    headers = get_token
-
-    response = requests.get(url, headers=headers)
-    assert response.status_code == 200
+    response = assert_get_suites_assertion(get_url, get_token, "DEMO")
     assert_get_suites_response_schema(response.json())
+    logger.info("status code: %s", response.status_code)
+    logger.info("response body: %s", response.json())
+    assert response.status_code == 200
 
 
 @pytest.mark.regression
