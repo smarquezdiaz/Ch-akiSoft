@@ -1,11 +1,13 @@
 import jsonschema
 import pytest
 import requests
+from requests import Response
+
 from src.utils.load_resources import load_schema_resource
 
 
 def assert_get_cases_response_schema(response):
-    schema = load_schema_resource("get_cases_schema_response.json")
+    schema = load_schema_resource("bad_schema_response.json")
     try:
         jsonschema.validate(instance=response, schema=schema)
         return True

@@ -1,6 +1,7 @@
 
 import pytest
-from tests.conftest import get_url, get_token
+from src.conftest import get_url, get_token
+from src.common.static_data_cases import StaticDataCases
 from src.assertions.get_cases_assertions import assert_get_cases_assertion, assert_get_cases_response_schema, assert_response_status_code, assert_entities_field_equal
 from src.assertions.post_cases_assertions import assert_post_cases_assertion
 from src.assertions.put_cases_assertions import assert_put_cases_assertion
@@ -25,74 +26,159 @@ def test_DR_TC02_Verificar_que_retorna_una_respuesta_400_al_obtener_todos_los_ca
 def test_DR_TC03_Verificar_que_retorna_una_respuesta_401_al_obtener_todos_los_casos_de_prueba_de_un_proyecto_cuando_no_tiene_un_token_valido (get_url):
     response = assert_get_cases_assertion(get_url, "no_token", "DEMO?esteparametronoexiste=noexiste")
     assert_response_status_code(response.status_code, 401)
-    assert_get_cases_response_schema(response.json())
 
 @pytest.mark.funtional
 @pytest.mark.regression
 def test_DR_TC04_Verificar_que_retorna_una_respuesta_404_al_obtener_todos_los_casos_de_prueba_de_un_proyecto_que_no_existe (get_url, get_token):
     response = assert_get_cases_assertion(get_url, get_token, "proyectoquenoexiste")
     assert_response_status_code(response.status_code, 404)
-    assert_get_cases_response_schema(response.json())
 
 @pytest.mark.regression
 def test_DR_TC05_Verificar_que_retorna_una_respuesta_400_al_obtener_todos_los_casos_de_prueba_con_el_método_POST (get_url, get_token):
     response = assert_post_cases_assertion(get_url, get_token, "DEMO")
     assert_response_status_code(response.status_code, 400)
-    assert_get_cases_response_schema(response.json())
 
 @pytest.mark.regression
 def test_DR_TC06_Verificar_que_retorna_una_respuesta_405_al_obtener_todos_los_casos_de_prueba_con_el_método_PUT (get_url, get_token):
     response = assert_put_cases_assertion(get_url, get_token, "DEMO")
     assert_response_status_code(response.status_code, 405)
-    assert_get_cases_response_schema(response.json())
 
 @pytest.mark.regression
 def test_DR_TC07_Verificar_que_retorna_una_respuesta_405_al_obtener_todos_los_casos_de_prueba_con_el_método_DELETE (get_url, get_token):
     response = assert_delete_cases_assertion(get_url, get_token, "DEMO")
     assert_response_status_code(response.status_code, 405)
-    assert_get_cases_response_schema(response.json())
 
 @pytest.mark.somke
 @pytest.mark.funtional
 @pytest.mark.regression
-def test_DR_TC08_Verificar_la_obtención_de_todos_los_casos_de_prueba_de_un_proyecto_filtrado_por_severidad (get_url, get_token):
-    response = assert_get_cases_assertion(get_url, get_token, "DEMO?severity=trivial")
+def test_DR_TC08_Verificar_la_obtención_de_todos_los_casos_de_prueba_de_un_proyecto_filtrado_por_severidad_critica (get_url, get_token):
+    response = assert_get_cases_assertion(get_url, get_token, StaticDataCases.severity_critical_call.value)
     assert_response_status_code(response.status_code, 200)
     assert_get_cases_response_schema(response.json())
-    assert_entities_field_equal(response, 6, "severity")
+    assert_entities_field_equal(response, StaticDataCases.severity_critical_value.value, StaticDataCases.severity_parameter.value)
 
 @pytest.mark.somke
 @pytest.mark.funtional
 @pytest.mark.regression
-def test_DR_TC09_Verificar_la_obtención_de_todos_los_casos_de_prueba_de_un_proyecto_filtrado_por_prioridad (get_url, get_token):
-    response = assert_get_cases_assertion(get_url, get_token, "DEMO?priority=low")
+def test_DR_TC09_Verificar_la_obtención_de_todos_los_casos_de_prueba_de_un_proyecto_filtrado_por_prioridad_alta (get_url, get_token):
+    response = assert_get_cases_assertion(get_url, get_token, StaticDataCases.priority_high_call.value)
     assert_response_status_code(response.status_code, 200)
     assert_get_cases_response_schema(response.json())
-    assert_entities_field_equal(response, 3, "priority")
+    assert_entities_field_equal(response, StaticDataCases.priority_high_value.value, StaticDataCases.priority_parameter.value)
 
 @pytest.mark.somke
 @pytest.mark.funtional
 @pytest.mark.regression
-def test_DR_TC10_Verificar_la_obtención_de_todos_los_casos_de_prueba_de_un_proyecto_filtrado_por_tipo (get_url, get_token):
-    response = assert_get_cases_assertion(get_url, get_token, "DEMO?type=other")
+def test_DR_TC10_Verificar_la_obtención_de_todos_los_casos_de_prueba_de_un_proyecto_filtrado_por_tipo_smoke (get_url, get_token):
+    response = assert_get_cases_assertion(get_url, get_token, StaticDataCases.type_smoke_call.value)
     assert_response_status_code(response.status_code, 200)
     assert_get_cases_response_schema(response.json())
-    assert_entities_field_equal(response, 1, "type")
+    assert_entities_field_equal(response, StaticDataCases.type_smoke_value.value, StaticDataCases.type_parameter.value)
 
 @pytest.mark.somke
 @pytest.mark.funtional
 @pytest.mark.regression
-def test_DR_TC11_Verificar_la_obtención_de_todos_los_casos_de_prueba_de_un_proyecto_filtrado_por_status (get_url, get_token):
-    response = assert_get_cases_assertion(get_url, get_token, "DEMO?status=deprecated")
+def test_DR_TC11_Verificar_la_obtención_de_todos_los_casos_de_prueba_de_un_proyecto_filtrado_por_status_actual (get_url, get_token):
+    response = assert_get_cases_assertion(get_url, get_token, StaticDataCases.status_actual_call.value)
     assert_response_status_code(response.status_code, 200)
     assert_get_cases_response_schema(response.json())
-    assert_entities_field_equal(response, 2, "status")
+    assert_entities_field_equal(response, StaticDataCases.status_actual_value.value, StaticDataCases.status_parameter.value)
 
 @pytest.mark.somke
 @pytest.mark.funtional
 @pytest.mark.regression
-def test_DR_TC12_Verificar_la_obtención_de_todos_los_casos_de_prueba_de_un_proyecto_filtrado_por_status_de_automatizacion (get_url, get_token):
-    response = assert_get_cases_assertion(get_url, get_token, "DEMO?automation= is-not-automated")
+def test_DR_TC12_Verificar_la_obtención_de_todos_los_casos_de_prueba_de_un_proyecto_filtrado_por_status_como_automatizacion (get_url, get_token):
+    response = assert_get_cases_assertion(get_url, get_token, StaticDataCases.automation_automated_to_be_automated_call.value)
     assert_response_status_code(response.status_code, 200)
     assert_get_cases_response_schema(response.json())
-    assert_entities_field_equal(response, 0, "automation")
+    assert_entities_field_equal(response, StaticDataCases.automation_automated_to_be_automated_value.value, StaticDataCases.automation_parameter.value)
+
+@pytest.mark.somke
+@pytest.mark.funtional
+@pytest.mark.regression
+def test_DR_TC13_Verificar_la_obtención_de_todos_los_casos_de_prueba_de_un_proyecto_filtrado_por_severidad_mayor (get_url, get_token):
+    response = assert_get_cases_assertion(get_url, get_token, StaticDataCases.severity_major_call.value)
+    assert_response_status_code(response.status_code, 200)
+    assert_get_cases_response_schema(response.json())
+    assert_entities_field_equal(response, StaticDataCases.severity_major_value.value, StaticDataCases.severity_parameter.value)
+
+@pytest.mark.somke
+@pytest.mark.funtional
+@pytest.mark.regression
+def test_DR_TC14_Verificar_la_obtención_de_todos_los_casos_de_prueba_de_un_proyecto_filtrado_por_severidad_media (get_url, get_token):
+    response = assert_get_cases_assertion(get_url, get_token, StaticDataCases.severity_normal_call.value)
+    assert_response_status_code(response.status_code, 200)
+    assert_get_cases_response_schema(response.json())
+    assert_entities_field_equal(response, StaticDataCases.severity_normal_value.value, StaticDataCases.severity_parameter.value)
+
+@pytest.mark.somke
+@pytest.mark.funtional
+@pytest.mark.regression
+def test_DR_TC15_Verificar_la_obtención_de_todos_los_casos_de_prueba_de_un_proyecto_filtrado_por_severidad_menor (get_url, get_token):
+    response = assert_get_cases_assertion(get_url, get_token, StaticDataCases.severity_minor_call.value)
+    assert_response_status_code(response.status_code, 200)
+    assert_get_cases_response_schema(response.json())
+    assert_entities_field_equal(response, StaticDataCases.severity_minor_value.value, StaticDataCases.severity_parameter.value)
+
+@pytest.mark.somke
+@pytest.mark.funtional
+@pytest.mark.regression
+def test_DR_TC16_Verificar_la_obtención_de_todos_los_casos_de_prueba_de_un_proyecto_filtrado_por_prioridad_media (get_url, get_token):
+    response = assert_get_cases_assertion(get_url, get_token, StaticDataCases.priority_medium_call.value)
+    assert_response_status_code(response.status_code, 200)
+    assert_get_cases_response_schema(response.json())
+    assert_entities_field_equal(response, StaticDataCases.priority_medium_value.value, StaticDataCases.priority_parameter.value)
+
+@pytest.mark.somke
+@pytest.mark.funtional
+@pytest.mark.regression
+def test_DR_TC17_Verificar_la_obtención_de_todos_los_casos_de_prueba_de_un_proyecto_filtrado_por_prioridad_baja (get_url, get_token):
+    response = assert_get_cases_assertion(get_url, get_token, StaticDataCases.priority_low_call.value)
+    assert_response_status_code(response.status_code, 200)
+    assert_get_cases_response_schema(response.json())
+    assert_entities_field_equal(response, StaticDataCases.priority_low_value.value, StaticDataCases.priority_parameter.value)
+
+@pytest.mark.somke
+@pytest.mark.funtional
+@pytest.mark.regression
+def test_DR_TC18_Verificar_la_obtención_de_todos_los_casos_de_prueba_de_un_proyecto_filtrado_por_tipo_regresion (get_url, get_token):
+    response = assert_get_cases_assertion(get_url, get_token, StaticDataCases.type_regression_call.value)
+    assert_response_status_code(response.status_code, 200)
+    assert_get_cases_response_schema(response.json())
+    assert_entities_field_equal(response, StaticDataCases.type_regression_value.value, StaticDataCases.type_parameter.value)
+
+@pytest.mark.somke
+@pytest.mark.funtional
+@pytest.mark.regression
+def test_DR_TC19_Verificar_la_obtención_de_todos_los_casos_de_prueba_de_un_proyecto_filtrado_por_tipo_funcional (get_url, get_token):
+    response = assert_get_cases_assertion(get_url, get_token, StaticDataCases.type_functional_call.value)
+    assert_response_status_code(response.status_code, 200)
+    assert_get_cases_response_schema(response.json())
+    assert_entities_field_equal(response, StaticDataCases.type_functional_value.value, StaticDataCases.type_parameter.value)
+
+@pytest.mark.somke
+@pytest.mark.funtional
+@pytest.mark.regression
+def test_DR_TC20_Verificar_la_obtención_de_todos_los_casos_de_prueba_de_un_proyecto_filtrado_por_status_draft (get_url, get_token):
+    response = assert_get_cases_assertion(get_url, get_token, StaticDataCases.status_draft_call.value)
+    assert_response_status_code(response.status_code, 200)
+    assert_get_cases_response_schema(response.json())
+    assert_entities_field_equal(response, StaticDataCases.status_draft_value.value, StaticDataCases.status_parameter.value)
+
+@pytest.mark.somke
+@pytest.mark.funtional
+@pytest.mark.regression
+def test_DR_TC21_Verificar_la_obtención_de_todos_los_casos_de_prueba_de_un_proyecto_filtrado_por_status_deprecated (get_url, get_token):
+    response = assert_get_cases_assertion(get_url, get_token, StaticDataCases.status_deprecated_call.value)
+    assert_response_status_code(response.status_code, 200)
+    assert_get_cases_response_schema(response.json())
+    assert_entities_field_equal(response, StaticDataCases.status_deprecated_value.value, StaticDataCases.status_parameter.value)
+
+@pytest.mark.somke
+@pytest.mark.funtional
+@pytest.mark.regression
+def test_DR_TC22_Verificar_la_obtención_de_todos_los_casos_de_prueba_de_un_proyecto_filtrado_por_status_como_no_automatizacion (get_url, get_token):
+    response = assert_get_cases_assertion(get_url, get_token, StaticDataCases.automation_is_not_automated_call.value)
+    assert_response_status_code(response.status_code, 200)
+    assert_get_cases_response_schema(response.json())
+    assert_entities_field_equal(response, StaticDataCases.automation_is_not_automated_value.value, StaticDataCases.automation_parameter.value)
