@@ -1,7 +1,6 @@
 import jsonschema
 import pytest
 import requests
-from requests import Response
 
 from src.utils.load_resources import load_schema_resource
 
@@ -14,16 +13,9 @@ def assert_get_cases_response_schema(response):
     except jsonschema.exceptions.ValidationError as err:
         pytest.fail(f"JSON schema dont match: {err}")
 
-def assert_get_cases_assertion(get_url, get_token, code):
-    url = f"{get_url}/case/{code}"
-    token = get_token
-
-    headers = {
-        'Token': token,
-        'accept': 'application/json'
-    }
-
-    response = requests.get(url, headers=headers)
+#se puede usar de manera global creo
+def assert_get_cases_assertion(method, url, headers, payload=None):
+    response = requests.request(method, url, headers=headers, data=payload)
     return response
 
 def assert_entities_field_equal (response , search, attribute):
@@ -42,3 +34,16 @@ def assert_response_status_code(status_code, expected_code):
 
 def assert_equals(result, expected_result):
     assert result == expected_result, f"Resultado esperado {result}, resultado obtenido {expected_result}"
+
+
+#para cases
+def cases_get_url(uri, code):
+    url = f"{uri}/case/{code}"
+    return url
+
+def cases_get_headers(TOKEN):
+    headers = {
+        'Token': TOKEN,
+        'accept': 'application/json'
+    }
+    return headers
