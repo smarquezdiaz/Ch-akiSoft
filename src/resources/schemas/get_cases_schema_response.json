@@ -1,0 +1,72 @@
+{
+  "type": "object",
+  "required": [
+    "result",
+    "status"
+  ],
+  "properties": {
+    "status": {
+      "type": "boolean"
+    },
+    "result": {
+      "type": "object",
+      "required": [
+        "count",
+        "entities",
+        "filtered",
+        "total"
+      ],
+      "properties": {
+        "total": {
+          "type": "integer"
+        },
+        "filtered": {
+          "type": "integer"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "entities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "automation": {
+                "type": "integer"
+              },
+              "id": {
+                "type": "integer"
+              },
+              "priority": {
+                "type": "integer"
+              },
+              "severity": {
+                "type": "integer"
+              },
+              "status": {
+                "type": "integer"
+              },
+              "title": {
+                "type": "string"
+              },
+              "type": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "automation",
+              "id",
+              "priority",
+              "severity",
+              "status",
+              "title",
+              "type"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
+
