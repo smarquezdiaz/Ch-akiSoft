@@ -6,3 +6,6 @@ __pycache__/
 
 # Directorio de reportes
 reports/
+
+# Loggger
+api.log
