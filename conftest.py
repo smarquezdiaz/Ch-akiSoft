@@ -1,7 +1,7 @@
 import pytest
 
 from config import *
-from src.headers.headers import get_header_with_token, get_header_without_token
+from src.headers.headers import *
 
 
 @pytest.fixture(scope='session')
@@ -19,3 +19,11 @@ def get_token():
 @pytest.fixture(scope='session')
 def get_headers():
     return get_header_without_token()
+
+@pytest.fixture(scope='session')
+def get_headers_no_accept():
+    return get_header_without_accept()
+
+@pytest.fixture(scope='session')
+def get_headers_no_content():
+    return get_header_without_content()

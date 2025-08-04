@@ -1,8 +1,6 @@
 {
   "type": "object",
   "required": [
-    "description",
-    "preconditions",
     "title"
   ],
   "properties": {
@@ -14,6 +12,9 @@
     },
     "preconditions": {
       "type": "string"
+    },
+    "parent_id": {
+      "type": "integer"
     }
   }
 }

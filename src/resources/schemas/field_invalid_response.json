@@ -2,7 +2,6 @@
     "type": "object",
     "required": [
         "errorFields",
-        "errorMessage",
         "status"
     ],
     "properties": {
