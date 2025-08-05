@@ -22,3 +22,4 @@ def assert_get_project_response_schema(response, json_file):
         return True
     except jsonschema.exceptions.ValidationError as err:
         pytest.fail(f"JSON schema dont match: {err}")
+

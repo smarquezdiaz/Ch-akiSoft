@@ -3,6 +3,7 @@ import requests
 import jsonschema
 
 import json
+from config import BASE_URI, TOKEN
 
 #Alta
 @pytest.mark.smoke
@@ -11,13 +12,12 @@ import json
 def test_GCTC001_Crear_un_proyecto_exitoso():
 
    url = "https://api.qase.io/v1/project"
-   token = "a3b83af57ac9486e9e1402b0aa8aca01c905c976edaa3ff1888221ffb0e2326b"
+   token = "0676837bed7d0effa596f6b154877cccea3008d2cd807a30d503dedd057b513b"
 
    payload_data = {
                      "title": "Prueba20",
                      "code": "prueba20",
                      "description": "mmm lolo",
-                     "access": "all"
                    }
 
    schema_input = {
@@ -99,7 +99,7 @@ def test_GCTC001_Crear_un_proyecto_exitoso():
 def test_GCTC002_Verificar_que_de_error_al_enviar_una_URL_mal_formada():
 
    url = "https://api.qase.io/v1/poyect"
-   token = "a3b83af57ac9486e9e1402b0aa8aca01c905c976edaa3ff1888221ffb0e2326b"
+   token = "0676837bed7d0effa596f6b154877cccea3008d2cd807a30d503dedd057b513b"
 
    payload_data = {
                      "title": "Prueba13",
@@ -176,7 +176,7 @@ def test_GCTC002_Verificar_que_de_error_al_enviar_una_URL_mal_formada():
 def test_GCTC003_Verificar_que_de_error_Crear_proyecto_con_nombre_existente_en_lista():
 
    url = "https://api.qase.io/v1/project"
-   token = "a3b83af57ac9486e9e1402b0aa8aca01c905c976edaa3ff1888221ffb0e2326b"
+   token = "0676837bed7d0effa596f6b154877cccea3008d2cd807a30d503dedd057b513b"
 
    payload_data = {
                      "title": "Prueba20",
@@ -276,7 +276,7 @@ def test_GCTC003_Verificar_que_de_error_Crear_proyecto_con_nombre_existente_en_l
 def test_GCTC004_Verificar_que_no_permita_crear_un_proyecto_con_un_body_inválido():
 
    url = "https://api.qase.io/v1/project"
-   token = "a3b83af57ac9486e9e1402b0aa8aca01c905c976edaa3ff1888221ffb0e2326b"
+   token = "0676837bed7d0effa596f6b154877cccea3008d2cd807a30d503dedd057b513b"
 
    payload_data = {
                      "title": "13",
@@ -375,7 +375,7 @@ def test_GCTC004_Verificar_que_no_permita_crear_un_proyecto_con_un_body_inválid
 def test_GCTC005_Verificar_que_no_permita_crear_un_proyecto_con_un_token_incorrecto():
 
    url = "https://api.qase.io/v1/project"
-   token = "af57ac9486e9e1402b0aa8aca01c905c976edaa3ff1888221ffb0e2326b"
+   token = "6837bed7d0effa596f6b154877cccea3008d2cd807a30d503dedd057b513b"
 
    payload_data = {
                      "title": "Prueba21",
@@ -527,7 +527,7 @@ def test_GCTC006_Verificar_que_no_permita_crear_un_proyecto_sin_autentificar():
 def test_GCTC007_Crear_proyecto_con_todos_los_campos_disponibles():
 
     url = "https://api.qase.io/v1/project"
-    token = "a3b83af57ac9486e9e1402b0aa8aca01c905c976edaa3ff1888221ffb0e2326b"
+    token = "0676837bed7d0effa596f6b154877cccea3008d2cd807a30d503dedd057b513b"
 
     payload_data = {
         "title": "GrupoProject2",
@@ -595,7 +595,7 @@ def test_GCTC007_Crear_proyecto_con_todos_los_campos_disponibles():
 def test_GCTC008_Verificar_crear_proyecto_sin_description():
 
     url = "https://api.qase.io/v1/project"
-    token = "a3b83af57ac9486e9e1402b0aa8aca01c905c976edaa3ff1888221ffb0e2326b"
+    token = "0676837bed7d0effa596f6b154877cccea3008d2cd807a30d503dedd057b513b"
 
     payload_data = {
         "title": "NoDescription2",
@@ -655,7 +655,7 @@ def test_GCTC008_Verificar_crear_proyecto_sin_description():
 def test_GCTC009_Crear_proyecto_con_code_mayusculas():
 
     url = "https://api.qase.io/v1/project"
-    token = "a3b83af57ac9486e9e1402b0aa8aca01c905c976edaa3ff1888221ffb0e2326b"
+    token = "0676837bed7d0effa596f6b154877cccea3008d2cd807a30d503dedd057b513b"
 
     payload_data = {
         "title": "Prueba22",
@@ -717,7 +717,7 @@ def test_GCTC009_Crear_proyecto_con_code_mayusculas():
 def test_GCTC010_Crear_proyecto_con_code_numerico():
 
     url = "https://api.qase.io/v1/project"
-    token = "a3b83af57ac9486e9e1402b0aa8aca01c905c976edaa3ff1888221ffb0e2326b"
+    token = "0676837bed7d0effa596f6b154877cccea3008d2cd807a30d503dedd057b513b"
 
     payload_data = {
         "title": "CodeNum2",
@@ -811,7 +811,7 @@ def test_GCTC010_Crear_proyecto_con_code_numerico():
 def test_GCTC011_Crear_proyecto_sin_title():
 
     url = "https://api.qase.io/v1/project"
-    token = "a3b83af57ac9486e9e1402b0aa8aca01c905c976edaa3ff1888221ffb0e2326b"
+    token = "0676837bed7d0effa596f6b154877cccea3008d2cd807a30d503dedd057b513b"
 
     payload_data = {
         "code": "sinTitle",
@@ -899,7 +899,7 @@ def test_GCTC011_Crear_proyecto_sin_title():
 def test_GCTC012_Crear_proyecto_con_code_caracteres_especiales():
 
     url = "https://api.qase.io/v1/project"
-    token = "a3b83af57ac9486e9e1402b0aa8aca01c905c976edaa3ff1888221ffb0e2326b"
+    token = "0676837bed7d0effa596f6b154877cccea3008d2cd807a30d503dedd057b513b"
 
     payload_data = {
         "title": "Prueba caracteres especiales",
@@ -985,7 +985,7 @@ def test_GCTC012_Crear_proyecto_con_code_caracteres_especiales():
 def test_GCTC013_Crear_proyecto_title_1_caracter_valido():
 
     url = "https://api.qase.io/v1/project"
-    token = "a3b83af57ac9486e9e1402b0aa8aca01c905c976edaa3ff1888221ffb0e2326b"
+    token = "0676837bed7d0effa596f6b154877cccea3008d2cd807a30d503dedd057b513b"
 
     payload_data = {
         "title": "C",
@@ -1068,7 +1068,7 @@ def test_GCTC013_Crear_proyecto_title_1_caracter_valido():
 def test_GCTC014_Crear_proyecto_title_2_caracteres_valido():
 
     url = "https://api.qase.io/v1/project"
-    token = "a3b83af57ac9486e9e1402b0aa8aca01c905c976edaa3ff1888221ffb0e2326b"
+    token = "0676837bed7d0effa596f6b154877cccea3008d2cd807a30d503dedd057b513b"
 
     payload_data = {
         "title": "AB",
@@ -1151,7 +1151,7 @@ def test_GCTC014_Crear_proyecto_title_2_caracteres_valido():
 def test_GCTC015_Crear_proyecto_title_224_caracteres_valido():
 
     url = "https://api.qase.io/v1/project"
-    token = "a3b83af57ac9486e9e1402b0aa8aca01c905c976edaa3ff1888221ffb0e2326b"
+    token = "0676837bed7d0effa596f6b154877cccea3008d2cd807a30d503dedd057b513b"
 
     payload_data = {
         "title": "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz00112233445566778899AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz00112233445566778899AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWw",
@@ -1233,7 +1233,7 @@ def test_GCTC015_Crear_proyecto_title_224_caracteres_valido():
 @pytest.mark.regression
 def test_GCTC016_Crear_proyecto_title_225_caracteres_valido():
     url = "https://api.qase.io/v1/project"
-    token = "a3b83af57ac9486e9e1402b0aa8aca01c905c976edaa3ff1888221ffb0e2326b"
+    token = "0676837bed7d0effa596f6b154877cccea3008d2cd807a30d503dedd057b513b"
 
     payload_data = {
         "title": "AAaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz00112233445566778899AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz00112233445566778899AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWw",
@@ -1317,7 +1317,7 @@ def test_GCTC016_Crear_proyecto_title_225_caracteres_valido():
 @pytest.mark.negative
 def test_GCTC017_Crear_proyecto_title_vacio_invalido():
     url = "https://api.qase.io/v1/project"
-    token = "a3b83af57ac9486e9e1402b0aa8aca01c905c976edaa3ff1888221ffb0e2326b"
+    token = "0676837bed7d0effa596f6b154877cccea3008d2cd807a30d503dedd057b513b"
 
     payload_data = {
         "title": "",
@@ -1406,7 +1406,7 @@ def test_GCTC017_Crear_proyecto_title_vacio_invalido():
 @pytest.mark.negative
 def test_GCTC018_Crear_proyecto_title_256_caracteres_invalido():
     url = "https://api.qase.io/v1/project"
-    token = "a3b83af57ac9486e9e1402b0aa8aca01c905c976edaa3ff1888221ffb0e2326b"
+    token = "0676837bed7d0effa596f6b154877cccea3008d2cd807a30d503dedd057b513b"
 
     payload_data = {
         "title": "AAAaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz00112233445566778899AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz00112233445566778899AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWw",
@@ -1496,7 +1496,7 @@ def test_GCTC018_Crear_proyecto_title_256_caracteres_invalido():
 @pytest.mark.regression
 def test_GCTC019_Crear_proyecto_code_2_caracteres_valido():
     url = "https://api.qase.io/v1/project"
-    token = "a3b83af57ac9486e9e1402b0aa8aca01c905c976edaa3ff1888221ffb0e2326b"
+    token = "0676837bed7d0effa596f6b154877cccea3008d2cd807a30d503dedd057b513b"
 
     payload_data = {
         "title": "Project26",
@@ -1578,7 +1578,7 @@ def test_GCTC019_Crear_proyecto_code_2_caracteres_valido():
 @pytest.mark.regression
 def test_GCTC020_Crear_proyecto_code_5_caracteres_valido():
     url = "https://api.qase.io/v1/project"
-    token = "a3b83af57ac9486e9e1402b0aa8aca01c905c976edaa3ff1888221ffb0e2326b"
+    token = "0676837bed7d0effa596f6b154877cccea3008d2cd807a30d503dedd057b513b"
 
     payload_data = {
         "title": "ProjectCode6",
@@ -1660,7 +1660,7 @@ def test_GCTC020_Crear_proyecto_code_5_caracteres_valido():
 @pytest.mark.regression
 def test_GCTC021_Crear_proyecto_code_10_caracteres_valido():
     url = "https://api.qase.io/v1/project"
-    token = "a3b83af57ac9486e9e1402b0aa8aca01c905c976edaa3ff1888221ffb0e2326b"
+    token = "0676837bed7d0effa596f6b154877cccea3008d2cd807a30d503dedd057b513b"
 
     payload_data = {
         "title": "Project Code 99",
@@ -1742,7 +1742,7 @@ def test_GCTC021_Crear_proyecto_code_10_caracteres_valido():
 @pytest.mark.regression
 def test_GCTC022_Crear_proyecto_code_vacio_invalido():
     url = "https://api.qase.io/v1/project"
-    token = "a3b83af57ac9486e9e1402b0aa8aca01c905c976edaa3ff1888221ffb0e2326b"
+    token = "0676837bed7d0effa596f6b154877cccea3008d2cd807a30d503dedd057b513b"
 
     payload_data = {
         "title": "Code vacío2",
@@ -1830,7 +1830,7 @@ def test_GCTC022_Crear_proyecto_code_vacio_invalido():
 @pytest.mark.regression
 def test_GCTC023_Crear_proyecto_code_15_caracteres_invalido():
     url = "https://api.qase.io/v1/project"
-    token = "a3b83af57ac9486e9e1402b0aa8aca01c905c976edaa3ff1888221ffb0e2326b"
+    token = "0676837bed7d0effa596f6b154877cccea3008d2cd807a30d503dedd057b513b"
 
     payload_data = {
         "title": "Code largo2",
