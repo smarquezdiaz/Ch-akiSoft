@@ -1,0 +1,232 @@
+{
+  "schema_salida_tc1": {
+    "type": "object",
+    "required": [
+        "result",
+        "status"],
+    "properties": {
+        "status": {
+            "type": "boolean"
+        },
+        "result": {
+            "type": "object",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+},
+    "schema_salida_sin_authorization": {
+    "type": "object",
+    "required": [
+        "error"
+    ],
+    "properties": {
+        "error": {
+            "type": "string"
+        }
+    }
+},
+
+ "schema_salida_correcto": {
+    "type": "object",
+    "required": [
+        "result",
+        "status"
+    ],
+    "properties": {
+        "status": {
+            "type": "boolean"
+        },
+        "result": {
+            "type": "object",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+},
+
+"schema_salida_campo_vacio": {
+    "type": "object",
+    "required": [
+        "errorFields",
+        "errorMessage",
+        "status"
+    ],
+    "properties": {
+        "status": {
+            "type": "boolean"
+        },
+        "errorMessage": {
+            "type": "string"
+        },
+        "errorFields": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "error",
+                    "field"
+                ],
+                "properties": {
+                    "field": {
+                        "type": "string"
+                    },
+                    "error": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+},
+
+    "schema_salida_decimal": {
+    "type": "object",
+    "required": [
+        "errorFields",
+        "errorMessage",
+        "status"
+    ],
+    "properties": {
+        "status": {
+            "type": "boolean"
+        },
+        "errorMessage": {
+            "type": "string"
+        },
+        "errorFields": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "field": {
+                        "type": "string"
+                    },
+                    "error": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "error",
+                    "field"
+                ]
+            }
+        }
+    }
+},
+ "schema_salida_sin_valores": {
+    "type": "object",
+    "required": [
+        "errorFields",
+        "errorMessage",
+        "status"
+    ],
+    "properties": {
+        "status": {
+            "type": "boolean"
+        },
+        "errorMessage": {
+            "type": "string"
+        },
+        "errorFields": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "error",
+                    "field"
+                ],
+                "properties": {
+                    "field": {
+                        "type": "string"
+                    },
+                    "error": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+},
+
+    "schema_salida_tc02": {
+    "type": "object",
+    "required": [
+        "errorFields",
+        "errorMessage",
+        "status"
+    ],
+    "properties": {
+        "status": {
+            "type": "boolean"
+        },
+        "errorMessage": {
+            "type": "string"
+        },
+        "errorFields": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "field": {
+                        "type": "string"
+                    },
+                    "error": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "error",
+                    "field"
+                ]
+            }
+        }
+    }
+},
+    "schema_salida_especial" :{
+    "type": "object",
+    "required": [
+        "errorFields",
+        "errorMessage",
+        "status"
+    ],
+    "properties": {
+        "status": {
+            "type": "boolean"
+        },
+        "errorMessage": {
+            "type": "string"
+        },
+        "errorFields": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "error",
+                    "field"
+                ],
+                "properties": {
+                    "field": {
+                        "type": "string"
+                    },
+                    "error": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
+}

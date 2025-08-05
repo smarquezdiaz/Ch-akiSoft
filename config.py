@@ -7,5 +7,8 @@ BASE_INVALID_URI = 'https://api.qase.io/v2'
 # TOKEN
 TOKEN = '0676837bed7d0effa596f6b154877cccea3008d2cd807a30d503dedd057b513b'
 
+# TOKEN
+TOKEN_Invalido = '0676837bed7d0effa596f6b154877cccea3008d2cd807a30d503dedd057b513z'
+
 # TOKEN Invalido
 TOKEN_inv = '0676837bed7d0effa596f6b154877cccea3008d2cd807a30d503dedd057b513z'

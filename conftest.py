@@ -1,8 +1,10 @@
 import pytest
 
 
+
 from config import *
 from src.headers.headers import *
+
 
 
 
@@ -30,4 +32,5 @@ def get_headers_no_accept():
 @pytest.fixture(scope='session')
 def get_headers_no_content():
     return get_header_without_content()
+
 

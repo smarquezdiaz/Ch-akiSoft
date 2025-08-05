@@ -1,0 +1,1 @@
+{'status': False, 'errorMessage': 'Data is invalid.', 'errorFields': [{'field': 'title', 'error': 'The title field is required.'}, {'field': 'entity', 'error': 'The selected entity is invalid.'}, {'field': 'type', 'error': 'The selected type is invalid.'}]}
