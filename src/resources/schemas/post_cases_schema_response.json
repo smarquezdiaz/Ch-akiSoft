@@ -1,9 +1,13 @@
 {
     "type": "object",
     "required": [
-        "result"
+        "result",
+        "status"
     ],
     "properties": {
+        "status": {
+            "type": "boolean"
+        },
         "result": {
             "type": "object",
             "required": [
