@@ -106,7 +106,7 @@ def test_DL006_Colocar_letras_en_el_campo_conjunto_de_resultados():
 
 @pytest.mark.functional
 @pytest.mark.negative
-@pytest.mark.xfail(reason ="error devuelve datos cuando no deberia al usar el caracter especial #", run=False)
+@pytest.mark.xfail(reason ="error devuelve datos cuando no deberia al usar el caracter especial en limit :DL-BUG001 #", run=False)
 def test_DL007_Colocar_caracteres_especiales_en_el_campo_conjunto_de_resultados():
     url = f"{BASE_URI}/attachment?limit=#&offset=0"
     response = requests.get(url, headers=get_header_with_token())
@@ -139,7 +139,7 @@ def test_DL008_Omitir_un_archivo():
 
 @pytest.mark.functional
 @pytest.mark.negative
-@pytest.mark.xfail(reason ="error devuelve datos cuando no deberia al exeder el limite de caracteres en offset", run=False)
+@pytest.mark.xfail(reason ="error devuelve datos cuando no deberia al exCeder el limite de caracteres en offset:DL-BUG002", run=False)
 def test_DL009_Verificar_el_limite_en_el_campo_de_omitir_entidades():
     url = f"{BASE_URI}/attachment?limit=10&offset=2312312312313333"
     response = requests.get(url, headers=get_header_with_token())
@@ -188,7 +188,7 @@ def test_DL011_Colocar_letras_en_el_campo_omitir_entidades():
 
 @pytest.mark.functional
 @pytest.mark.negative
-@pytest.mark.xfail(reason ="error devuelve datos cuando no deberia al usar el caracter especial# :Bug003", run=False)
+@pytest.mark.xfail(reason ="error devuelve datos cuando no deberia al usar el caracter especial# en el campo offsetDL-BUG003", run=False)
 def test_DL012_Colocar_caracteres_especiales_en_el_campo_omitir_entidades():
     url = f"{BASE_URI}/attachment?limit=10&offset=#"
     response = requests.get(url, headers=get_header_with_token())
