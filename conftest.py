@@ -4,7 +4,7 @@ from config import BASE_URI, TOKEN
 from src.headers.headers import get_header_with_token, get_header_without_token
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture(scope='module')
 def get_url():
     return BASE_URI
 
