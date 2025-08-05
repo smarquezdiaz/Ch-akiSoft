@@ -12,4 +12,4 @@ def get_headers(token=None, invalido=False):
         'content-type': 'application/json'
     }
 def custom_field_url(BASE_URI, field_id):
-    return f"{BASE_URI}custom_field/{field_id}"
+    return f"{BASE_URI}/custom_field/{field_id}"

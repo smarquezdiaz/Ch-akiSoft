@@ -1,9 +1,0 @@
-[32mINFO    [0m api_logger:logger.py:53 IP address or domain: api.qase.io
-[35mDEBUG   [0m api_logger:logger.py:57 Token: 0676837bed7d0effa596f6b154877cccea3008d2cd807a30d503dedd057b513b
-[35mDEBUG   [0m api_logger:logger.py:61 Request URL: https://api.qase.io/v1/custom_field/
-[35mDEBUG   [0m api_logger:logger.py:62 Request headers: {'accept': 'application/json', 'Token': '0676837bed7d0effa596f6b154877cccea3008d2cd807a30d503dedd057b513b', 'content-type': 'application/json'}
-[35mDEBUG   [0m api_logger:logger.py:67 Request payload: None
-[32mINFO    [0m api_logger:logger.py:71 Timestamp: 2025-08-04 21:08:15
-[32mINFO    [0m api_logger:logger.py:76 Status code: 500
-[35mDEBUG   [0m api_logger:logger.py:81 Response headers: {'Date': 'Tue, 05 Aug 2025 01:08:14 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Cache-Control': 'no-cache, private', 'X-RateLimit-Limit': '1500', 'X-RateLimit-Remaining': '1498', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains'}
-[35mDEBUG   [0m api_logger:logger.py:87 Response payload: {'message': 'Server Error'}

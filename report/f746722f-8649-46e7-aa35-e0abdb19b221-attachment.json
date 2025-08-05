@@ -1,1 +1,0 @@
-{'status': False, 'errorMessage': 'Data is invalid.', 'errorFields': [{'field': 'type', 'error': 'The type must be an integer.'}, {'field': 'type', 'error': 'The selected type is invalid.'}, {'field': 'value', 'error': 'The value field is required.'}]}

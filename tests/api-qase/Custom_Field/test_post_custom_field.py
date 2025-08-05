@@ -9,7 +9,7 @@ from src.common.logger import log_api_call
 @pytest.mark.functional
 @pytest.mark.regression
 def test_AE_TC001_crear_campo_personalizado_con_datos_validos():
-    url = f"{BASE_URI}custom_field"
+    url = f"{BASE_URI}/custom_field"
     headers = get_header_with_token()
     payload = get_payload_by_id("AE_TC001")
     assert_post_custom_field_request_schema(payload, "schema_entrada_tc1")
@@ -29,7 +29,7 @@ def test_AE_TC001_crear_campo_personalizado_con_datos_validos():
 @pytest.mark.negative
 @pytest.mark.regression
 def test_AE_TC002_Intentar_crear_un_campo_personalizado_sin_titulo():
-    url = f"{BASE_URI}custom_field"
+    url = f"{BASE_URI}/custom_field"
     headers = get_header_with_token()
     payload = get_payload_by_id("AE_TC002")
     assert_post_custom_field_request_schema(payload, "schema_entrada_tc02")
@@ -50,7 +50,7 @@ def test_AE_TC002_Intentar_crear_un_campo_personalizado_sin_titulo():
 @pytest.mark.negative
 @pytest.mark.regression
 def test_AE_TC003_realizar_una_solicitud_sin_autenticacion():
-    url = f"{BASE_URI}custom_field"
+    url = f"{BASE_URI}/custom_field"
     headers = get_header_without_token()
     payload = get_payload_by_id("AE_TC003")
     assert_post_custom_field_request_schema(payload, "schema_entrada_tc")
@@ -70,7 +70,7 @@ def test_AE_TC003_realizar_una_solicitud_sin_autenticacion():
 @pytest.mark.negative
 @pytest.mark.regression
 def test_AE_TC004_enviar_valor_no_permitido_en_el_campo_type():
-    url = f"{BASE_URI}custom_field"
+    url = f"{BASE_URI}/custom_field"
     headers = get_header_with_token()
     payload = get_payload_by_id("AE_TC004")
     assert_post_custom_field_request_schema(payload, "schema_entrada_tc")
@@ -91,7 +91,7 @@ def test_AE_TC004_enviar_valor_no_permitido_en_el_campo_type():
 @pytest.mark.functional
 @pytest.mark.regression
 def test_AE_TC005_verificar_campos_obligatorios_title_type_entity_de_campo_personalizado():
-    url = f"{BASE_URI}custom_field"
+    url = f"{BASE_URI}/custom_field"
     headers = get_header_with_token()
     payload = get_payload_by_id("AE_TC005")
     assert_post_custom_field_request_schema(payload, "schema_entrada_tc")
@@ -112,7 +112,7 @@ def test_AE_TC005_verificar_campos_obligatorios_title_type_entity_de_campo_perso
 @pytest.mark.functional
 @pytest.mark.regression
 def test_AE_TC006_registrar_un_campo_personalizado_con_entity_case():
-    url = f"{BASE_URI}custom_field"
+    url = f"{BASE_URI}/custom_field"
     headers = get_header_with_token()
     payload = get_payload_by_id("AE_TC006")
     assert_post_custom_field_request_schema(payload, "schema_entrada_tc")
@@ -133,7 +133,7 @@ def test_AE_TC006_registrar_un_campo_personalizado_con_entity_case():
 @pytest.mark.functional
 @pytest.mark.regression
 def test_AE_TC007_registrar_un_campo_personalizado_con_entity_run():
-    url = f"{BASE_URI}custom_field"
+    url = f"{BASE_URI}/custom_field"
     headers = get_header_with_token()
     payload = get_payload_by_id("AE_TC007")
     assert_post_custom_field_request_schema(payload, "schema_entrada_tc")
@@ -152,7 +152,7 @@ def test_AE_TC007_registrar_un_campo_personalizado_con_entity_run():
 @pytest.mark.functional
 @pytest.mark.regression
 def test_AE_TC008_registrar_un_campo_personalizado_con_entity_defect():
-    url = f"{BASE_URI}custom_field"
+    url = f"{BASE_URI}/custom_field"
     headers = get_header_with_token()
     payload = get_payload_by_id("AE_TC008")
     assert_post_custom_field_request_schema(payload, "schema_entrada_tc")
@@ -172,7 +172,7 @@ def test_AE_TC008_registrar_un_campo_personalizado_con_entity_defect():
 @pytest.mark.functional
 @pytest.mark.regression
 def test_AE_TC009_validar_que_el_campo_tipo_selectbox_requiere_valores_para_registrar():
-    url = f"{BASE_URI}custom_field"
+    url = f"{BASE_URI}/custom_field"
     headers = get_header_with_token()
     payload = get_payload_by_id("AE_TC009")
     assert_post_custom_field_request_schema(payload, "schema_entrada_especial")
@@ -193,7 +193,7 @@ def test_AE_TC009_validar_que_el_campo_tipo_selectbox_requiere_valores_para_regi
 @pytest.mark.negative
 @pytest.mark.regression
 def test_AE_TC010_crear_selectbox_sin_valores():
-    url = f"{BASE_URI}custom_field"
+    url = f"{BASE_URI}/custom_field"
     headers = get_header_with_token()
     payload = get_payload_by_id("AE_TC010")
     assert_post_custom_field_request_schema(payload, "schema_entrada_tc")
@@ -213,7 +213,7 @@ def test_AE_TC010_crear_selectbox_sin_valores():
 @pytest.mark.functional
 @pytest.mark.regression
 def test_AE_TC011_validar_que_el_campo_tipo_radio_requiere_valores_para_registrar():
-    url = f"{BASE_URI}custom_field"
+    url = f"{BASE_URI}/custom_field"
     headers = get_header_with_token()
     payload = get_payload_by_id("AE_TC011")
     assert_post_custom_field_request_schema(payload, "schema_entrada_especial")
@@ -232,7 +232,7 @@ def test_AE_TC011_validar_que_el_campo_tipo_radio_requiere_valores_para_registra
 @pytest.mark.negative
 @pytest.mark.regression
 def test_AE_TC012_crear_radio_sin_valores():
-    url = f"{BASE_URI}custom_field"
+    url = f"{BASE_URI}/custom_field"
     headers = get_header_with_token()
     payload = get_payload_by_id("AE_TC012")
     assert_post_custom_field_request_schema(payload,"schema_entrada_tc")
@@ -253,7 +253,7 @@ def test_AE_TC012_crear_radio_sin_valores():
 @pytest.mark.functional
 @pytest.mark.regression
 def test_AE_TC013_validar_que_el_campo_tipo_multiselec_requiere_valores_para_registrar():
-    url = f"{BASE_URI}custom_field"
+    url = f"{BASE_URI}/custom_field"
     headers = get_header_with_token()
     payload = get_payload_by_id("AE_TC013")
     assert_post_custom_field_request_schema(payload, "schema_entrada_especial")
@@ -273,7 +273,7 @@ def test_AE_TC013_validar_que_el_campo_tipo_multiselec_requiere_valores_para_reg
 @pytest.mark.negative
 @pytest.mark.regression
 def test_AE_TC014_crear_un_multiselect_sin_valores():
-    url = f"{BASE_URI}custom_field"
+    url = f"{BASE_URI}/custom_field"
     headers = get_header_with_token()
     payload = get_payload_by_id("AE_TC014")
     assert_post_custom_field_request_schema(payload, "schema_entrada_tc")
@@ -295,7 +295,7 @@ def test_AE_TC014_crear_un_multiselect_sin_valores():
 @pytest.mark.negative
 @pytest.mark.regression
 def test_AE_TC015_enviar_valor_fuera_del_limite_inferior_de_type_numero_negativo():
-    url = f"{BASE_URI}custom_field"
+    url = f"{BASE_URI}/custom_field"
     headers = get_header_with_token()
     payload = get_payload_by_id("AE_TC015")
     assert_post_custom_field_request_schema(payload, "schema_entrada_tc")
@@ -316,7 +316,7 @@ def test_AE_TC015_enviar_valor_fuera_del_limite_inferior_de_type_numero_negativo
 @pytest.mark.smoke
 @pytest.mark.regression
 def test_AE_TC016_Enviar_valor_minimo_permitido_en_type_0():
-    url = f"{BASE_URI}custom_field"
+    url = f"{BASE_URI}/custom_field"
     headers = get_header_with_token()
     payload = get_payload_by_id("AE_TC016")
     assert_post_custom_field_request_schema(payload, "schema_entrada_tc")
@@ -329,7 +329,7 @@ def test_AE_TC016_Enviar_valor_minimo_permitido_en_type_0():
 @pytest.mark.smoke
 @pytest.mark.regression
 def test_AE_TC017_Enviar_valor_maximo_permitido_en_type_9():
-    url = f"{BASE_URI}custom_field"
+    url = f"{BASE_URI}/custom_field"
     headers = get_header_with_token()
     payload = get_payload_by_id("AE_TC017")
     response = requests.post(url, headers=headers, json=payload)
@@ -349,7 +349,7 @@ def test_AE_TC017_Enviar_valor_maximo_permitido_en_type_9():
 @pytest.mark.negative
 @pytest.mark.regression
 def test_AE_TC018_Enviar_valor_fuera_del_limite_superior_de_type_10():
-    url = f"{BASE_URI}custom_field"
+    url = f"{BASE_URI}/custom_field"
     headers = get_header_with_token()
     payload = get_payload_by_id("AE_TC018")
     assert_post_custom_field_request_schema(payload, "schema_entrada_tc")
@@ -371,7 +371,7 @@ def test_AE_TC018_Enviar_valor_fuera_del_limite_superior_de_type_10():
 @pytest.mark.negative
 @pytest.mark.regression
 def test_AE_TC019_Enviar_numero_decimal_negativo_como_valor_de_type():
-    url = f"{BASE_URI}custom_field"
+    url = f"{BASE_URI}/custom_field"
     headers = get_header_with_token()
     payload = get_payload_by_id("AE_TC019")
     response = requests.post(url, headers=headers, json=payload)
@@ -391,7 +391,7 @@ def test_AE_TC019_Enviar_numero_decimal_negativo_como_valor_de_type():
 @pytest.mark.negative
 @pytest.mark.regression
 def test_AE_TC020_Enviar_numero_decimal_positivo_valor_de_type():
-    url = f"{BASE_URI}custom_field"
+    url = f"{BASE_URI}/custom_field"
     headers = get_header_with_token()
     payload = get_payload_by_id("AE_TC020")
     response = requests.post(url, headers=headers, json=payload)
