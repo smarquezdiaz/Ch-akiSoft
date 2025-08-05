@@ -28,6 +28,7 @@ def assert_add_suites_assertion(get_url, get_token, code, payload):
     response = requests.post(url, headers=headers, json=payload)
     return response
 
+
 def assert_request_suite_payload(
         title: str | int | None = None,
         description: str | int | None = None,
@@ -35,9 +36,16 @@ def assert_request_suite_payload(
         parent_id: str | int | float | list | None = None
 ) -> dict:
     actual_title = get_random_title() if title is None else title
-    payload = {"title": actual_title, "description": get_random_property() if description is None else description,
-               "preconditions": get_random_property() if preconditions is None else preconditions,
-               "parent_id": None if parent_id is None else parent_id}
+
+    payload = {
+        "title": actual_title,
+        "description": get_random_property() if description is None else description,
+        "preconditions": get_random_property() if preconditions is None else preconditions,
+    }
+
+    if parent_id is not None:
+        payload["parent_id"] = parent_id
+
     return payload
 
 

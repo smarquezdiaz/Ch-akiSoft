@@ -1,7 +1,7 @@
 import pytest
 
 from config import TOKEN
-from src.assertions.get_cases_assertions import assert_response_status_code
+from src.assertions.get_cases_assertions import assert_response_status_code_suites
 from src.assertions.get_suites_assertions import assert_get_suites_response_schema, assert_get_suites_assertion
 from src.common.logger import log_api_call
 from src.common.static_data_suites import StaticDataSuites
@@ -20,7 +20,7 @@ def test_SM001_Obtener_todos_los_casos_de_prueba_con_datos_validos(get_url, get_
                  response=response
                  )
     assert_get_suites_response_schema(response.json(),"get_suites_response.json")
-    assert_response_status_code(response.status_code, 200)
+    assert_response_status_code_suites(200, response.status_code)
 
 @pytest.mark.regression
 @pytest.mark.negative
@@ -34,7 +34,7 @@ def test_SM002_Obtener_todos_los_casos_de_prueba_con_url_invalida(get_invalid_ur
                  response=response
                  )
     assert_get_suites_response_schema(response.json(),"not_found_response.json")
-    assert_response_status_code(response.status_code, 404)
+    assert_response_status_code_suites(404, response.status_code)
 
 
 @pytest.mark.regression
@@ -49,7 +49,7 @@ def test_SM003_Obtener_todos_los_casos_de_prueba_sin_token(get_url,get_headers):
                  response=response
                  )
     assert_get_suites_response_schema(response.json(), "unautenthicated_response.json")
-    assert_response_status_code(response.status_code, 401)
+    assert_response_status_code_suites(401, response.status_code)
 
 @pytest.mark.regression
 @pytest.mark.negative
@@ -63,7 +63,7 @@ def test_SM004_Obtener_todos_los_casos_de_prueba_con_codigo_inexistente(get_url,
                  response=response
                  )
     assert_get_suites_response_schema(response.json(), "bad_schema_response.json")
-    assert_response_status_code(response.status_code, 404)
+    assert_response_status_code_suites(404, response.status_code)
 
 @pytest.mark.regression
 @pytest.mark.negative
@@ -77,7 +77,7 @@ def test_SM005_Obtener_todos_los_casos_de_prueba_con_codigo_de_un_caracter(get_u
                  response=response
                  )
     assert_get_suites_response_schema(response.json(), "bad_schema_response.json")
-    assert_response_status_code(response.status_code, 404)
+    assert_response_status_code_suites(404, response.status_code)
 
 @pytest.mark.regression
 @pytest.mark.negative
@@ -91,7 +91,7 @@ def test_SM006_Obtener_todos_los_casos_de_prueba_con_codigo_de_11_caracteres(get
                  response=response
                  )
     assert_get_suites_response_schema(response.json(), "bad_schema_response.json")
-    assert_response_status_code(response.status_code, 404)
+    assert_response_status_code_suites(404, response.status_code)
 
 @pytest.mark.regression
 @pytest.mark.negative
@@ -105,7 +105,7 @@ def test_SM007_Obtener_todos_los_casos_de_prueba_con_codigo_de_tipo_numerico(get
                  response=response
                  )
     assert_get_suites_response_schema(response.json(), "bad_schema_response.json")
-    assert_response_status_code(response.status_code, 404)
+    assert_response_status_code_suites(404, response.status_code)
 
 @pytest.mark.regression
 @pytest.mark.negative
@@ -119,7 +119,7 @@ def test_SM008_Obtener_todos_los_casos_de_prueba_con_codigo_vacio(get_url, get_t
                  response=response
                  )
     assert_get_suites_response_schema(response.json(), "not_found_response.json")
-    assert_response_status_code(response.status_code, 404)
+    assert_response_status_code_suites(404, response.status_code)
 
 @pytest.mark.smoke
 @pytest.mark.regression
@@ -134,7 +134,7 @@ def test_SM009_Obtener_todos_los_casos_de_prueba_con_limite_valido(get_url, get_
                  response=response
                  )
     assert_get_suites_response_schema(response.json(), "get_suites_response.json")
-    assert_response_status_code(response.status_code, 200)
+    assert_response_status_code_suites(200, response.status_code)
 
 @pytest.mark.regression
 @pytest.mark.negative
@@ -148,7 +148,7 @@ def test_SM010_Obtener_todos_los_casos_de_prueba_con_limite_cero(get_url, get_to
                  response=response
                  )
     assert_get_suites_response_schema(response.json(), "field_invalid_response.json")
-    assert_response_status_code(response.status_code, 400)
+    assert_response_status_code_suites(400, response.status_code)
 
 @pytest.mark.regression
 @pytest.mark.negative
@@ -162,7 +162,7 @@ def test_SM011_Obtener_todos_los_casos_de_prueba_con_limite_de_101(get_url, get_
                  response=response
                  )
     assert_get_suites_response_schema(response.json(), "field_invalid_response.json")
-    assert_response_status_code(response.status_code, 400)
+    assert_response_status_code_suites(400, response.status_code)
 
 @pytest.mark.regression
 @pytest.mark.negative
@@ -176,7 +176,7 @@ def test_SM012_Obtener_todos_los_casos_de_prueba_con_limite_string(get_url, get_
                  response=response
                  )
     assert_get_suites_response_schema(response.json(), "field_invalid_response.json")
-    assert_response_status_code(response.status_code, 400)
+    assert_response_status_code_suites(400, response.status_code)
 
 @pytest.mark.smoke
 @pytest.mark.regression
@@ -191,7 +191,7 @@ def test_SM013_Obtener_todos_los_casos_de_prueba_con_offset_valido(get_url, get_
                  response=response
                  )
     assert_get_suites_response_schema(response.json(), "get_suites_response.json")
-    assert_response_status_code(response.status_code, 200)
+    assert_response_status_code_suites(200, response.status_code)
 
 @pytest.mark.xfail
 def test_SM014_Obtener_todos_los_casos_de_prueba_con_offset_fuera_de_rango(get_url, get_token):
@@ -204,7 +204,7 @@ def test_SM014_Obtener_todos_los_casos_de_prueba_con_offset_fuera_de_rango(get_u
                  response=response
                  )
     assert_get_suites_response_schema(response.json(), "get_suites_response.json")
-    assert_response_status_code(response.status_code, 400)
+    assert_response_status_code_suites(400, response.status_code)
 
 @pytest.mark.regression
 @pytest.mark.negative
@@ -218,4 +218,4 @@ def test_SM015_Obtener_todos_los_casos_de_prueba_con_offset_string(get_url, get_
                  response=response
                  )
     assert_get_suites_response_schema(response.json(), "field_invalid_response.json")
-    assert_response_status_code(response.status_code, 400)
+    assert_response_status_code_suites(400, response.status_code)
