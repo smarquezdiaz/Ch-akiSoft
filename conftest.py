@@ -1,7 +1,9 @@
 import pytest
 
+
 from config import *
 from src.headers.headers import *
+
 
 
 @pytest.fixture(scope='session')
@@ -20,6 +22,7 @@ def get_token():
 def get_headers():
     return get_header_without_token()
 
+
 @pytest.fixture(scope='session')
 def get_headers_no_accept():
     return get_header_without_accept()
@@ -27,3 +30,4 @@ def get_headers_no_accept():
 @pytest.fixture(scope='session')
 def get_headers_no_content():
     return get_header_without_content()
+
