@@ -1,3 +1,5 @@
+import uuid
+
 import jsonschema
 import pytest
 import requests
@@ -58,3 +60,6 @@ def assert_request_payload(title: str, severity: int | None=None, priority: int 
         if automation is not None: payload["automation"] = automation
         if no_existe is not None: payload["no_existe"] = no_existe
         return payload
+
+def name_random_cases(prefix: str = "soy el caso de prueba") -> str:
+    return f"{prefix}_{uuid.uuid4().hex[:8]}"

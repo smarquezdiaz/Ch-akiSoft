@@ -20,7 +20,10 @@ def test_DR_TC01_Verificar_la_obtencion_de_todos_los_casos_de_prueba_de_un_proye
     assert_response_status_code(response.status_code, 200)
     assert_get_cases_response_schema(response.json(),"get_cases_schema_response.json")
 
+@pytest.mark.funtional
 @pytest.mark.regression
+@pytest.mark.negative
+@pytest.mark.xfail(raises= "error si se manda un header que no existe, el sistema devuelve un status 200 : DR-BUG001")
 def test_DR_TC02_Verificar_que_retorna_una_respuesta_400_al_obtener_todos_los_casos_de_prueba_con_un_parámetro_que_no_existe (get_url, get_token):
     response = assert_get_cases_assertion("GET", cases_get_url(get_url, "DEMO?esteparametronoexiste=noexiste"),
                                           cases_headers(get_token))
@@ -36,6 +39,7 @@ def test_DR_TC02_Verificar_que_retorna_una_respuesta_400_al_obtener_todos_los_ca
 
 @pytest.mark.funtional
 @pytest.mark.regression
+@pytest.mark.negative
 def test_DR_TC03_Verificar_que_retorna_una_respuesta_401_al_obtener_todos_los_casos_de_prueba_de_un_proyecto_cuando_no_tiene_un_token_valido (get_url):
     response = assert_get_cases_assertion("GET", cases_get_url(get_url, "DEMO"), cases_headers("invalido"))
     log_api_call(method="GET",
@@ -46,9 +50,11 @@ def test_DR_TC03_Verificar_que_retorna_una_respuesta_401_al_obtener_todos_los_ca
                  response=response
                  )
     assert_response_status_code(response.status_code, 401)
+    assert_get_cases_response_schema(response.json(), "cases_schema_401.json")
 
 @pytest.mark.funtional
 @pytest.mark.regression
+@pytest.mark.negative
 def test_DR_TC04_Verificar_que_retorna_una_respuesta_404_al_obtener_todos_los_casos_de_prueba_de_un_proyecto_que_no_existe (get_url, get_token):
     response = assert_get_cases_assertion("GET", cases_get_url(get_url, "proyectoquenoexiste"), cases_headers(get_token))
     log_api_call(method="GET",
@@ -59,8 +65,11 @@ def test_DR_TC04_Verificar_que_retorna_una_respuesta_404_al_obtener_todos_los_ca
                  response=response
                  )
     assert_response_status_code(response.status_code, 404)
+    assert_get_cases_response_schema(response.json(), "cases_schema_404.json")
 
+@pytest.mark.funtional
 @pytest.mark.regression
+@pytest.mark.negative
 def test_DR_TC05_Verificar_que_retorna_una_respuesta_400_al_obtener_todos_los_casos_de_prueba_con_el_método_POST (get_url, get_token):
     response = assert_get_cases_assertion("POST", cases_get_url(get_url, "DEMO"), cases_headers(get_token))
     log_api_call(method="POST",
@@ -71,8 +80,11 @@ def test_DR_TC05_Verificar_que_retorna_una_respuesta_400_al_obtener_todos_los_ca
                  response=response
                  )
     assert_response_status_code(response.status_code, 400)
+    assert_get_cases_response_schema(response.json(), "cases_schema_400.json")
 
+@pytest.mark.funtional
 @pytest.mark.regression
+@pytest.mark.negative
 def test_DR_TC06_Verificar_que_retorna_una_respuesta_405_al_obtener_todos_los_casos_de_prueba_con_el_método_PUT (get_url, get_token):
     response = assert_get_cases_assertion("PUT", cases_get_url(get_url, "DEMO"), cases_headers(get_token))
     log_api_call(method="PUT",
@@ -83,8 +95,11 @@ def test_DR_TC06_Verificar_que_retorna_una_respuesta_405_al_obtener_todos_los_ca
                  response=response
                  )
     assert_response_status_code(response.status_code, 405)
+    assert_get_cases_response_schema(response.json(), "cases_schema_405.json")
 
+@pytest.mark.funtional
 @pytest.mark.regression
+@pytest.mark.negative
 def test_DR_TC07_Verificar_que_retorna_una_respuesta_405_al_obtener_todos_los_casos_de_prueba_con_el_método_DELETE (get_url, get_token):
     response = assert_get_cases_assertion("DELETE", cases_get_url(get_url, "DEMO"), cases_headers(get_token))
     log_api_call(method="DELETE",
@@ -95,9 +110,10 @@ def test_DR_TC07_Verificar_que_retorna_una_respuesta_405_al_obtener_todos_los_ca
                  response=response
                  )
     assert_response_status_code(response.status_code, 405)
+    assert_get_cases_response_schema(response.json(), "cases_schema_405.json")
 
-@pytest.mark.somke
 @pytest.mark.funtional
+@pytest.mark.somke
 @pytest.mark.regression
 def test_DR_TC08_Verificar_la_obtención_de_todos_los_casos_de_prueba_de_un_proyecto_filtrado_por_severidad_critica (get_url, get_token):
     response = assert_get_cases_assertion("GET", cases_get_url(get_url, StaticDataCases.severity_critical_call.value),
@@ -113,8 +129,8 @@ def test_DR_TC08_Verificar_la_obtención_de_todos_los_casos_de_prueba_de_un_proy
     assert_get_cases_response_schema(response.json(),"get_cases_schema_response.json")
     assert_entities_field_equal(response, StaticDataCases.severity_critical_value.value, StaticDataCases.severity_parameter.value)
 
-@pytest.mark.somke
 @pytest.mark.funtional
+@pytest.mark.somke
 @pytest.mark.regression
 def test_DR_TC09_Verificar_la_obtención_de_todos_los_casos_de_prueba_de_un_proyecto_filtrado_por_prioridad_alta (get_url, get_token):
     response = assert_get_cases_assertion("GET", cases_get_url(get_url, StaticDataCases.priority_high_call.value),
