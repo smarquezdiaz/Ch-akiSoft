@@ -1,12 +1,13 @@
+import uuid
+
 import jsonschema
 import pytest
 import requests
-
 from src.utils.load_resources import load_schema_resource
 
 
-def assert_get_cases_response_schema(response):
-    schema = load_schema_resource("bad_schema_response.json")
+def assert_get_cases_response_schema(response, schema):
+    schema = load_schema_resource(schema)
     try:
         jsonschema.validate(instance=response, schema=schema)
         return True
@@ -30,7 +31,10 @@ def assert_entities_field_equal (response , search, attribute):
 
 
 def assert_response_status_code(status_code, expected_code):
-    assert status_code == expected_code, f"Estatus esperado {status_code}, estatus obtenido {expected_code}"
+    assert status_code == expected_code, f"Estatus esperado {expected_code}, estatus obtenido {status_code}"
+
+def assert_response_status_code_suites(expected_code, status_code):
+        assert status_code == expected_code, f"Status esperado {expected_code}, Status obtenido {status_code}"
 
 def assert_equals(result, expected_result):
     assert result == expected_result, f"Resultado esperado {result}, resultado obtenido {expected_result}"
@@ -41,9 +45,24 @@ def cases_get_url(uri, code):
     url = f"{uri}/case/{code}"
     return url
 
-def cases_get_headers(TOKEN):
+def cases_headers(key):
     headers = {
-        'Token': TOKEN,
-        'accept': 'application/json'
+        'Token': key,
+        'accept': 'application/json',
+        'Content-Type': 'application/json'
     }
     return headers
+
+def assert_request_payload(title: str, severity: int | None=None, priority: int | None=None, type_: int | None=None, status: int | None=None, automation: int| None=None, no_existe: str| None=None) -> dict:
+        payload = {"title": title}
+
+        if severity is not None: payload["severity"] = severity
+        if priority is not None: payload["priority"] = priority
+        if type_ is not None: payload["type"] = type_
+        if status is not None: payload["status"] = status
+        if automation is not None: payload["automation"] = automation
+        if no_existe is not None: payload["no_existe"] = no_existe
+        return payload
+
+def name_random_cases(prefix: str = "soy el caso de prueba") -> str:
+    return f"{prefix}_{uuid.uuid4().hex[:8]}"

@@ -1,0 +1,47 @@
+{
+    "type": "object",
+    "required": [
+        "errors",
+        "message"
+    ],
+    "properties": {
+        "message": {
+            "type": "string"
+        },
+        "errors": {
+            "type": "object",
+            "properties": {
+                "priority": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "severity": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "type": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "status": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "automation": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
