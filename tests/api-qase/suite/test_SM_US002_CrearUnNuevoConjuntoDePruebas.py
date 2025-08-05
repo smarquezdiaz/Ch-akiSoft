@@ -300,6 +300,8 @@ def test_SM032_Crear_un_nuevo_conjunto_de_pruebas_con_parent_id_string(get_url, 
     assert_response_status_code_suites(400, response.status_code)
     assert response.json()["status"] == False
 
+@pytest.mark.regression
+@pytest.mark.negative
 @pytest.mark.xfail(reason="No valida el valor True como parent_id")
 def test_SM033_Crear_un_nuevo_conjunto_de_pruebas_con_parent_id_True(get_url, get_token):
     payload = assert_request_suite_payload(None,None,None,True)

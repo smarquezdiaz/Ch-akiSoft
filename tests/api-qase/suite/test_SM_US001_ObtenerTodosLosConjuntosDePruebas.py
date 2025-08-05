@@ -193,7 +193,9 @@ def test_SM013_Obtener_todos_los_casos_de_prueba_con_offset_valido(get_url, get_
     assert_get_suites_response_schema(response.json(), "get_suites_response.json")
     assert_response_status_code_suites(200, response.status_code)
 
-@pytest.mark.xfail
+@pytest.mark.regression
+@pytest.mark.negative
+@pytest.mark.xfail(reason="valor de offset fuera de rango")
 def test_SM014_Obtener_todos_los_casos_de_prueba_con_offset_fuera_de_rango(get_url, get_token):
     response = assert_get_suites_assertion(get_url, get_token, StaticDataSuites.invalid_offset_param.value)
     log_api_call(method="GET",
