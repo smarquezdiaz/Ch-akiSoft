@@ -2,16 +2,18 @@ import pytest
 
 from config import TOKEN
 from src.assertions.get_cases_assertions import assert_response_status_code_suites
-from src.assertions.get_suites_assertions import assert_get_suites_response_schema, assert_get_suites_assertion
+from src.assertions.get_suites_assertions import assert_get_suites_response_schema
 from src.common.logger import log_api_call
 from src.common.static_data_suites import StaticDataSuites
+from src.utils.get_suites import assert_get_suites_assertion
+
 
 
 @pytest.mark.smoke
 @pytest.mark.regression
 @pytest.mark.funtional
 def test_SM001_Obtener_todos_los_casos_de_prueba_con_datos_validos(get_url, get_token):
-    response = assert_get_suites_assertion(get_url, get_token, StaticDataSuites.default_url_suffix.value)
+    response = assert_get_suites_assertion(get_url, get_token, StaticDataSuites.default_url_suffix.value )
     log_api_call(method="GET",
                  url= response.url,
                  headers=response.headers,
@@ -39,7 +41,7 @@ def test_SM002_Obtener_todos_los_casos_de_prueba_con_url_invalida(get_invalid_ur
 
 @pytest.mark.regression
 @pytest.mark.negative
-def test_SM003_Obtener_todos_los_casos_de_prueba_sin_token(get_url,get_headers):
+def test_SM003_Obtener_todos_los_casos_de_prueba_sin_token(setup_suites_assertion, get_url,get_headers):
     response = assert_get_suites_assertion(get_url, get_headers, StaticDataSuites.default_url_suffix.value)
     log_api_call(method="GET",
                  url=response.url,
