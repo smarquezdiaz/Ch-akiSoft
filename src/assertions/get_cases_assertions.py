@@ -31,7 +31,7 @@ def assert_entities_field_equal (response , search, attribute):
 
 
 def assert_response_status_code(status_code, expected_code):
-    assert status_code == expected_code, f"Estatus esperado {expected_code}, estatus obtenido {status_code}"
+    assert status_code == expected_code, f"Status esperado {expected_code}, Status obtenido {status_code}"
 
 def assert_response_status_code_suites(expected_code, status_code):
         assert status_code == expected_code, f"Status esperado {expected_code}, Status obtenido {status_code}"

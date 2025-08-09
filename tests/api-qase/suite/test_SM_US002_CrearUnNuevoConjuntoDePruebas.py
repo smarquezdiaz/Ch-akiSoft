@@ -1,11 +1,18 @@
+import json
+
 import pytest
 
 from config import TOKEN
 from src.assertions.get_cases_assertions import assert_response_status_code, assert_response_status_code_suites
-from src.assertions.get_suites_assertions import assert_request_suite_payload, assert_add_suites_assertion, \
-    assert_get_suites_response_schema
 from src.common.logger import log_api_call
+from src.common.static_data_modules import StaticDataModules
 from src.common.static_data_suites import StaticDataSuites
+from src.common.static_headers import StaticDataHeaders
+from src.common.static_verbs import StaticDataVerbs
+from src.resources.payloads.payloads_suite.payloads_suite import assert_request_suite_payload
+from src.utils.api_calls import request_function
+from src.utils.load_resources import assert_response_schema
+from src.utils.suites_utils import setup_suites_assertion
 
 
 @pytest.mark.smoke
@@ -13,9 +20,8 @@ from src.common.static_data_suites import StaticDataSuites
 @pytest.mark.funtional
 def test_SM016_Crear_un_nuevo_conjunto_de_pruebas(get_url, get_token):
     payload = assert_request_suite_payload()
-    assert_get_suites_response_schema(payload, "add_suite_schema_request.json")
-    response = assert_add_suites_assertion(get_url, get_token, StaticDataSuites.default_url_suffix.value, payload)
-
+    assert_response_schema(payload, "add_suite_schema_request.json")
+    response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.suite.value,StaticDataSuites.default_url_suffix.value, StaticDataHeaders.default_header.value, json.dumps(payload))
     log_api_call(method="POST",
                  url=response.url,
                  headers=response.headers,
@@ -23,7 +29,7 @@ def test_SM016_Crear_un_nuevo_conjunto_de_pruebas(get_url, get_token):
                  token=TOKEN,
                  response=response
                  )
-    assert_get_suites_response_schema(response.json(), "add_suite_schema_response.json")
+    assert_response_schema(response.json(), "add_suite_schema_response.json")
     assert_response_status_code(response.status_code, 200)
     assert response.json()["result"]["id"] is not None
     assert response.json()["status"] == True
@@ -387,3 +393,27 @@ def test_SM037_Crear_un_nuevo_conjunto_de_pruebas_con_parent_id_rango_minimo(get
     assert_get_suites_response_schema(response.json(), "field_invalid_response.json")
     assert_response_status_code(response.status_code, 400)
     assert response.json()["status"] == False
+
+
+@pytest.mark.smoke
+@pytest.mark.regression
+@pytest.mark.funtional
+def test_yield(get_url, get_token, setup_suites_assertion):
+    ## crear proyecto y eliminar proyecto
+    demo = setup_suites_assertion
+    payload = assert_request_suite_payload()
+    print(demo)
+    assert_get_suites_response_schema(payload, "add_suite_schema_request.json")
+    response = assert_add_suites_assertion(get_url, get_token, StaticDataSuites.default_url_suffix.value, payload)
+
+    log_api_call(method="POST",
+                 url=response.url,
+                 headers=response.headers,
+                 payload=payload,
+                 token=TOKEN,
+                 response=response
+                 )
+    assert_get_suites_response_schema(response.json(), "add_suite_schema_response.json")
+    assert_response_status_code(response.status_code, 200)
+    assert response.json()["result"]["id"] is not None
+    assert response.json()["status"] == True
