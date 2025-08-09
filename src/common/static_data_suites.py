@@ -2,7 +2,7 @@ from enum import Enum
 
 class StaticDataSuites(Enum):
     default_url_suite = "/suite"
-    default_url_suffix = "/suite/DEMO"
+    default_url_suffix = "/DEMO"
     invalid_url_suffix = "/suite/INVALID_PROJECT_CODE"
 
     valid_project_code_demo = "/suite/DEMO"

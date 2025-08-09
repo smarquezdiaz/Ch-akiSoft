@@ -2,18 +2,22 @@ import pytest
 
 from config import TOKEN
 from src.assertions.get_cases_assertions import assert_response_status_code_suites
-from src.assertions.get_suites_assertions import assert_get_suites_response_schema
 from src.common.logger import log_api_call
+from src.common.static_data_modules import StaticDataModules
 from src.common.static_data_suites import StaticDataSuites
+from src.common.static_headers import StaticDataHeaders
+from src.common.static_verbs import StaticDataVerbs
+from src.utils.api_calls import request_function
 from src.utils.get_suites import assert_get_suites_assertion
-
+from src.utils.load_resources import assert_response_schema, assert_response_status_code_global
 
 
 @pytest.mark.smoke
 @pytest.mark.regression
 @pytest.mark.funtional
-def test_SM001_Obtener_todos_los_casos_de_prueba_con_datos_validos(get_url, get_token):
-    response = assert_get_suites_assertion(get_url, get_token, StaticDataSuites.default_url_suffix.value )
+def test_SM001_Obtener_todos_los_casos_de_prueba_con_datos_validos(get_url):
+    # setup y teardown
+    response = request_function(StaticDataVerbs.get.value ,get_url, StaticDataModules.suite.value ,StaticDataSuites.default_url_suffix.value, StaticDataHeaders.default_header.value)
     log_api_call(method="GET",
                  url= response.url,
                  headers=response.headers,
@@ -21,8 +25,8 @@ def test_SM001_Obtener_todos_los_casos_de_prueba_con_datos_validos(get_url, get_
                  token=TOKEN,
                  response=response
                  )
-    assert_get_suites_response_schema(response.json(),"get_suites_response.json")
-    assert_response_status_code_suites(200, response.status_code)
+    assert_response_schema(response.json(),"get_suites_response.json")
+    assert_response_status_code_global(200, response.status_code)
 
 @pytest.mark.regression
 @pytest.mark.negative
