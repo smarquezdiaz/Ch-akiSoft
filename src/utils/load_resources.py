@@ -10,6 +10,12 @@ def load_schema_resource(json_name):
     with open(file_path) as schema_file:
         return json.load(schema_file)
 
+def load_schema_resource_by_directory_for_compare(json_name, directory):
+    base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+    file_path = os.path.join(base_dir, 'src', 'resources', 'schemas', directory, json_name)
+    with open(file_path) as schema_file:
+        return json.load(schema_file)
+
 def load_schema_resource1(json_name,schema_key=None):
     base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
     file_path = os.path.join(base_dir, 'src', 'resources', 'schemas', 'schema_custom_fields', f"{json_name}.json")
@@ -36,8 +42,8 @@ def load_schema_resource_by_directory(json_name,directory,schema_key=None):
 
     return all_schemas
 
-def assert_response_schema(response, json_file):
-    schema = load_schema_resource(json_file)
+def assert_response_schema(response, json_file, directory):
+    schema = load_schema_resource_by_directory_for_compare(json_file, directory)
     try:
         jsonschema.validate(instance=response, schema=schema)
         return True
