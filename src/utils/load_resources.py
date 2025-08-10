@@ -10,6 +10,12 @@ def load_schema_resource(json_name):
     with open(file_path) as schema_file:
         return json.load(schema_file)
 
+def load_schema_resource_project(json_name):
+    base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+    file_path = os.path.join(base_dir, 'src', 'resources', 'schemas', 'schemas_project', json_name)
+    with open(file_path) as schema_file:
+        return json.load(schema_file)
+
 def load_schema_resource1(json_name,schema_key=None):
     base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
     file_path = os.path.join(base_dir, 'src', 'resources', 'schemas', 'schema_custom_fields', f"{json_name}.json")
@@ -22,6 +28,15 @@ def load_schema_resource1(json_name,schema_key=None):
         return all_schemas[schema_key]
 
     return all_schemas
+
+
+def assert_response_schema_project(response, json_file):
+    schema = load_schema_resource_project(json_file)
+    try:
+        jsonschema.validate(instance=response, schema=schema)
+        return True
+    except jsonschema.exceptions.ValidationError as err:
+        pytest.fail(f"JSON schema dont match: {err}")
 
 def assert_response_schema(response, json_file):
     schema = load_schema_resource(json_file)
