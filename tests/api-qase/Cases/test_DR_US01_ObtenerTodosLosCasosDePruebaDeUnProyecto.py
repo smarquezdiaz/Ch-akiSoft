@@ -7,7 +7,8 @@ from src.headers.headers import get_header_with_token, get_header_with_invalid_t
 from src.common.url import get_url_parametrized
 from src.utils.api_calls import request_function
 from src.utils.load_resources import assert_entities_field_equal, assert_response_status_code
-from src.assertions.get_cases_assertions import assert_response_schema
+from src.assertions.get_cases_assertions import assert_get_cases_response_schema
+
 @pytest.mark.somke
 @pytest.mark.funtional
 @pytest.mark.regression
@@ -21,7 +22,7 @@ def test_DR_TC001_Verificar_la_obtencion_de_todos_los_casos_de_prueba_de_un_proy
                  response=response
                  )
     assert_response_status_code(response.status_code, 200)
-    assert_response_schema(response.json(),"get_cases_schema_response.json")
+    assert_get_cases_response_schema(response.json(),"get_cases_schema_response.json")
 
 @pytest.mark.funtional
 @pytest.mark.regression
@@ -128,7 +129,7 @@ def test_DR_TC008_Verificar_la_obtención_de_todos_los_casos_de_prueba_de_un_pro
                  response=response
                  )
     assert_response_status_code(response.status_code, 200)
-    #assert_get_cases_response_schema(response.json(),"get_cases_schema_response.json")
+    assert_get_cases_response_schema(response.json(),"get_cases_schema_response.json")
     assert_entities_field_equal(response, StaticDataCases.severity_critical_value.value, StaticDataCases.severity_parameter.value)
 
 @pytest.mark.funtional
@@ -145,7 +146,7 @@ def test_DR_TC009_Verificar_la_obtención_de_todos_los_casos_de_prueba_de_un_pro
                  response=response
                  )
     assert_response_status_code(response.status_code, 200)
-    #assert_get_cases_response_schema(response.json(),"get_cases_schema_response.json")
+    assert_get_cases_response_schema(response.json(),"get_cases_schema_response.json")
     assert_entities_field_equal(response, StaticDataCases.priority_high_value.value, StaticDataCases.priority_parameter.value)
 
 @pytest.mark.somke
