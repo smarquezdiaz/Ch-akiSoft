@@ -30,7 +30,6 @@ def test_AE_TC021_Obtener_un_campo_personalizado_por_ID_valido (get_url):
 
 
 @pytest.mark.negative
-@pytest.mark.functional
 @pytest.mark.regression
 def test_AE_TC022_Obtener_un_campo_personalizado_por_ID_vacio(get_url):
     response = request_function(StaticDataVerbs.get.value, get_url, StaticDataModules.custom_field.value,
@@ -48,7 +47,6 @@ def test_AE_TC022_Obtener_un_campo_personalizado_por_ID_vacio(get_url):
     assert_response_status_code_global(400, response.status_code)
 
 @pytest.mark.negative
-@pytest.mark.functional
 @pytest.mark.regression
 def test_AE_TC023_Realizar_una_solicitud_con_id_numero_negativo (get_url):
     response = request_function(StaticDataVerbs.get.value, get_url, StaticDataModules.custom_field.value,
@@ -67,7 +65,6 @@ def test_AE_TC023_Realizar_una_solicitud_con_id_numero_negativo (get_url):
     assert_response_status_code_global(400, response.status_code)
 
 @pytest.mark.negative
-@pytest.mark.functional
 @pytest.mark.regression
 def test_AE_TC024_Realizar_una_solicitud_con_id_numero_decimal_positivo (get_url):
     response = request_function(StaticDataVerbs.get.value, get_url, StaticDataModules.custom_field.value, StaticDataCustomField.decimal_positivo_custom_field.value,StaticDataHeaders.default_header.value)
@@ -85,7 +82,6 @@ def test_AE_TC024_Realizar_una_solicitud_con_id_numero_decimal_positivo (get_url
 
 
 @pytest.mark.negative
-@pytest.mark.functional
 @pytest.mark.regression
 def test_AE_TC025_Realizar_una_solicitud_con_id_numero_decimal_negativo(get_url):
     response = request_function(StaticDataVerbs.get.value, get_url, StaticDataModules.custom_field.value, StaticDataCustomField.decimal_negativo_custom_field.value,StaticDataHeaders.default_header.value)
@@ -101,7 +97,6 @@ def test_AE_TC025_Realizar_una_solicitud_con_id_numero_decimal_negativo(get_url)
     assert_response_status_code_global(400, response.status_code)
 
 @pytest.mark.negative
-@pytest.mark.functional
 @pytest.mark.regression
 def test_AE_TC026_Realizar_una_solicitud_con_id_letras (get_url):
     response = request_function(StaticDataVerbs.get.value, get_url, StaticDataModules.custom_field.value,
@@ -119,7 +114,6 @@ def test_AE_TC026_Realizar_una_solicitud_con_id_letras (get_url):
     assert_get_custom_field_response_schema(response.json(), "error_fields_schema")
     assert_response_status_code_global(400, response.status_code)
 @pytest.mark.negative
-@pytest.mark.functional
 @pytest.mark.regression
 def test_AE_TC027_Realizar_una_solicitud_con_id_simbolos(get_url):
     response = request_function(StaticDataVerbs.get.value, get_url, StaticDataModules.custom_field.value,
@@ -137,7 +131,6 @@ def test_AE_TC027_Realizar_una_solicitud_con_id_simbolos(get_url):
     assert_get_custom_field_response_schema(response.json(), "error_fields_schema")
     assert_response_status_code_global(400, response.status_code)
 @pytest.mark.negative
-@pytest.mark.functional
 @pytest.mark.regression
 def test_AE_TC028_Realizar_una_solicitud_con_id_que_no_existe (get_url):
     response = request_function(StaticDataVerbs.get.value, get_url, StaticDataModules.custom_field.value,StaticDataCustomField.no_existe_custom_field.value,StaticDataHeaders.default_header.value)
@@ -153,7 +146,6 @@ def test_AE_TC028_Realizar_una_solicitud_con_id_que_no_existe (get_url):
     assert_get_custom_field_response_schema(response.json(), "error_Not_Found")
     assert_response_status_code_global(404, response.status_code)
 @pytest.mark.negative
-@pytest.mark.functional
 @pytest.mark.regression
 def test_AE_TC029_Realizar_una_solicitud_sin_autenticacion (get_url):
     response = request_function(StaticDataVerbs.get.value, get_url, StaticDataModules.custom_field.value,StaticDataCustomField.sin_autenticar_custom_field.value,StaticDataHeaders.invalid_token_header.value)
