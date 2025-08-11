@@ -1,6 +1,12 @@
 import pytest
 from config import *
+from src.common.static_data_modules import StaticDataModules
+from src.common.static_data_suites import StaticDataSuites
+from src.common.static_headers import StaticDataHeaders
+from src.common.static_verbs import StaticDataVerbs
 from src.headers.headers import *
+from src.utils.api_calls import request_function
+
 
 @pytest.fixture(scope='session')
 def get_url():
@@ -13,6 +19,23 @@ def get_invalid_url():
 @pytest.fixture(scope='session')
 def get_token():
     return TOKEN
+
+
+"""
+Tierdown para eliminar suite
+"""
+@pytest.fixture(scope="function")
+def setup_delete_suite_by_id(get_url):
+    suite_id_to_delete = None
+    def registrar_id(suite_id):
+        nonlocal suite_id_to_delete
+        suite_id_to_delete = suite_id
+
+    yield registrar_id
+    if suite_id_to_delete:
+        response = request_function(StaticDataVerbs.delete.value, get_url, StaticDataModules.suite.value,
+                                    f"{StaticDataSuites.default_url_suffix.value}/{suite_id_to_delete}",StaticDataHeaders.default_header.value)
+        assert response.status_code == 200
 
 
 
