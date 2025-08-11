@@ -24,6 +24,12 @@ def get_header_with_token():
         'content-type': 'application/json'
     }
     return headers
+def get_header_with_token1():
+    headers = {
+        "accept": "application/json",
+        "Token": f"{TOKEN}",
+    }
+    return headers
 
 def get_header_without_token():
     headers = {
