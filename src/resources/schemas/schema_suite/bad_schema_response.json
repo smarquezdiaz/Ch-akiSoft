@@ -1,0 +1,15 @@
+{
+    "type": "object",
+    "required": [
+        "errorMessage",
+        "status"
+    ],
+    "properties": {
+        "status": {
+            "type": "boolean"
+        },
+        "errorMessage": {
+            "type": "string"
+        }
+    }
+}
