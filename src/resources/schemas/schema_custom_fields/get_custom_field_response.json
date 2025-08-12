@@ -11,18 +11,19 @@
             "required": [
                 "created",
                 "created_at",
+                "default_value",
                 "entity",
                 "id",
                 "is_enabled_for_all_projects",
                 "is_filterable",
                 "is_required",
                 "is_visible",
+                "placeholder",
                 "projects_codes",
                 "title",
                 "type",
                 "updated",
-                "updated_at",
-                "value"
+                "updated_at"
             ],
             "properties": {
                 "id": {
@@ -37,7 +38,10 @@
                 "type": {
                     "type": "string"
                 },
-                "value": {
+                "placeholder": {
+                    "type": "string"
+                },
+                "default_value": {
                     "type": "string"
                 },
                 "is_required": {
