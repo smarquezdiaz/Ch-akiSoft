@@ -2,6 +2,11 @@ import pytest
 import requests
 from config import *
 from src.headers.headers import *
+from src.common.static_headers import StaticDataHeaders
+from src.common.static_data_suites import StaticDataSuites
+from src.common.static_data_modules import StaticDataModules
+from src.common.static_verbs import StaticDataVerbs
+from src.utils.api_calls import request_function
 
 @pytest.fixture(scope='session')
 def get_url():
@@ -16,28 +21,19 @@ def get_token():
     return TOKEN
 
 @pytest.fixture(scope="function")
-def post_resource_case(get_url, get_token):
+def post_resource_case(get_url):
     base_url = get_url
-    headers = {
-        "Token": get_token,
-        "accept": "application/json",
-        "Content-Type": "application/json",
-    }
-
     client = {
-        "base_url": base_url,
-        "headers": headers,
-        "created_id": None,  # allí guardará el test el id creado
+        "created_id": None,  # aqui guardará el test el id creado
     }
 
     yield client
 
-    # TEARDOWN: eliminar si created_id existe
+    # TEARDOWN: eliminar si existe
     cid = client.get("created_id")
     if cid:
         try:
-            delete_url = f"{base_url}/case/DEMO/{cid}"   # ajusta si tu API borra con otra ruta
-            resp = requests.delete(delete_url, headers=headers, timeout=10)
+            resp = request_function(StaticDataVerbs.delete.value,base_url,StaticDataModules.case.value,f"{StaticDataSuites.default_url_suffix.value}/{cid}",StaticDataHeaders.default_header.value)
             if resp.status_code not in (200, 204, 404):
                 print(f"[post_resource_single teardown] warning: delete {cid} devolvió {resp.status_code}")
         except Exception as e:
