@@ -1,9 +1,8 @@
 import pytest
-import requests
 
 from config import BASE_URI, TOKEN
 from src.assertions.get_project_assertions import assert_get_project_assertion, assert_get_project_response_schema
-from src.headers.headers import get_header_with_token
+
 
 #Media
 @pytest.mark.smoke
