@@ -3,7 +3,6 @@ import json
 import pytest
 
 from config import TOKEN
-from src.assertions.get_cases_assertions import assert_response_status_code, assert_response_status_code_suites
 from src.common.logger import log_api_call
 from src.common.static_data_modules import StaticDataModules
 from src.common.static_data_suites import StaticDataSuites
@@ -279,7 +278,7 @@ def test_SM029_Crear_un_nuevo_conjunto_de_pruebas_con_precondiciones_numericas(g
                  response=response
                  )
     assert_response_schema(response.json(), "field_invalid_response.json", "schema_suite")
-    assert_response_status_code_suites(400, response.status_code)
+    assert_response_status_code_global(400, response.status_code)
     assert response.json()["status"] == False
 
 @pytest.mark.regression
@@ -318,7 +317,7 @@ def test_SM031_Crear_un_nuevo_conjunto_de_pruebas_con_parent_id_float(get_url, g
                  response=response
                  )
     assert_response_schema(response.json(), "field_invalid_response.json", "schema_suite")
-    assert_response_status_code_suites(400, response.status_code)
+    assert_response_status_code_global(400, response.status_code)
     assert response.json()["status"] == False
 
 @pytest.mark.regression
@@ -337,7 +336,7 @@ def test_SM032_Crear_un_nuevo_conjunto_de_pruebas_con_parent_id_string(get_url, 
                  response=response
                  )
     assert_response_schema(response.json(), "field_invalid_response.json", "schema_suite")
-    assert_response_status_code_suites(400, response.status_code)
+    assert_response_status_code_global(400, response.status_code)
     assert response.json()["status"] == False
 
 @pytest.mark.regression
@@ -357,7 +356,7 @@ def test_SM033_Crear_un_nuevo_conjunto_de_pruebas_con_parent_id_True(get_url, ge
                  response=response
                  )
     assert_response_schema(response.json(), "field_invalid_response.json", "schema_suite")
-    assert_response_status_code_suites(400, response.status_code)
+    assert_response_status_code_global(400, response.status_code)
     assert response.json()["status"] == False
 
 @pytest.mark.regression
@@ -376,7 +375,7 @@ def test_SM034_Crear_un_nuevo_conjunto_de_pruebas_con_parent_id_False(get_url, g
                  response=response
                  )
     assert_response_schema(response.json(), "field_invalid_response.json", "schema_suite")
-    assert_response_status_code_suites(400, response.status_code)
+    assert_response_status_code_global(400, response.status_code)
     assert response.json()["status"] == False
 
 @pytest.mark.regression
@@ -395,7 +394,7 @@ def test_SM035_Crear_un_nuevo_conjunto_de_pruebas_con_parent_id_array_vacio(get_
                  response=response
                  )
     assert_response_schema(response.json(), "field_invalid_response.json", "schema_suite")
-    assert_response_status_code_suites(400, response.status_code)
+    assert_response_status_code_global(400, response.status_code)
     assert response.json()["status"] == False
 
 @pytest.mark.regression
