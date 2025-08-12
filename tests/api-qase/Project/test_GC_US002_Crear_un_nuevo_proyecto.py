@@ -4,14 +4,62 @@ import jsonschema
 
 import json
 
+from config import TOKEN
+from src.assertions.get_cases_assertions import assert_response_status_code
+from src.common.logger import log_api_call
+from src.common.static_data_modules import StaticDataModules
+from src.common.static_data_project import StaticDataProject
+from src.common.static_data_suites import StaticDataSuites
+from src.common.static_headers import StaticDataHeaders
+from src.common.static_verbs import StaticDataVerbs
+from src.resources.payloads.payloads_project.payloads_project import assert_request_project_payload
+from src.resources.payloads.payloads_suite.payloads_suite import assert_request_suite_payload
+from src.utils.api_calls import request_function
+from src.utils.load_resources import assert_response_schema, assert_response_schema_project
+
+
+def test_SM016_Crear_un_nuevo_conjunto_de_pruebas(get_url, get_token):
+    payload = assert_request_suite_payload()
+    assert_response_schema(payload, "add_suite_schema_request.json")
+    response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.suite.value,StaticDataSuites.default_url_suffix.value, StaticDataHeaders.default_header.value, json.dumps(payload))
+    log_api_call(method="POST",
+                 url=response.url,
+                 headers=response.headers,
+                 payload=payload,
+                 token=TOKEN,
+                 response=response
+                 )
+    assert_response_schema(response.json(), "add_suite_schema_response.json")
+    assert_response_status_code(response.status_code, 200)
+    assert response.json()["result"]["id"] is not None
+    assert response.json()["status"] == True
+
+def test_GCTC001_Crear_un_proyecto_exitoso(get_url, get_token):
+    payload = assert_request_project_payload()
+    assert_response_schema_project(payload, "add_project_schema_request.json")
+    response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.project.value,StaticDataProject.valid_project_default.value, StaticDataHeaders.default_header.value, json.dumps(payload))
+    log_api_call(method="POST",
+                 url=response.url,
+                 headers=response.headers,
+                 payload=payload,
+                 token=TOKEN,
+                 response=response
+                 )
+    #assert_response_schema_project(response.json(), "add_project_schema_response.json")
+    #assert_response_status_code(response.status_code, 200)
+    #assert response.json()["result"]["id"] is not None
+    #assert response.json()["status"] == True
+    print(response.json())
+    print(response.status_code)
+
 #Alta
 @pytest.mark.smoke
-@pytest.mark.funtional
+@pytest.mark.positive
 @pytest.mark.regression
-def test_GCTC001_Crear_un_proyecto_exitoso():
+def test_GCTC001_Crear_un_proyecto_exitoso2():
 
    url = "https://api.qase.io/v1/project"
-   token = "a3b83af57ac9486e9e1402b0aa8aca01c905c976edaa3ff1888221ffb0e2326b"
+   token = "3b3cae5c58530556817affe99e5de67ec23e811d6ee5f73f4691763471b4cf4c"
 
    payload_data = {
                      "title": "Prueba20",
@@ -93,10 +141,26 @@ def test_GCTC001_Crear_un_proyecto_exitoso():
    except jsonschema.exceptions.ValidationError as err:
        pytest.fail(f"JSON schema dont match [{err}]")
 
+
+def test_GCTC002_Verificar_que_de_error_al_enviar_una_URL_mal_formada(get_url, get_token):
+    payload = assert_request_project_payload()
+    assert_response_schema_project(payload, "add_project_schema_request.json")
+    response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.project.value,StaticDataProject.valid_project_default.value, StaticDataHeaders.invalid_token_header.value, json.dumps(payload))
+    log_api_call(method="POST",
+                 url=response.url,
+                 headers=response.headers,
+                 payload=payload,
+                 token=TOKEN,
+                 response=response
+                 )
+    assert_response_schema_project(response.json(), "post_error404_project_response.json")
+    assert_response_status_code(response.status_code, 404)
+    assert response.json()["result"]["id"] is not None
+    assert response.json()["status"] == True
 #Alta
-@pytest.mark.smoke
+@pytest.mark.negative
 @pytest.mark.regression
-def test_GCTC002_Verificar_que_de_error_al_enviar_una_URL_mal_formada():
+def test_GCTC002_Verificar_que_de_error_al_enviar_una_URL_mal_formada2():
 
    url = "https://api.qase.io/v1/poyect"
    token = "a3b83af57ac9486e9e1402b0aa8aca01c905c976edaa3ff1888221ffb0e2326b"
@@ -170,8 +234,7 @@ def test_GCTC002_Verificar_que_de_error_al_enviar_una_URL_mal_formada():
        pytest.fail(f"JSON schema dont match [{err}]")
 
 #Alta
-@pytest.mark.smoke
-@pytest.mark.regression
+@pytest.mark.negative
 @pytest.mark.regression
 def test_GCTC003_Verificar_que_de_error_Crear_proyecto_con_nombre_existente_en_lista():
 
@@ -270,7 +333,6 @@ def test_GCTC003_Verificar_que_de_error_Crear_proyecto_con_nombre_existente_en_l
        pytest.fail(f"JSON schema dont match [{err}]")
 
 #Media
-@pytest.mark.smoke
 @pytest.mark.negative
 @pytest.mark.regression
 def test_GCTC004_Verificar_que_no_permita_crear_un_proyecto_con_un_body_inválido():
@@ -522,8 +584,9 @@ def test_GCTC006_Verificar_que_no_permita_crear_un_proyecto_sin_autentificar():
        pytest.fail(f"JSON schema dont match [{err}]")
 
 #Media
+@pytest.mark.smoke
 @pytest.mark.regression
-@pytest.mark.funtional
+@pytest.mark.positive
 def test_GCTC007_Crear_proyecto_con_todos_los_campos_disponibles():
 
     url = "https://api.qase.io/v1/project"
@@ -590,7 +653,7 @@ def test_GCTC007_Crear_proyecto_con_todos_los_campos_disponibles():
 
 
 #Media
-@pytest.mark.funtional
+@pytest.mark.positive
 @pytest.mark.regression
 def test_GCTC008_Verificar_crear_proyecto_sin_description():
 
@@ -651,6 +714,7 @@ def test_GCTC008_Verificar_crear_proyecto_sin_description():
 
 #Baja
 @pytest.mark.smoke
+@pytest.mark.positive
 @pytest.mark.regression
 def test_GCTC009_Crear_proyecto_con_code_mayusculas():
 
@@ -980,7 +1044,7 @@ def test_GCTC012_Crear_proyecto_con_code_caracteres_especiales():
 
 #Media
 @pytest.mark.smoke
-@pytest.mark.funtional
+@pytest.mark.positive
 @pytest.mark.regression
 def test_GCTC013_Crear_proyecto_title_1_caracter_valido():
 
@@ -1063,7 +1127,7 @@ def test_GCTC013_Crear_proyecto_title_1_caracter_valido():
 
 #Media
 @pytest.mark.smoke
-@pytest.mark.funtional
+@pytest.mark.positive
 @pytest.mark.regression
 def test_GCTC014_Crear_proyecto_title_2_caracteres_valido():
 
@@ -1146,7 +1210,7 @@ def test_GCTC014_Crear_proyecto_title_2_caracteres_valido():
 
 #Media
 @pytest.mark.smoke
-@pytest.mark.funtional
+@pytest.mark.positive
 @pytest.mark.regression
 def test_GCTC015_Crear_proyecto_title_224_caracteres_valido():
 
@@ -1229,7 +1293,7 @@ def test_GCTC015_Crear_proyecto_title_224_caracteres_valido():
 
 #Media
 @pytest.mark.smoke
-@pytest.mark.funtional
+@pytest.mark.positive
 @pytest.mark.regression
 def test_GCTC016_Crear_proyecto_title_225_caracteres_valido():
     url = "https://api.qase.io/v1/project"
@@ -1312,7 +1376,6 @@ def test_GCTC016_Crear_proyecto_title_225_caracteres_valido():
 
 
 #Medio
-@pytest.mark.smoke
 @pytest.mark.regression
 @pytest.mark.negative
 def test_GCTC017_Crear_proyecto_title_vacio_invalido():
@@ -1401,7 +1464,6 @@ def test_GCTC017_Crear_proyecto_title_vacio_invalido():
         pytest.fail(f"ERROR: JSON schema de salida no coincide: [{err}]")
 
 #Media
-@pytest.mark.smoke
 @pytest.mark.regression
 @pytest.mark.negative
 def test_GCTC018_Crear_proyecto_title_256_caracteres_invalido():
@@ -1491,7 +1553,7 @@ def test_GCTC018_Crear_proyecto_title_256_caracteres_invalido():
         pytest.fail(f"ERROR: JSON schema de salida no coincide: [{err}]")
 
 #Media
-@pytest.mark.funtional
+@pytest.mark.positive
 @pytest.mark.smoke
 @pytest.mark.regression
 def test_GCTC019_Crear_proyecto_code_2_caracteres_valido():
@@ -1574,7 +1636,7 @@ def test_GCTC019_Crear_proyecto_code_2_caracteres_valido():
 
 #Media
 @pytest.mark.smoke
-@pytest.mark.funtional
+@pytest.mark.positive
 @pytest.mark.regression
 def test_GCTC020_Crear_proyecto_code_5_caracteres_valido():
     url = "https://api.qase.io/v1/project"
@@ -1657,6 +1719,7 @@ def test_GCTC020_Crear_proyecto_code_5_caracteres_valido():
 
 #Media
 @pytest.mark.smoke
+@pytest.mark.positive
 @pytest.mark.regression
 def test_GCTC021_Crear_proyecto_code_10_caracteres_valido():
     url = "https://api.qase.io/v1/project"

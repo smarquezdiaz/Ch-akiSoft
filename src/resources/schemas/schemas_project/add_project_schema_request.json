@@ -1,0 +1,23 @@
+{
+       "$schema": "https://json-schema.org/draft/2020-12/schema",
+       "type": "object",
+       "required": [
+           "code",
+           "description",
+           "title"
+       ],
+       "properties": {
+           "title": {
+               "type": "string"
+           },
+           "code": {
+               "type": "string"
+           },
+           "description": {
+               "type": "string"
+           },
+           "access": {
+               "type": "string"
+           }
+       }
+   }
