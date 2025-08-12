@@ -1,10 +1,11 @@
 import pytest
-import json
 import jsonschema
 import requests
 from src.assertions.attachments_schema_loader import load_schema
 from src.headers.headers import get_header_with_token,get_header_with_token_inv
-from config import BASE_URI,TOKEN
+from config import BASE_URI
+
+
 @pytest.mark.smoke
 @pytest.mark.regression
 @pytest.mark.functional

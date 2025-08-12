@@ -4,13 +4,20 @@ import pytest
 
 from src.utils.load_resources import load_schema_custom_field
 
-def assert_post_custom_field_request_schema(payload: dict, schema_key: str):
+def assert_post_custom_field_request_schema(payload: dict, schema_key: str , expect_error=False):
     schema = load_schema_custom_field("add_custom_field_request", schema_key)
     try:
         jsonschema.validate(instance=payload, schema=schema)
+        if expect_error:
+            pytest.fail("Se esperaba un error de validación, pero no ocurrió.")
         return True
+
     except jsonschema.exceptions.ValidationError as err:
-        pytest.fail(f"JSON schema validation error for payload '{schema_key}': {err}")
+        if expect_error:
+            # Dejar que el test lo capture
+            raise
+        else:
+             pytest.fail(f"JSON schema validation error for payload '{schema_key}': {err}")
 
 
 

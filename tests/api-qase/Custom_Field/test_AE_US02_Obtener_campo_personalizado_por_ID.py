@@ -1,5 +1,4 @@
 import pytest
-import requests
 from src.utils.load_resources import  assert_response_status_code_global
 from src.common.logger import log_api_call
 from config import TOKEN,TOKEN_Invalido

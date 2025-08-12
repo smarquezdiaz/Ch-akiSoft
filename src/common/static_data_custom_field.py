@@ -1,6 +1,7 @@
 from enum import Enum
 
 class StaticDataCustomField(Enum):
+    delete_custom_field1=""
     valido_custom_post="/"
     valido_custom_field = "/5"
     vacio_custom_field = "/%20"
