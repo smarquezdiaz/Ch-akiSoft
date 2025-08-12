@@ -111,7 +111,7 @@ def test_DR_TC027_Verificar_que_retorna_una_respuesta_404_al_crear_un_caso_de_pr
     assert_response_status_code(response.status_code, 404)
     assert_get_cases_response_schema(response.json(), "cases_schema_404.json")
 
-@pytest.mark.negative
+@pytest.mark.positive
 @pytest.mark.regression
 def test_DR_TC028_Verificar_la_creación_de_un_caso_de_prueba_con_severidad_critica(get_url,get_token,post_resource_case):
     request = assert_request_payload(title=name_random_cases(),severity=StaticDataCases.severity_critical_value.value)
