@@ -1,4 +1,6 @@
 import pytest
+import sys
+sys.path.append('../../')
 from config import *
 from src.common.static_data_modules import StaticDataModules
 from src.common.static_data_suites import StaticDataSuites
