@@ -1,6 +1,10 @@
-import pytest
+import os
 import sys
-sys.path.append('../../')
+
+import pytest
+current_dir = os.path.dirname(__file__)
+parent_dir = os.path.dirname(current_dir)
+sys.path.append(parent_dir)
 from config import *
 from src.common.static_data_custom_field import StaticDataCustomField
 from src.common.static_data_modules import StaticDataModules

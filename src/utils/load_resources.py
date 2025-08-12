@@ -42,8 +42,8 @@ def load_schema_resource_by_directory(json_name,directory,schema_key=None):
 
     return all_schemas
 
-def assert_response_schema(response, json_file):
-    schema = load_schema_resource(json_file)
+def assert_response_schema(response, json_file, directory):
+    schema = load_schema_resource_by_directory_for_compare(json_file, directory)
     try:
         jsonschema.validate(instance=response, schema=schema)
         return True
