@@ -13,7 +13,7 @@ from src.common.url import get_url_parametrized
 from src.headers.headers import get_header_with_token, get_header_with_invalid_token
 from src.utils.api_calls import request_function
 from src.utils.load_resources import assert_response_status_code
-from src.assertions.get_cases_assertions import assert_get_cases_response_schema
+from src.assertions.get_cases_assertions import assert_get_cases_response_schema, assert_response_status_code_case
 from src.resources.payloads.payloads_case.payloads_post_case import assert_request_payload, name_random_cases
 
 @pytest.mark.smoke
@@ -33,7 +33,7 @@ def test_DR_TC023_Verificar_la_creación_de_un_caso_de_prueba_con_todos_los_camp
                  token=get_token,
                  response=response
                  )
-    assert_response_status_code(response.status_code, 200)
+    assert_response_status_code_case(response.status_code, 200)
     assert_get_cases_response_schema(response.json(),"post_cases_schema_response.json")
 
 @pytest.mark.smoke
@@ -53,7 +53,7 @@ def test_DR_TC024_Verificar_la_creación_de_un_caso_de_prueba_con_los_requerimie
                  token=get_token,
                  response=response
                  )
-    assert_response_status_code(response.status_code, 200)
+    assert_response_status_code_case(response.status_code, 200)
     assert_get_cases_response_schema(response.json(), "post_cases_schema_response.json")
 
 @pytest.mark.negative
@@ -73,7 +73,7 @@ def test_DR_TC025_Verificar_que_retorna_una_respuesta_400_al_crear_un_caso_de_pr
                  token=get_token,
                  response=response
                  )
-    assert_response_status_code(response.status_code, 400)
+    assert_response_status_code_case(response.status_code, 400)
     assert_get_cases_response_schema(response.json(), "post_cases_schema_response.json")
 
 @pytest.mark.negative
@@ -91,7 +91,7 @@ def test_DR_TC026_Verificar_que_retorna_una_respuesta_401_al_crear_un_caso_de_pr
                  token=get_header_with_invalid_token()["Token"],
                  response=response
                  )
-    assert_response_status_code(response.status_code, 401)
+    assert_response_status_code_case(response.status_code, 401)
     assert_get_cases_response_schema(response.json(), "cases_schema_401.json")
 
 @pytest.mark.negative
@@ -108,7 +108,7 @@ def test_DR_TC027_Verificar_que_retorna_una_respuesta_404_al_crear_un_caso_de_pr
                  token=get_token,
                  response=response
                  )
-    assert_response_status_code(response.status_code, 404)
+    assert_response_status_code_case(response.status_code, 404)
     assert_get_cases_response_schema(response.json(), "cases_schema_404.json")
 
 @pytest.mark.positive
@@ -127,7 +127,7 @@ def test_DR_TC028_Verificar_la_creación_de_un_caso_de_prueba_con_severidad_crit
                  token=get_token,
                  response=response
                  )
-    assert_response_status_code(response.status_code, 200)
+    assert_response_status_code_case(response.status_code, 200)
     assert_get_cases_response_schema(response.json(), "post_cases_schema_response.json")
 
 @pytest.mark.negative
@@ -145,7 +145,7 @@ def test_DR_TC029_Verificar_que_retorna_una_respuesta_405_al_crear_un_caso_de_pr
                  token=get_token,
                  response=response
                  )
-    assert_response_status_code(response.status_code, 405)
+    assert_response_status_code_case(response.status_code, 405)
     assert_get_cases_response_schema(response.json(), "cases_schema_405.json")
 
 @pytest.mark.negative
@@ -163,7 +163,7 @@ def test_DR_TC030_Verificar_que_retorna_una_respuesta_405_al_crear_un_caso_de_pr
                  token=get_token,
                  response=response
                  )
-    assert_response_status_code(response.status_code, 405)
+    assert_response_status_code_case(response.status_code, 405)
     assert_get_cases_response_schema(response.json(), "cases_schema_405.json")
 
 @pytest.mark.negative
@@ -179,7 +179,7 @@ def test_DR_TC031_Verificar_que_retorna_una_respuesta_400_al_crear_un_caso_de_pr
                  token=get_token,
                  response=response
                  )
-    assert_response_status_code(response.status_code, 400)
+    assert_response_status_code_case(response.status_code, 400)
     assert_get_cases_response_schema(response.json(), "cases_schema_400.json")
 
 @pytest.mark.negative
@@ -196,7 +196,7 @@ def test_DR_TC032_Verificar_que_retorna_una_respuesta_422_al_crear_un_caso_de_pr
                  token=get_token,
                  response=response
                  )
-    assert_response_status_code(response.status_code, 422)
+    assert_response_status_code_case(response.status_code, 422)
     assert_get_cases_response_schema(response.json(), "cases_post_schema_422.json")
 
 @pytest.mark.negative
@@ -213,7 +213,7 @@ def test_DR_TC033_Verificar_que_retorna_una_respuesta_422_al_crear_un_caso_de_pr
                  token=get_token,
                  response=response
                  )
-    assert_response_status_code(response.status_code, 422)
+    assert_response_status_code_case(response.status_code, 422)
     assert_get_cases_response_schema(response.json(), "cases_post_schema_422.json")
 
 @pytest.mark.negative
@@ -230,7 +230,7 @@ def test_DR_TC034_Verificar_que_retorna_una_respuesta_422_al_crear_un_caso_de_pr
                  token=get_token,
                  response=response
                  )
-    assert_response_status_code(response.status_code, 422)
+    assert_response_status_code_case(response.status_code, 422)
     assert_get_cases_response_schema(response.json(), "cases_post_schema_422.json")
 
 @pytest.mark.negative
@@ -247,7 +247,7 @@ def test_DR_TC035_Verificar_que_retorna_una_respuesta_422_al_crear_un_caso_de_pr
                  token=get_token,
                  response=response
                  )
-    assert_response_status_code(response.status_code, 422)
+    assert_response_status_code_case(response.status_code, 422)
     assert_get_cases_response_schema(response.json(), "cases_post_schema_422.json")
 
 @pytest.mark.negative
@@ -264,7 +264,7 @@ def test_DR_TC036_Verificar_que_retorna_una_respuesta_422_al_crear_un_caso_de_pr
                  token=get_token,
                  response=response
                  )
-    assert_response_status_code(response.status_code, 422)
+    assert_response_status_code_case(response.status_code, 422)
     assert_get_cases_response_schema(response.json(), "cases_post_schema_422.json")
 
 @pytest.mark.negative
@@ -284,7 +284,7 @@ def test_DR_TC037_Verificar_que_retorna_una_respuesta_422_al_crear_un_caso_de_pr
                  token=get_token,
                  response=response
                  )
-    assert_response_status_code(response.status_code, 422)
+    assert_response_status_code_case(response.status_code, 422)
     assert_get_cases_response_schema(response.json(), "cases_post_schema_422.json")
 
 @pytest.mark.negative
@@ -302,7 +302,7 @@ def test_DR_TC038_Verificar_que_retorna_una_respuesta_422_al_crear_un_caso_de_pr
                  token=get_token,
                  response=response
                  )
-    assert_response_status_code(response.status_code, 422)
+    assert_response_status_code_case(response.status_code, 422)
     assert_get_cases_response_schema(response.json(), "cases_post_schema_422.json")
 
 @pytest.mark.negative
@@ -320,7 +320,7 @@ def test_DR_TC039_Verificar_que_retorna_una_respuesta_422_al_crear_un_caso_de_pr
                  token=get_token,
                  response=response
                  )
-    assert_response_status_code(response.status_code, 422)
+    assert_response_status_code_case(response.status_code, 422)
     assert_get_cases_response_schema(response.json(), "cases_post_schema_422.json")
 
 @pytest.mark.negative
@@ -338,7 +338,7 @@ def test_DR_TC040_Verificar_que_retorna_una_respuesta_422_al_crear_un_caso_de_pr
                  token=get_token,
                  response=response
                  )
-    assert_response_status_code(response.status_code, 422)
+    assert_response_status_code_case(response.status_code, 422)
     assert_get_cases_response_schema(response.json(), "cases_post_schema_422.json")
 
 @pytest.mark.negative
@@ -356,7 +356,7 @@ def test_DR_TC041_Verificar_que_retorna_una_respuesta_422_al_crear_un_caso_de_pr
                  token=get_token,
                  response=response
                  )
-    assert_response_status_code(response.status_code, 422)
+    assert_response_status_code_case(response.status_code, 422)
     assert_get_cases_response_schema(response.json(), "cases_post_schema_422.json")
 
 @pytest.mark.negative
@@ -374,7 +374,7 @@ def test_DR_TC042_Verificar_que_retorna_una_respuesta_422_al_crear_un_caso_de_pr
                  token=get_token,
                  response=response
                  )
-    assert_response_status_code(response.status_code, 422)
+    assert_response_status_code_case(response.status_code, 422)
     assert_get_cases_response_schema(response.json(), "cases_post_schema_422.json")
 
 @pytest.mark.positive
@@ -393,7 +393,7 @@ def test_DR_TC043_Verificar_la_creación_de_un_caso_de_prueba_con_severidad_mayo
                  token=get_token,
                  response=response
                  )
-    assert_response_status_code(response.status_code, 200)
+    assert_response_status_code_case(response.status_code, 200)
     assert_get_cases_response_schema(response.json(), "post_cases_schema_response.json")
 
 @pytest.mark.positive
@@ -412,7 +412,7 @@ def test_DR_TC044_Verificar_la_creación_de_un_caso_de_prueba_con_severidad_norm
                  token=get_token,
                  response=response
                  )
-    assert_response_status_code(response.status_code, 200)
+    assert_response_status_code_case(response.status_code, 200)
     assert_get_cases_response_schema(response.json(), "post_cases_schema_response.json")
 
 @pytest.mark.positive
@@ -431,7 +431,7 @@ def test_DR_TC045_Verificar_la_creación_de_un_caso_de_prueba_con_severidad_meno
                  token=get_token,
                  response=response
                  )
-    assert_response_status_code(response.status_code, 200)
+    assert_response_status_code_case(response.status_code, 200)
     assert_get_cases_response_schema(response.json(), "post_cases_schema_response.json")
 
 @pytest.mark.positive
@@ -450,7 +450,7 @@ def test_DR_TC046_Verificar_la_creación_de_un_caso_de_prueba_con_prioridad_alta
                  token=get_token,
                  response=response
                  )
-    assert_response_status_code(response.status_code, 200)
+    assert_response_status_code_case(response.status_code, 200)
     assert_get_cases_response_schema(response.json(), "post_cases_schema_response.json")
 
 @pytest.mark.positive
@@ -469,7 +469,7 @@ def test_DR_TC047_Verificar_la_creación_de_un_caso_de_prueba_con_prioridad_medi
                  token=get_token,
                  response=response
                  )
-    assert_response_status_code(response.status_code, 200)
+    assert_response_status_code_case(response.status_code, 200)
     assert_get_cases_response_schema(response.json(), "post_cases_schema_response.json")
 
 @pytest.mark.positive
@@ -488,7 +488,7 @@ def test_DR_TC048_Verificar_la_creación_de_un_caso_de_prueba_con_prioridad_baja
                  token=get_token,
                  response=response
                  )
-    assert_response_status_code(response.status_code, 200)
+    assert_response_status_code_case(response.status_code, 200)
     assert_get_cases_response_schema(response.json(), "post_cases_schema_response.json")
 
 @pytest.mark.positive
@@ -507,7 +507,7 @@ def test_DR_TC049_Verificar_la_creación_de_un_caso_de_prueba_con_estatus_actual
                  token=get_token,
                  response=response
                  )
-    assert_response_status_code(response.status_code, 200)
+    assert_response_status_code_case(response.status_code, 200)
     assert_get_cases_response_schema(response.json(), "post_cases_schema_response.json")
 
 @pytest.mark.positive
@@ -526,7 +526,7 @@ def test_DR_TC050_Verificar_la_creación_de_un_caso_de_prueba_con_estatus_draft(
                  token=get_token,
                  response=response
                  )
-    assert_response_status_code(response.status_code, 200)
+    assert_response_status_code_case(response.status_code, 200)
     assert_get_cases_response_schema(response.json(), "post_cases_schema_response.json")
 
 @pytest.mark.positive
@@ -545,7 +545,7 @@ def test_DR_TC051_Verificar_la_creación_de_un_caso_de_prueba_con_estatus_deprec
                  token=get_token,
                  response=response
                  )
-    assert_response_status_code(response.status_code, 200)
+    assert_response_status_code_case(response.status_code, 200)
     assert_get_cases_response_schema(response.json(), "post_cases_schema_response.json")
 
 @pytest.mark.positive
@@ -564,7 +564,7 @@ def test_DR_TC052_Verificar_la_creación_de_un_caso_de_prueba_con_estatus_automa
                  token=get_token,
                  response=response
                  )
-    assert_response_status_code(response.status_code, 200)
+    assert_response_status_code_case(response.status_code, 200)
     assert_get_cases_response_schema(response.json(), "post_cases_schema_response.json")
 
 @pytest.mark.positive
@@ -583,5 +583,5 @@ def test_DR_TC053_Verificar_la_creación_de_un_caso_de_prueba_con_estatus_no_aut
                  token=get_token,
                  response=response
                  )
-    assert_response_status_code(response.status_code, 200)
+    assert_response_status_code_case(response.status_code, 200)
     assert_get_cases_response_schema(response.json(), "post_cases_schema_response.json")
