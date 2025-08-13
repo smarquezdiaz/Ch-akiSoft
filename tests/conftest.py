@@ -16,7 +16,7 @@ from src.common.static_headers import StaticDataHeaders
 from src.common.static_verbs import StaticDataVerbs
 from src.headers.headers import *
 from src.utils.api_calls import request_function
-from src.resources.payloads.payloads_case.payloads_post_case import assert_request_payload, name_random_cases
+from src.resources.payloads.payloads_case.payloads_post_case import *
 
 @pytest.fixture(scope='session')
 def get_url():
@@ -75,8 +75,8 @@ def post_resource_case(get_url):
 
 @pytest.fixture(scope="function")
 def patch_add_case(get_url):
-    request = assert_request_payload(name_random_cases(), random.choice([2, 3, 4, 5]), random.choice([1, 2, 3]),
-                                     random.choice([2, 3, 8]), random.choice([0, 1, 2]), random.choice([0, 2]))
+    request = assert_request_payload(name_random_cases(), random_severity_case(), random_priority_case(),
+                                     random_type_case(), random_status_case(), random_automation_case())
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.case.value,
                                 StaticDataSuites.default_url_suffix.value,
                                 header_type=StaticDataHeaders.default_header.value, payload=json.dumps(request))

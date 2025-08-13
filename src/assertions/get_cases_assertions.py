@@ -25,6 +25,9 @@ def assert_response_error_status_not_empty(response):
 def assert_response_error_token(response):
     assert response.json()["error"] is not None
 
+def assert_response_error_message(response):
+    assert response.json()["message"] is not None
+
 def assert_get_cases_response_schema(response, json_file):
     schema = assert_schema_resource(json_file)
     try:
