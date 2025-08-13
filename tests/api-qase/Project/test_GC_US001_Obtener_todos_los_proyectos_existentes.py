@@ -11,9 +11,7 @@ from src.common.static_headers import StaticDataHeaders
 from src.common.static_verbs import StaticDataVerbs
 from src.headers.headers import get_header_with_token
 from src.utils.api_calls import request_function
-from src.utils.load_resources import assert_response_schema, assert_response_status_code_global, \
-    assert_response_schema_project
-from tests.conftest import get_url
+from src.utils.load_resources import assert_response_schema, assert_response_status_code_global
 
 
 #Media
@@ -30,7 +28,7 @@ def test_GC001_Obtener_todos_los_proyectos_existentes(get_url):
                  token=TOKEN,
                  response=response
                  )
-    assert_response_schema_project(response.json(),"get_project_response.json")
+    assert_response_schema(response.json(), "get_project_response.json", "schemas_project")
     assert_response_status_code_global(200, response.status_code)
 
 
@@ -47,7 +45,7 @@ def test_GC002_Verificar_que_se_muestre_error_al_mandar_la_URL_mal_formada(get_u
                      token=TOKEN,
                      response=response
                      )
-        assert_response_schema_project(response.json(),"get_error404_project_response.json")
+        assert_response_schema(response.json(), "get_error404_project_response.json", "schemas_project")
         assert_response_status_code_global(404, response.status_code)
 
 #Alta
@@ -62,7 +60,7 @@ def test_GC003_Obtener_proyectos_con_un_token_incorrecto(get_url):
                  token=TOKEN,
                  response=response
                  )
-    assert_response_schema_project(response.json(), "get_error401_project_response.json")
+    assert_response_schema(response.json(), "get_error401_project_response.json", "schemas_project")
     assert_response_status_code_global(401, response.status_code)
 
 
@@ -78,7 +76,7 @@ def test_GC004_Obtener_un_solo_proyecto_con_limit_1(get_url):
                  token=TOKEN,
                  response=response
                  )
-    assert_response_schema_project(response.json(), "get_project_response.json")
+    assert_response_schema(response.json(), "get_project_response.json", "schemas_project")
     assert_response_status_code_global(200, response.status_code)
 
 #media
@@ -93,7 +91,7 @@ def test_GC005_Verificar_que_no_permita_obtener_la_lista_de_proyectos_con_el_lim
                  token=TOKEN,
                  response=response
                  )
-    assert_response_schema_project(response.json(), "get_error400_project_response.json")
+    assert_response_schema(response.json(), "get_error400_project_response.json", "schemas_project")
     assert_response_status_code_global(400, response.status_code)
 
 #Alta
@@ -108,7 +106,7 @@ def test_GC006_Verificar_respuesta_de_error_con_limit_como_texto_limit_abc(get_u
                  token=TOKEN,
                  response=response
                  )
-    assert_response_schema_project(response.json(), "get_error400_project_response.json")
+    assert_response_schema(response.json(), "get_error400_project_response.json", "schemas_project")
     assert_response_status_code_global(400, response.status_code)
 
 #media
@@ -123,7 +121,7 @@ def test_GC007_Verificar_que_no_permita_obtener_proyectos_con_limit_5_y_offset_1
                  token=TOKEN,
                  response=response
                  )
-    assert_response_schema_project(response.json(), "get_project_response.json")
+    assert_response_schema(response.json(), "get_project_response.json", "schemas_project")
     assert_response_status_code_global(200, response.status_code)
 
 
@@ -139,7 +137,7 @@ def test_GC008_Verificar_que_no_permita_obtener_la_lista_de_proyectos_con_el_off
                  token=TOKEN,
                  response=response
                  )
-    assert_response_schema_project(response.json(), "get_error400_project_response.json")
+    assert_response_schema(response.json(), "get_error400_project_response.json", "schemas_project")
     assert_response_status_code_global(400, response.status_code)
 
 
@@ -155,7 +153,7 @@ def test_GC009_Verificar_que_no_permita_obtener_proyectos_con_limit_mayor_al_má
                  token=TOKEN,
                  response=response
                  )
-    assert_response_schema_project(response.json(), "get_error400_project_response.json")
+    assert_response_schema(response.json(), "get_error400_project_response.json", "schemas_project")
     assert_response_status_code_global(400, response.status_code)
 
 #Alta
@@ -170,7 +168,7 @@ def test_GC010_Verificar_que_no_permita_obtener_proyectos_con_limit_menor_al_lim
                  token=TOKEN,
                  response=response
                  )
-    assert_response_schema_project(response.json(), "get_error400_project_response.json")
+    assert_response_schema(response.json(), "get_error400_project_response.json", "schemas_project")
     assert_response_status_code_global(400, response.status_code)
 
 #Alta
@@ -186,7 +184,7 @@ def test_GC011_Verificar_que_no_permita_obtener_la_lista_de_proyectos_con_el_off
                  token=TOKEN,
                  response=response
                  )
-    assert_response_schema_project(response.json(), "get_error400_project_response.json")
+    assert_response_schema(response.json(), "get_error400_project_response.json", "schemas_project")
     assert_response_status_code_global(400, response.status_code)
 
 #Alta
@@ -201,7 +199,7 @@ def test_GC012_Verificar_que_sin_token_debe_dar_error_sin_autentificaion(get_url
                  token=TOKEN,
                  response=response
                  )
-    assert_response_schema_project(response.json(), "get_error401_project_response.json")
+    assert_response_schema(response.json(), "get_error401_project_response.json", "schemas_project")
     assert_response_status_code_global(401, response.status_code)
 
 

@@ -1,8 +1,5 @@
 import json
-
-import jsonschema
 import pytest
-import requests
 
 from config import TOKEN
 from src.common.logger import log_api_call
@@ -10,18 +7,18 @@ from src.common.static_data_modules import StaticDataModules
 from src.common.static_data_project import StaticDataProject
 from src.common.static_headers import StaticDataHeaders
 from src.common.static_verbs import StaticDataVerbs
-from src.resources.payloads.payloads_project.payloads_project import assert_request_project_payload, \
-    assert_request_project_payload_Sin_descripcion, assert_request_project_payload_modificado, \
-    assert_request_project_payload_Sin_title
+from src.resources.payloads.payloads_project.payloads_project import create_request_project_payload, create_request_project_payload_modificado, \
+    create_request_project_payload_Sin_title, create_request_project_payload_Sin_descripcion
 from src.utils.api_calls import request_function
 from src.utils.load_resources import assert_response_schema, assert_response_status_code_global
+
 
 #Alta
 @pytest.mark.smoke
 @pytest.mark.positive
 @pytest.mark.regression
 def test_GCTC001_Crear_un_proyecto_exitoso(get_url, get_token, setup_delete_project_by_code):
-    payload = assert_request_project_payload()
+    payload = create_request_project_payload()
     assert_response_schema(payload, "add_project_schema_request.json", "schemas_project")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.project.value,StaticDataProject.valid_project_default.value, StaticDataHeaders.default_header.value, json.dumps(payload))
     log_api_call(method="POST",
@@ -42,7 +39,7 @@ def test_GCTC001_Crear_un_proyecto_exitoso(get_url, get_token, setup_delete_proj
 @pytest.mark.negative
 @pytest.mark.regression
 def test_GCTC002_Verificar_que_de_error_al_enviar_una_URL_mal_formada(get_invalid_url, get_token):
-    payload = assert_request_project_payload()
+    payload = create_request_project_payload()
     assert_response_schema(payload, "add_project_schema_request.json", "schemas_project")
     response = request_function(StaticDataVerbs.post.value, get_invalid_url, StaticDataModules.project.value,StaticDataProject.valid_project_default.value, StaticDataHeaders.invalid_token_header.value, json.dumps(payload))
     log_api_call(method="POST",
@@ -60,7 +57,7 @@ def test_GCTC002_Verificar_que_de_error_al_enviar_una_URL_mal_formada(get_invali
 @pytest.mark.regression
 def test_GCTC003_Verificar_que_de_error_Crear_proyecto_con_nombre_existente_en_lista(get_url):
     #refactorizar mas
-    payload = assert_request_project_payload()
+    payload = create_request_project_payload()
     assert_response_schema(payload, "add_project_schema_request.json", "schemas_project")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.project.value,
                                 StaticDataProject.valid_project_default .value, StaticDataHeaders.no_content_header.value,
@@ -79,7 +76,7 @@ def test_GCTC003_Verificar_que_de_error_Crear_proyecto_con_nombre_existente_en_l
 @pytest.mark.negative
 @pytest.mark.regression
 def test_GCTC004_Verificar_que_no_permita_crear_un_proyecto_con_un_body_inválido(get_url):
-    payload = assert_request_project_payload()
+    payload = create_request_project_payload()
     assert_response_schema(payload, "add_project_schema_request.json", "schemas_project")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.project.value,
                                 StaticDataProject.valid_project_default .value, StaticDataHeaders.no_content_header.value,
@@ -99,7 +96,7 @@ def test_GCTC004_Verificar_que_no_permita_crear_un_proyecto_con_un_body_inválid
 @pytest.mark.negative
 @pytest.mark.regression
 def test_GCTC005_Verificar_que_no_permita_crear_un_proyecto_con_un_token_incorrecto(get_url, get_token):
-    payload = assert_request_project_payload()
+    payload = create_request_project_payload()
     assert_response_schema(payload, "add_project_schema_request.json", "schemas_project")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.project.value,StaticDataProject.valid_project_default.value, StaticDataHeaders.invalid_token_header.value, json.dumps(payload))
     log_api_call(method="POST",
@@ -118,7 +115,7 @@ def test_GCTC005_Verificar_que_no_permita_crear_un_proyecto_con_un_token_incorre
 @pytest.mark.negative
 @pytest.mark.regression
 def test_GCTC006_Verificar_que_no_permita_crear_un_proyecto_sin_autentificar(get_url, get_token):
-    payload = assert_request_project_payload()
+    payload = create_request_project_payload()
     assert_response_schema(payload, "add_project_schema_request.json", "schemas_project")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.project.value,StaticDataProject.valid_project_default.value, StaticDataHeaders.no_token_header.value, json.dumps(payload))
     log_api_call(method="POST",
@@ -139,7 +136,7 @@ def test_GCTC006_Verificar_que_no_permita_crear_un_proyecto_sin_autentificar(get
 @pytest.mark.positive
 def test_GCTC007_Crear_proyecto_con_todos_los_campos_disponibles(get_url, get_token, setup_delete_project_by_code):
     #Aumentar un campo en el payload
-    payload = assert_request_project_payload()
+    payload = create_request_project_payload()
     assert_response_schema(payload, "add_project_schema_request.json", "schemas_project")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.project.value,StaticDataProject.valid_project_default.value, StaticDataHeaders.default_header.value, json.dumps(payload))
     log_api_call(method="POST",
@@ -160,7 +157,7 @@ def test_GCTC007_Crear_proyecto_con_todos_los_campos_disponibles(get_url, get_to
 @pytest.mark.positive
 @pytest.mark.regression
 def test_GCTC008_Verificar_crear_proyecto_sin_description(get_url, get_token, setup_delete_project_by_code):
-    payload = assert_request_project_payload_Sin_descripcion()
+    payload = create_request_project_payload_Sin_descripcion()
     assert_response_schema(payload, "add_proyect_schema_request_sin_descrip.json", "schemas_project")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.project.value,StaticDataProject.valid_project_default.value, StaticDataHeaders.default_header.value, json.dumps(payload))
     log_api_call(method="POST",
@@ -182,7 +179,7 @@ def test_GCTC008_Verificar_crear_proyecto_sin_description(get_url, get_token, se
 @pytest.mark.positive
 @pytest.mark.regression
 def test_GCTC009_Crear_proyecto_con_code_mayusculas(get_url, get_token, setup_delete_project_by_code):
-    payload = assert_request_project_payload()
+    payload = create_request_project_payload()
     assert_response_schema(payload, "add_project_schema_request.json", "schemas_project")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.project.value,StaticDataProject.valid_project_default.value, StaticDataHeaders.default_header.value, json.dumps(payload))
     log_api_call(method="POST",
@@ -203,7 +200,7 @@ def test_GCTC009_Crear_proyecto_con_code_mayusculas(get_url, get_token, setup_de
 @pytest.mark.negative
 @pytest.mark.regression
 def test_GCTC010_Crear_proyecto_con_code_numerico(get_url):
-    payload = assert_request_project_payload_modificado(code="123789")
+    payload = create_request_project_payload_modificado(code="123789")
     assert_response_schema(payload, "add_project_schema_request.json", "schemas_project")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.project.value,StaticDataProject.valid_project_default.value, StaticDataHeaders.default_header.value, json.dumps(payload))
     log_api_call(method="POST",
@@ -220,7 +217,7 @@ def test_GCTC010_Crear_proyecto_con_code_numerico(get_url):
 @pytest.mark.negative
 @pytest.mark.regression
 def test_GCTC011_Crear_proyecto_sin_title(get_url):
-    payload = assert_request_project_payload_Sin_title()
+    payload = create_request_project_payload_Sin_title()
     assert_response_schema(payload, "add_project_schema_request_sin_title.json", "schemas_project")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.project.value,StaticDataProject.valid_project_default.value, StaticDataHeaders.default_header.value, json.dumps(payload))
     log_api_call(method="POST",
@@ -237,7 +234,7 @@ def test_GCTC011_Crear_proyecto_sin_title(get_url):
 @pytest.mark.negative
 @pytest.mark.regression
 def test_GCTC012_Crear_proyecto_con_code_caracteres_especiales(get_url):
-    payload = assert_request_project_payload_modificado(code="@#$%#")
+    payload = create_request_project_payload_modificado(code="@#$%#")
     assert_response_schema(payload, "add_project_schema_request.json", "schemas_project")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.project.value,StaticDataProject.valid_project_default.value, StaticDataHeaders.default_header.value, json.dumps(payload))
     log_api_call(method="POST",
@@ -255,7 +252,7 @@ def test_GCTC012_Crear_proyecto_con_code_caracteres_especiales(get_url):
 @pytest.mark.positive
 @pytest.mark.regression
 def test_GCTC013_Crear_proyecto_title_1_caracter_valido(get_url, get_token, setup_delete_project_by_code):
-    payload = assert_request_project_payload_modificado(title="A")
+    payload = create_request_project_payload_modificado(title="A")
     assert_response_schema(payload, "add_project_schema_request.json", "schemas_project")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.project.value,StaticDataProject.valid_project_default.value, StaticDataHeaders.default_header.value, json.dumps(payload))
     log_api_call(method="POST",
@@ -277,7 +274,7 @@ def test_GCTC013_Crear_proyecto_title_1_caracter_valido(get_url, get_token, setu
 @pytest.mark.positive
 @pytest.mark.regression
 def test_GCTC014_Crear_proyecto_title_2_caracteres_valido(get_url, get_token, setup_delete_project_by_code):
-    payload = assert_request_project_payload_modificado(title="AB")
+    payload = create_request_project_payload_modificado(title="AB")
     assert_response_schema(payload, "add_project_schema_request.json", "schemas_project")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.project.value,StaticDataProject.valid_project_default.value, StaticDataHeaders.default_header.value, json.dumps(payload))
     log_api_call(method="POST",
@@ -299,7 +296,7 @@ def test_GCTC014_Crear_proyecto_title_2_caracteres_valido(get_url, get_token, se
 @pytest.mark.positive
 @pytest.mark.regression
 def test_GCTC015_Crear_proyecto_title_224_caracteres_valido(get_url, get_token, setup_delete_project_by_code):
-    payload = assert_request_project_payload_modificado(title="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz00112233445566778899AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz00112233445566778899AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWw")
+    payload = create_request_project_payload_modificado(title="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz00112233445566778899AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz00112233445566778899AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWw")
     assert_response_schema(payload, "add_project_schema_request.json", "schemas_project")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.project.value,StaticDataProject.valid_project_default.value, StaticDataHeaders.default_header.value, json.dumps(payload))
     log_api_call(method="POST",
@@ -321,7 +318,7 @@ def test_GCTC015_Crear_proyecto_title_224_caracteres_valido(get_url, get_token, 
 @pytest.mark.positive
 @pytest.mark.regression
 def test_GCTC016_Crear_proyecto_title_225_caracteres_valido(get_url, get_token, setup_delete_project_by_code):
-    payload = assert_request_project_payload_modificado(title="AAaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz00112233445566778899AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz00112233445566778899AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWw")
+    payload = create_request_project_payload_modificado(title="AAaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz00112233445566778899AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz00112233445566778899AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWw")
     assert_response_schema(payload, "add_project_schema_request.json", "schemas_project")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.project.value,StaticDataProject.valid_project_default.value, StaticDataHeaders.default_header.value, json.dumps(payload))
     log_api_call(method="POST",
@@ -342,7 +339,7 @@ def test_GCTC016_Crear_proyecto_title_225_caracteres_valido(get_url, get_token, 
 @pytest.mark.regression
 @pytest.mark.negative
 def test_GCTC017_Crear_proyecto_title_vacio_invalido(get_url):
-    payload = assert_request_project_payload_modificado(title="")
+    payload = create_request_project_payload_modificado(title="")
     assert_response_schema(payload, "add_project_schema_request.json", "schemas_project")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.project.value,StaticDataProject.valid_project_default.value, StaticDataHeaders.default_header.value, json.dumps(payload))
     log_api_call(method="POST",
@@ -358,7 +355,7 @@ def test_GCTC017_Crear_proyecto_title_vacio_invalido(get_url):
 @pytest.mark.regression
 @pytest.mark.negative
 def test_GCTC018_Crear_proyecto_title_256_caracteres_invalido(get_url):
-    payload = assert_request_project_payload_modificado(title="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+    payload = create_request_project_payload_modificado(title="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
     assert_response_schema(payload, "add_project_schema_request.json", "schemas_project")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.project.value,StaticDataProject.valid_project_default.value, StaticDataHeaders.default_header.value, json.dumps(payload))
     log_api_call(method="POST",
@@ -376,7 +373,7 @@ def test_GCTC018_Crear_proyecto_title_256_caracteres_invalido(get_url):
 @pytest.mark.smoke
 @pytest.mark.regression
 def test_GCTC019_Crear_proyecto_code_2_caracteres_valido(get_url, get_token, setup_delete_project_by_code):
-    payload = assert_request_project_payload_modificado(code="AB")
+    payload = create_request_project_payload_modificado(code="AB")
     assert_response_schema(payload, "add_project_schema_request.json", "schemas_project")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.project.value,StaticDataProject.valid_project_default.value, StaticDataHeaders.default_header.value, json.dumps(payload))
     log_api_call(method="POST",
@@ -398,7 +395,7 @@ def test_GCTC019_Crear_proyecto_code_2_caracteres_valido(get_url, get_token, set
 @pytest.mark.positive
 @pytest.mark.regression
 def test_GCTC020_Crear_proyecto_code_5_caracteres_valido(get_url, get_token, setup_delete_project_by_code):
-    payload = assert_request_project_payload_modificado(code="pcodi")
+    payload = create_request_project_payload_modificado(code="pcodi")
     assert_response_schema(payload, "add_project_schema_request.json", "schemas_project")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.project.value,StaticDataProject.valid_project_default.value, StaticDataHeaders.default_header.value, json.dumps(payload))
     log_api_call(method="POST",
@@ -420,7 +417,7 @@ def test_GCTC020_Crear_proyecto_code_5_caracteres_valido(get_url, get_token, set
 @pytest.mark.positive
 @pytest.mark.regression
 def test_GCTC021_Crear_proyecto_code_10_caracteres_valido(get_url, get_token, setup_delete_project_by_code):
-    payload = assert_request_project_payload_modificado(code="proyectsss")
+    payload = create_request_project_payload_modificado(code="proyectsss")
     assert_response_schema(payload, "add_project_schema_request.json", "schemas_project")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.project.value,StaticDataProject.valid_project_default.value, StaticDataHeaders.default_header.value, json.dumps(payload))
     log_api_call(method="POST",
@@ -441,7 +438,7 @@ def test_GCTC021_Crear_proyecto_code_10_caracteres_valido(get_url, get_token, se
 @pytest.mark.negative
 @pytest.mark.regression
 def test_GCTC022_Crear_proyecto_code_vacio_invalido(get_url):
-    payload = assert_request_project_payload_modificado(code="")
+    payload = create_request_project_payload_modificado(code="")
     assert_response_schema(payload, "add_project_schema_request.json", "schemas_project")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.project.value,StaticDataProject.valid_project_default.value, StaticDataHeaders.default_header.value, json.dumps(payload))
     log_api_call(method="POST",
@@ -458,7 +455,7 @@ def test_GCTC022_Crear_proyecto_code_vacio_invalido(get_url):
 @pytest.mark.negative
 @pytest.mark.regression
 def test_GCTC023_Crear_proyecto_code_15_caracteres_invalido(get_url):
-    payload = assert_request_project_payload_modificado(code="codigo_muy_largo")
+    payload = create_request_project_payload_modificado(code="codigo_muy_largo")
     assert_response_schema(payload, "add_project_schema_request.json", "schemas_project")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.project.value,StaticDataProject.valid_project_default.value, StaticDataHeaders.default_header.value, json.dumps(payload))
     log_api_call(method="POST",
