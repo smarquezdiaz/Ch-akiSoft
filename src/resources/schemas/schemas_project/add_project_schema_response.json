@@ -1,0 +1,23 @@
+{
+       "type": "object",
+       "required": [
+           "result",
+           "status"
+       ],
+       "properties": {
+           "status": {
+               "type": "boolean"
+           },
+           "result": {
+               "type": "object",
+               "required": [
+                   "code"
+               ],
+               "properties": {
+                   "code": {
+                       "type": "string"
+                   }
+               }
+           }
+       }
+}

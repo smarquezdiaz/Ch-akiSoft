@@ -2,6 +2,7 @@ import os
 import sys
 
 import pytest
+from src.common.static_data_project import StaticDataProject
 current_dir = os.path.dirname(__file__)
 parent_dir = os.path.dirname(current_dir)
 sys.path.append(parent_dir)
@@ -75,3 +76,16 @@ def post_resource_case(get_url):
                 print(f"[post_resource_single teardown] warning: delete {cid} devolvió {resp.status_code}")
         except Exception as e:
             print(f"[post_resource_single teardown] error al eliminar {cid}: {e}")
+
+@pytest.fixture(scope="function")
+def setup_delete_project_by_code(get_url):
+    project_code_to_delete = None
+    def registrar_code(project_code):
+        nonlocal project_code_to_delete
+        project_code_to_delete = project_code
+
+    yield registrar_code
+    if project_code_to_delete:
+        response = request_function(StaticDataVerbs.delete.value, get_url, StaticDataModules.project.value,
+                                    f"{StaticDataProject.valid_project_default.value}/{project_code_to_delete}",StaticDataHeaders.default_header.value)
+        assert response.status_code == 200
