@@ -2,8 +2,7 @@
        "type": "object",
        "required": [
            "code",
-           "description",
-           "title"
+           "description"
        ],
        "properties": {
            "title": {

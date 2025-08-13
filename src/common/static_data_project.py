@@ -13,6 +13,8 @@ class StaticDataProject(Enum):
     invalid_limit5_param9999999 = "?limit=5&offset=9999999"
 
     valid_project_default = ""
+    invalid_url_suffix_project = "/INVALID_PROJECT"
+
 
     non_existent_project_code = "/suite/TB"
     single_char_project_code = "/suite/T"
