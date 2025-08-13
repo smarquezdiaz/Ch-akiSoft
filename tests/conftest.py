@@ -1,7 +1,15 @@
+import json
 import os
 import sys
 
 import pytest
+current_dir = os.path.dirname(__file__)
+parent_dir = os.path.dirname(current_dir)
+sys.path.append(parent_dir)
+from src.common.logger import log_api_call
+from src.resources.payloads.payloads_suite.payloads_suite import assert_request_suite_payload
+from src.utils.load_resources import assert_response_schema, assert_response_status_code_global
+
 current_dir = os.path.dirname(__file__)
 parent_dir = os.path.dirname(current_dir)
 sys.path.append(parent_dir)
@@ -75,3 +83,23 @@ def post_resource_case(get_url):
                 print(f"[post_resource_single teardown] warning: delete {cid} devolvió {resp.status_code}")
         except Exception as e:
             print(f"[post_resource_single teardown] error al eliminar {cid}: {e}")
+
+"""
+Setup para agregar suite
+"""
+@pytest.fixture(scope="module")
+def setup_add_suite(get_url):
+    payload = assert_request_suite_payload()
+    assert_response_schema(payload, "add_suite_schema_request.json", "schema_suite")
+    response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.suite.value,
+                                StaticDataSuites.default_url_suffix.value, StaticDataHeaders.default_header.value,
+                                json.dumps(payload))
+    log_api_call(method="POST",
+                 url=response.url,
+                 headers=response.headers,
+                 payload=payload,
+                 token=TOKEN,
+                 response=response
+                 )
+    assert_response_status_code_global(200, response.status_code)
+    return response.json()
