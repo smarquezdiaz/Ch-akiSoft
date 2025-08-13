@@ -1,7 +1,7 @@
 import random
 import string
 
-def assert_request_project_payload(
+def create_request_project_payload(
     title: str | int | None = None,
     code: str | int | None = None,
     description: str | int | None = None,
@@ -21,7 +21,7 @@ def get_random_code():
 
 
 #sin descripcion
-def assert_request_project_payload_Sin_descripcion(
+def create_request_project_payload_Sin_descripcion(
     title: str | int | None = None,
     code: str | int | None = None,
 ) -> dict:
@@ -34,7 +34,7 @@ def assert_request_project_payload_Sin_descripcion(
 
 
 #sin title
-def assert_request_project_payload_Sin_title(
+def create_request_project_payload_Sin_title(
         code: str | int | None = None,
         description: str | int | None = None,
 ) -> dict:
@@ -46,7 +46,7 @@ def assert_request_project_payload_Sin_title(
 
 
 
-def assert_request_project_payload_modificado(
+def create_request_project_payload_modificado(
     title: str | int | None = None,
     code: str | int | None = None,
     description: str | int | None = None,
