@@ -31,11 +31,7 @@ def assert_request_project_payload_Sin_descripcion(
     }
     return payload
 
-def get_random_title():
-    return ''.join(random.choices(string.ascii_letters + string.digits, k=5))
 
-def get_random_code():
-    return ''.join(random.choices(string.ascii_letters + string.digits, k=8))
 
 #sin title
 def assert_request_project_payload_Sin_title(
@@ -63,9 +59,4 @@ def assert_request_project_payload_modificado(
     }
     return payload
 
-def get_random_title(length: int = 5) -> str:
-    return ''.join(random.choices(string.ascii_letters + string.digits, k=length))
-
-def get_random_code(length: int = 8) -> str:
-    return ''.join(random.choices(string.ascii_letters + string.digits, k=length))
 
