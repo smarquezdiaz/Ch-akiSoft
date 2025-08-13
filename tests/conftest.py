@@ -1,6 +1,8 @@
 import os
 import sys
 import random
+from hmac import compare_digest
+
 import pytest
 import json
 current_dir = os.path.dirname(__file__)
@@ -65,9 +67,7 @@ def post_resource_case(get_url):
     client = {
         "created_id": None,  # aqui guardará el test el id creado
     }
-
     yield client
-
     # TEARDOWN: eliminar si existe
     cid = client.get("created_id")
     if cid:

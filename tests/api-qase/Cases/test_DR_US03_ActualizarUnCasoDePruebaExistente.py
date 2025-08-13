@@ -16,7 +16,7 @@ from src.common.url import assert_patch_join
 @pytest.mark.smoke
 @pytest.mark.positive
 @pytest.mark.regression
-def test_DR_TC54_Verificar_que_se_retorna_estado_200_al_actualizar_solo_un_campo_title_de_un_caso_de_prueba_Smoke(get_url,patch_add_case):
+def test_DR_TC54_Verificar_que_se_retorna_estado_200_al_actualizar_solo_un_campo_title_de_un_caso_de_prueba(get_url,patch_add_case):
     id_created=patch_add_case["result"]["id"]
     request=assert_request_payload(title=name_random_cases())
     assert_get_cases_response_schema(request, "patch_cases_schema_request.json")
@@ -60,7 +60,7 @@ def test_DR_TC55_Verificar_que_se_retorna_estado_200_al_actualizar_todos_los_cam
 @pytest.mark.regression
 def test_DR_TC56_Verificar_que_la_actualización_del_campo_severidad_de_un_caso_de_prueba_a_crítico_retorne_un_estado_200(get_url,patch_add_case):
     id_created = patch_add_case["result"]["id"]
-    request = assert_request_payload(severity=StaticDataCases.severity_critical_value.value)
+    request = assert_request_payload(title=name_random_cases(),severity=StaticDataCases.severity_critical_value.value)
     assert_get_cases_response_schema(request, "patch_cases_schema_request.json")
     response = request_function(StaticDataVerbs.patch.value, get_url, StaticDataModules.case.value,
                                 assert_patch_join(StaticDataSuites.default_url_suffix.value, id_created),
@@ -80,7 +80,7 @@ def test_DR_TC56_Verificar_que_la_actualización_del_campo_severidad_de_un_caso_
 @pytest.mark.regression
 def test_DR_TC57_Verificar_que_la_actualización_del_campo_severidad_de_un_caso_de_prueba_a_mayor_retorne_un_estado_200(get_url,patch_add_case):
     id_created = patch_add_case["result"]["id"]
-    request = assert_request_payload(severity=StaticDataCases.severity_major_value.value)
+    request = assert_request_payload(title=name_random_cases(),severity=StaticDataCases.severity_major_value.value)
     assert_get_cases_response_schema(request, "patch_cases_schema_request.json")
     response = request_function(StaticDataVerbs.patch.value, get_url, StaticDataModules.case.value,
                                 assert_patch_join(StaticDataSuites.default_url_suffix.value, id_created),
@@ -100,7 +100,7 @@ def test_DR_TC57_Verificar_que_la_actualización_del_campo_severidad_de_un_caso_
 @pytest.mark.regression
 def test_DR_TC58_Verificar_que_la_actualización_del_campo_severidad_de_un_caso_de_prueba_a_normal_retorne_un_estado_200(get_url,patch_add_case):
     id_created = patch_add_case["result"]["id"]
-    request = assert_request_payload(severity=StaticDataCases.severity_normal_value.value)
+    request = assert_request_payload(title=name_random_cases(),severity=StaticDataCases.severity_normal_value.value)
     assert_get_cases_response_schema(request, "patch_cases_schema_request.json")
     response = request_function(StaticDataVerbs.patch.value, get_url, StaticDataModules.case.value,
                                 assert_patch_join(StaticDataSuites.default_url_suffix.value, id_created),
@@ -120,7 +120,7 @@ def test_DR_TC58_Verificar_que_la_actualización_del_campo_severidad_de_un_caso_
 @pytest.mark.regression
 def test_DR_TC59_Verificar_que_la_actualización_del_campo_severidad_de_un_caso_de_prueba_a_menor_retorne_un_estado_200(get_url,patch_add_case):
     id_created = patch_add_case["result"]["id"]
-    request = assert_request_payload(severity=StaticDataCases.severity_minor_value.value)
+    request = assert_request_payload(title=name_random_cases(),severity=StaticDataCases.severity_minor_value.value)
     assert_get_cases_response_schema(request, "patch_cases_schema_request.json")
     response = request_function(StaticDataVerbs.patch.value, get_url, StaticDataModules.case.value,
                                 assert_patch_join(StaticDataSuites.default_url_suffix.value, id_created),
@@ -140,7 +140,7 @@ def test_DR_TC59_Verificar_que_la_actualización_del_campo_severidad_de_un_caso_
 @pytest.mark.regression
 def test_DR_TC60_Verificar_que_la_actualización_del_campo_prioridad_de_un_caso_de_prueba_a_medio_retorne_un_estado_200(get_url,patch_add_case):
     id_created = patch_add_case["result"]["id"]
-    request = assert_request_payload(priority=StaticDataCases.priority_medium_value.value)
+    request = assert_request_payload(title=name_random_cases(),priority=StaticDataCases.priority_medium_value.value)
     assert_get_cases_response_schema(request, "patch_cases_schema_request.json")
     response = request_function(StaticDataVerbs.patch.value, get_url, StaticDataModules.case.value,
                                 assert_patch_join(StaticDataSuites.default_url_suffix.value, id_created),
@@ -160,7 +160,7 @@ def test_DR_TC60_Verificar_que_la_actualización_del_campo_prioridad_de_un_caso_
 @pytest.mark.regression
 def test_DR_TC61_Verificar_que_la_actualización_del_campo_prioridad_de_un_caso_de_prueba_a_bajo_retorne_un_estado_200(get_url,patch_add_case):
     id_created = patch_add_case["result"]["id"]
-    request = assert_request_payload(priority=StaticDataCases.priority_low_value.value)
+    request = assert_request_payload(title=name_random_cases(),priority=StaticDataCases.priority_low_value.value)
     assert_get_cases_response_schema(request, "patch_cases_schema_request.json")
     response = request_function(StaticDataVerbs.patch.value, get_url, StaticDataModules.case.value,
                                 assert_patch_join(StaticDataSuites.default_url_suffix.value, id_created),
@@ -180,7 +180,7 @@ def test_DR_TC61_Verificar_que_la_actualización_del_campo_prioridad_de_un_caso_
 @pytest.mark.regression
 def test_DR_TC62_Verificar_que_la_actualización_del_campo_prioridad_de_un_caso_de_prueba_a_alto_retorne_un_estado_200(get_url,patch_add_case):
     id_created = patch_add_case["result"]["id"]
-    request = assert_request_payload(priority=StaticDataCases.priority_high_value.value)
+    request = assert_request_payload(title=name_random_cases(),priority=StaticDataCases.priority_high_value.value)
     assert_get_cases_response_schema(request, "patch_cases_schema_request.json")
     response = request_function(StaticDataVerbs.patch.value, get_url, StaticDataModules.case.value,
                                 assert_patch_join(StaticDataSuites.default_url_suffix.value, id_created),
@@ -200,7 +200,7 @@ def test_DR_TC62_Verificar_que_la_actualización_del_campo_prioridad_de_un_caso_
 @pytest.mark.regression
 def test_DR_TC63_Verificar_que_la_actualización_del_campo_tipo_de_un_caso_de_prueba_a_regresión_retorne_un_estado_200(get_url,patch_add_case):
     id_created = patch_add_case["result"]["id"]
-    request = assert_request_payload(type_=StaticDataCases.type_regression_value.value)
+    request = assert_request_payload(title=name_random_cases(),type_=StaticDataCases.type_regression_value.value)
     assert_get_cases_response_schema(request, "patch_cases_schema_request.json")
     response = request_function(StaticDataVerbs.patch.value, get_url, StaticDataModules.case.value,
                                 assert_patch_join(StaticDataSuites.default_url_suffix.value, id_created),
@@ -220,7 +220,7 @@ def test_DR_TC63_Verificar_que_la_actualización_del_campo_tipo_de_un_caso_de_pr
 @pytest.mark.regression
 def test_DR_TC64_Verificar_que_la_actualización_del_campo_tipo_de_un_caso_de_prueba_a_funcional_retorne_un_estado_200(get_url,patch_add_case):
     id_created = patch_add_case["result"]["id"]
-    request = assert_request_payload(type_=StaticDataCases.type_functional_value.value)
+    request = assert_request_payload(title=name_random_cases(),type_=StaticDataCases.type_functional_value.value)
     assert_get_cases_response_schema(request, "patch_cases_schema_request.json")
     response = request_function(StaticDataVerbs.patch.value, get_url, StaticDataModules.case.value,
                                 assert_patch_join(StaticDataSuites.default_url_suffix.value, id_created),
@@ -240,7 +240,7 @@ def test_DR_TC64_Verificar_que_la_actualización_del_campo_tipo_de_un_caso_de_pr
 @pytest.mark.regression
 def test_DR_TC65_Verificar_que_la_actualización_del_campo_tipo_de_un_caso_de_prueba_a_smoke_retorne_un_estado_200(get_url,patch_add_case):
     id_created = patch_add_case["result"]["id"]
-    request = assert_request_payload(type_=StaticDataCases.type_smoke_value.value)
+    request = assert_request_payload(title=name_random_cases(),type_=StaticDataCases.type_smoke_value.value)
     assert_get_cases_response_schema(request, "patch_cases_schema_request.json")
     response = request_function(StaticDataVerbs.patch.value, get_url, StaticDataModules.case.value,
                                 assert_patch_join(StaticDataSuites.default_url_suffix.value, id_created),
@@ -260,7 +260,7 @@ def test_DR_TC65_Verificar_que_la_actualización_del_campo_tipo_de_un_caso_de_pr
 @pytest.mark.regression
 def test_DR_TC66_Verificar_que_la_actualización_del_campo_status_de_un_caso_de_prueba_a_draft_retorne_un_estado_200(get_url,patch_add_case):
     id_created = patch_add_case["result"]["id"]
-    request = assert_request_payload(status=StaticDataCases.status_draft_value.value)
+    request = assert_request_payload(title=name_random_cases(),status=StaticDataCases.status_draft_value.value)
     assert_get_cases_response_schema(request, "patch_cases_schema_request.json")
     response = request_function(StaticDataVerbs.patch.value, get_url, StaticDataModules.case.value,
                                 assert_patch_join(StaticDataSuites.default_url_suffix.value, id_created),
@@ -280,7 +280,7 @@ def test_DR_TC66_Verificar_que_la_actualización_del_campo_status_de_un_caso_de_
 @pytest.mark.regression
 def test_DR_TC67_Verificar_que_la_actualización_del_campo_status_de_un_caso_de_prueba_a_deprecated_retorne_un_estado_200(get_url,patch_add_case):
     id_created = patch_add_case["result"]["id"]
-    request = assert_request_payload(status=StaticDataCases.status_deprecated_value.value)
+    request = assert_request_payload(title=name_random_cases(),status=StaticDataCases.status_deprecated_value.value)
     assert_get_cases_response_schema(request, "patch_cases_schema_request.json")
     response = request_function(StaticDataVerbs.patch.value, get_url, StaticDataModules.case.value,
                                 assert_patch_join(StaticDataSuites.default_url_suffix.value, id_created),
@@ -300,7 +300,7 @@ def test_DR_TC67_Verificar_que_la_actualización_del_campo_status_de_un_caso_de_
 @pytest.mark.regression
 def test_DR_TC68_Verificar_que_la_actualización_del_campo_status_de_un_caso_de_prueba_a_actual_retorne_un_estado_200(get_url,patch_add_case):
     id_created = patch_add_case["result"]["id"]
-    request = assert_request_payload(status=StaticDataCases.status_draft_value.value)
+    request = assert_request_payload(title=name_random_cases(),status=StaticDataCases.status_draft_value.value)
     assert_get_cases_response_schema(request, "patch_cases_schema_request.json")
     response = request_function(StaticDataVerbs.patch.value, get_url, StaticDataModules.case.value,
                                 assert_patch_join(StaticDataSuites.default_url_suffix.value, id_created),
@@ -340,7 +340,7 @@ def test_DR_TC69_Verificar_que_la_actualización_del_campo_title_con_un_solo_car
 @pytest.mark.regression
 def test_DR_TC70_Verificar_que_la_actualización_del_campo_automatización_de_un_caso_de_prueba_a_no_automatización_retorne_un_estado_200(get_url,patch_add_case):
     id_created = patch_add_case["result"]["id"]
-    request = assert_request_payload(automation=StaticDataCases.automation_is_not_automated_value.value)
+    request = assert_request_payload(title=name_random_cases(),automation=StaticDataCases.automation_is_not_automated_value.value)
     assert_get_cases_response_schema(request, "patch_cases_schema_request.json")
     response = request_function(StaticDataVerbs.patch.value, get_url, StaticDataModules.case.value,
                                 assert_patch_join(StaticDataSuites.default_url_suffix.value, id_created),
@@ -360,7 +360,7 @@ def test_DR_TC70_Verificar_que_la_actualización_del_campo_automatización_de_un
 @pytest.mark.regression
 def test_DR_TC71_Verificar_que_la_actualización_del_campo_automatización_de_un_caso_de_prueba_a_automatización_retorne_un_estado_200(get_url,patch_add_case):
     id_created = patch_add_case["result"]["id"]
-    request = assert_request_payload(automation=StaticDataCases.automation_automated_to_be_automated_value.value)
+    request = assert_request_payload(title=name_random_cases(),automation=StaticDataCases.automation_automated_to_be_automated_value.value)
     assert_get_cases_response_schema(request, "patch_cases_schema_request.json")
     response = request_function(StaticDataVerbs.patch.value, get_url, StaticDataModules.case.value,
                                 assert_patch_join(StaticDataSuites.default_url_suffix.value, id_created),
@@ -411,7 +411,7 @@ def test_DR_TC73_Verificar_que_retorna_error_estado_400_al_actualizar_un_caso_de
                  response=response
                  )
     assert_response_status_code_case(response.status_code, 400)
-    assert_get_cases_response_schema(response.json(), "cases_post_schema_400.json")
+    assert_get_cases_response_schema(response.json(), "cases_schema_400.json")
     assert_response_error_status_not_empty(response)
 
 @pytest.mark.negative

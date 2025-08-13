@@ -46,6 +46,6 @@ class StaticDataCases(Enum):
     empty_title = " "
     id_does_not_exist = 100000
     negative_id = -10
-    project_does_not_exist = "no_existe"
+    project_does_not_exist = "/no_existe"
     type_string = "soy_letras"
     value_does_not_exist = 1000
