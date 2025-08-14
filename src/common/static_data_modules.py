@@ -6,3 +6,4 @@ class StaticDataModules(Enum):
     custom_field = "custom_field"
     attachment = "attachment"
     case = "case"
+    plan = "plan"

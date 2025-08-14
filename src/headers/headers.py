@@ -58,3 +58,10 @@ def get_header_with_invalid_token():
         "Token": f"{TOKEN_Invalido}"
     }
     return headers
+def get_header_with_tokenPlans():
+    headers = {
+        "accept": "application/json",
+        'content-type': 'application/json',
+        "Token": f"{TOKEN}"
+    }
+    return headers
