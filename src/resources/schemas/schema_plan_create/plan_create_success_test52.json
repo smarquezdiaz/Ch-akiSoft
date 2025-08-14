@@ -1,0 +1,19 @@
+{
+    "type": "object",
+    "required": [
+        "cases",
+        "description",
+        "title"
+    ],
+    "properties": {
+        "title": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "cases": {
+            "type": "array"
+        }
+    }
+}
