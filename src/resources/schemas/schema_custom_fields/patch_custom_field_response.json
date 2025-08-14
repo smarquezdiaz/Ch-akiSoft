@@ -1,0 +1,128 @@
+{
+    "schema_salida_valida": {
+            "type": "object",
+    "required": [
+        "status"
+    ],
+    "properties": {
+        "status": {
+            "type": "boolean"
+        }
+    }
+  },
+
+"schema_salida_error_fields_status":{
+    "type": "object",
+    "required": [
+        "errorFields",
+        "errorMessage",
+        "status"
+    ],
+    "properties": {
+        "status": {
+            "type": "boolean"
+        },
+        "errorMessage": {
+            "type": "string"
+        },
+        "errorFields": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "error",
+                    "field"
+                ],
+                "properties": {
+                    "field": {
+                        "type": "string"
+                    },
+                    "error": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+},
+    "schema_salida_status_message_error":{
+    "type": "object",
+    "required": [
+        "errorMessage",
+        "status"
+    ],
+    "properties": {
+        "status": {
+            "type": "boolean"
+        },
+        "errorMessage": {
+            "type": "string"
+        }
+    }
+},
+    "schema_salida_error":{
+         "type": "object",
+    "required": [
+        "error"
+    ],
+    "properties": {
+        "error": {
+            "type": "string"
+        }
+    }
+    },
+
+    "schema_salida_id":{
+        "type": "object",
+    "required": [
+        "errorFields",
+        "errorMessage",
+        "status"
+    ],
+    "properties": {
+        "status": {
+            "type": "boolean"
+        },
+        "errorMessage": {
+            "type": "string"
+        },
+        "errorFields": {
+            "type": "object",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+    },
+     "schema_salida_message404":{
+         "type": "object",
+    "required": [
+        "message"
+    ],
+    "properties": {
+        "message": {
+            "type": "string"
+        }
+    }
+     },
+    "schema_salida_message401":{
+    "type": "object",
+    "required": [
+        "error"
+    ],
+    "properties": {
+        "error": {
+            "type": "string"
+        }
+    }
+
+}
+}
