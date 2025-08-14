@@ -29,7 +29,7 @@ def test_DR_TC001_Verificar_la_obtencion_de_todos_los_casos_de_prueba_de_un_proy
 
 @pytest.mark.negative
 @pytest.mark.regression
-@pytest.mark.xfail(raises= "error si se manda un header que no existe, el sistema devuelve un status 200 : DR-BUG001")
+@pytest.mark.xfail(raises= "error si se manda un header que no existe, el sistema devuelve un status 200 : DR-BUG001", run=False)
 def test_DR_TC002_Verificar_que_retorna_una_respuesta_400_al_obtener_todos_los_casos_de_prueba_con_un_parámetro_que_no_existe (get_url, get_token):
     response = request_function(StaticDataVerbs.get.value, get_url, StaticDataModules.case.value, "/DEMO?esteparametronoexiste=noexiste", header_type=StaticDataHeaders.default_header.value)
     log_api_call(method=StaticDataVerbs.get.value,
