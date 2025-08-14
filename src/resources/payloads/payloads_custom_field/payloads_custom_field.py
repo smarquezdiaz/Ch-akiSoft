@@ -117,6 +117,112 @@ payloads = {
         "entity": 0,
         "type": 3.5
     },
+    "AE_TC030": {
+        "title": generate_random_title()
+    },
+    "title": {
+        "title": generate_random_title()
+    },
+    "AE_TC031": {
+    "title": " "
+    },
+    "AE_TC032": {
+        "title": "ZaJWGwhkyVRpRNNcFHyLviReMYAeHERSQBtBgqTMNNdcuSTrexMHWDBGAutkyFKVPiPrxGKvEkqvxiuMLxvKGtiKvbjqevPqucmTfFBahaAnUrhnZdzpiXKVxvkqqZjJcrmJDdUdcrrugRzVabFjyhXkVGQQkMmyLRzhegRYLUYcvqdKrrkVrpvuKZHQMySpKNHTzLYeDdUGjdnVVCgTpHGLUDbeQptSZGgNnGYGTfzHCDapqazyarmkhWWkCaT1d"
+    },
+
+    "AE_TC036": {
+        "title": generate_random_title(),
+        "value": [
+            {
+                "id": -1
+
+            }
+        ]
+    },
+    "AE_TC037": {
+        "title": generate_random_title(),
+        "value": [
+            {
+            "id": -1,
+            "title": "-1"
+            }
+        ]
+    },
+    "AE_TC038": {
+        "title": generate_random_title(),
+        "projects_codes": [
+        "ejemplo2"
+    ]
+    },
+    "AE_TC039": {
+        "title": generate_random_title(),
+        "value": [
+            {
+            "id": -1,
+            "title": "-1"
+            }
+        ]
+    },
+    "AE_TC040": {
+        "title": "<script>alert('XSS')</script>"
+    },
+
+    "AE_TC041": {
+        "title": "1 OR 1=1; DROP TABLE users"
+    },
+    "AE_TC042": {
+        "title": generate_random_title(),
+    "value": [
+    {
+      "id": "a",
+      "title": "pruebas 7"
+    }
+    ]
+    },
+    "AE_TC043": {
+    "title": generate_random_title(),
+    "value": [
+    {
+      "title": "ZaJWGwhkyVRpRNNcFHyLviReMYAeHERSQBtBgqTMNNdcuSTrexMHWDBGAutkyFKVPiPrxGKvEkqvxiuMLxvKGtiKvbjqevPqucmTfFBahaAnUrhnZdzpiXKVxvkqqZjJcrmJDdUdcrrugRzVabFjyhXkVGQQkMmyLRzhegRYLUYcvqdKrrkVrpvuKZHQMySpKNHTzLYeDdUGjdnVVCgTpHGLUDbeQptSZGgNnGYGTfzHCDapqazyarmkhWWkdfff",
+      "id": 1
+    }
+    ]
+    },
+    "title_value": {
+        "title": generate_random_title(),
+        "value": [
+    {
+      "title": "prueba12",
+      "id": 111111111
+    }
+
+    ]
+    },
+    "AE_TC044": {
+        "title": generate_random_title(),
+        "value": [
+    {
+      "title": "prueba12",
+      "id": 111111111111111111111
+    }]
+    },
+
+    "AE_TC051": {
+        "title": generate_random_title(),
+        "is_visible": "abc"
+
+    },
+    "AE_TC052": {
+        "title": generate_random_title(),
+        "is_filterable": "abc"
+
+    },
+    "AE_TC053": {
+        "title": generate_random_title(),
+        "is_required": "abc"
+
+    },
+
 }
 
 def get_payload_by_id(test_case_id: str) -> dict:
