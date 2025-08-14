@@ -9,7 +9,7 @@ from src.common.static_headers import StaticDataHeaders
 from src.common.static_verbs import StaticDataVerbs
 from src.utils.api_calls import request_function
 @pytest.mark.smoke
-@pytest.mark.functional
+@pytest.mark.positive
 @pytest.mark.regression
 def test_AE_TC021_Obtener_un_campo_personalizado_por_ID_valido (get_url):
 
@@ -141,6 +141,7 @@ def test_AE_TC028_Realizar_una_solicitud_con_id_que_no_existe (get_url):
         token=TOKEN,
         response=response
     )
+
 
     assert_get_custom_field_response_schema(response.json(), "error_Not_Found")
     assert_response_status_code_global(404, response.status_code)
