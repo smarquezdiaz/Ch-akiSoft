@@ -228,5 +228,28 @@
             }
         }
     }
+},
+    "schema_post_e2e" :{
+     "type": "object",
+    "required": [
+        "result",
+        "status"
+    ],
+    "properties": {
+        "status": {
+            "type": "boolean"
+        },
+        "result": {
+            "type": "object",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
 }
 }

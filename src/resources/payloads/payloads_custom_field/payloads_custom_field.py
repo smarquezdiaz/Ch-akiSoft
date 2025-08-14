@@ -11,6 +11,11 @@ payloads = {
         "placeholder": "12",
         "default_value": "12"
     },
+    "AE_TCe2e": {
+        "title": generate_random_title(),
+        "entity": 0,
+        "type": 0
+    },
     "AE_TC002": {
         "entity": 10,
         "type": 10
