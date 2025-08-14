@@ -9,27 +9,25 @@ from src.common.static_data_custom_field import StaticDataCustomField
 from src.common.static_headers import StaticDataHeaders
 from src.common.static_verbs import StaticDataVerbs
 from src.utils.api_calls import request_function
+from src.assertions.add_custom_field_assertions import crear_campo_personalizado
 
 @pytest.mark.positive
 @pytest.mark.regression
 @pytest.mark.smoke
-def test_AE_TC054_Eliminar_campo_con_ID_valido (get_url):
-    """Descripcion:el usuario puede eliminar un campo personalizado con ID valido   """
-    # Paso 1: Eliminar el campo
-    field_id = StaticDataCustomField.delete_custom_field2.value
+def test_AE_TC054_Eliminar_campo_con_ID_valido(get_url):
+    """Descripcion: el usuario puede eliminar un campo personalizado con ID valido"""
+
+    field_id = crear_campo_personalizado(get_url)
     response = request_function(
-            StaticDataVerbs.delete.value,
-            get_url,
-            StaticDataModules.custom_field.value,
-            field_id,
-            StaticDataHeaders.default_header.value
-        )
-
+        StaticDataVerbs.delete.value,
+        get_url,
+        StaticDataModules.custom_field.value,
+        f"/{field_id}",
+        StaticDataHeaders.default_header.value
+    )
     log_api_call("DELETE", response.url, response.headers, None, TOKEN, response)
-
     assert_delete_custom_field_response_schema(response.json(), "delete_correcto")
-    assert_response_status_code_custom_field(200, response.status_code)
-
+    assert_response_status_code_custom_field(response.status_code, 200)
 
 
 @pytest.mark.negative
@@ -50,6 +48,7 @@ def test_AE_TC055_ID_inexistente(get_url):
 
     assert_delete_custom_field_response_schema(response.json(), "delete_schema_salida_404")
     assert_response_status_code_custom_field(404, response.status_code)
+
 
 
 # Datos de prueba negativos (todos con el mismo schema de error)
@@ -93,7 +92,7 @@ def test_delete_custom_field_negative(get_url, test_name, description, field_id,
 @pytest.mark.regression
 def test_AE_TC057_Sin_autenticacion(get_url):
     """Descripcion:el usuario no puede eliminar un campo personalizado si no tiene autenticacion     """
-    # Paso 1: Eliminar el campo
+
     field_id = StaticDataCustomField.delete_custom_field3.value
     response = request_function(
         StaticDataVerbs.delete.value,
@@ -113,14 +112,14 @@ def test_AE_TC057_Sin_autenticacion(get_url):
 def test_AE_TC058_Eliminar_mismo_campo_dos_veces(get_url):
     """Verificar que al intentar eliminar un campo ya eliminado, la API responde con un error 404."""
 
-    field_id = StaticDataCustomField.delete_custom_field4.value
+    field_id = crear_campo_personalizado(get_url)
 
     # Primer intento de eliminación (debe funcionar)
     response_first = request_function(
         StaticDataVerbs.delete.value,
         get_url,
         StaticDataModules.custom_field.value,
-        field_id,
+        f"/{field_id}",
         StaticDataHeaders.default_header.value
     )
 
@@ -134,11 +133,11 @@ def test_AE_TC058_Eliminar_mismo_campo_dos_veces(get_url):
         StaticDataVerbs.delete.value,
         get_url,
         StaticDataModules.custom_field.value,
-        field_id,
+        f"/{field_id}",
         StaticDataHeaders.default_header.value
     )
 
     log_api_call("DELETE", response_second.url, response_second.headers, None, TOKEN, response_second)
 
     assert_delete_custom_field_response_schema(response_second.json(), "delete_schema_salida_404")
-    assert_response_status_code_custom_field(404, response_second.status_code)
+    assert_response_status_code_custom_field( response_second.status_code,404)

@@ -24,5 +24,6 @@ def load_schema_custom_field(json_name,schema_key=None):
         return all_schemas[schema_key]
 
     return all_schemas
+
 def assert_response_status_code_custom_field(status_code, expected_code):
     assert status_code == expected_code, f"Status esperado {expected_code}, Status obtenido {status_code}"
