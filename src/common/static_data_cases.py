@@ -41,11 +41,13 @@ class StaticDataCases(Enum):
     automation_automated_to_be_automated_value = 2
     automation_automated_to_be_automated_call = "/DEMO?automation=automated"
 
-    title_one = "a"
-    title_lange = "n sistemas operativos y aplicaciones, un nombre con más de 255 caracteres generalmente se considera un nombre largo, y puede causar problemas de compatibilidad o errores. La longitud máxima de 255 caracteres es común en sistemas de archivos y bases de datos, y se debe a restricciones técnicas en cómo se almacenan las cadenas de caracteres. "
+    title_one = "/a"
+    title_lange = "/n sistemas operativos y aplicaciones, un nombre con más de 255 caracteres generalmente se considera un nombre largo, y puede causar problemas de compatibilidad o errores. La longitud máxima de 255 caracteres es común en sistemas de archivos y bases de datos, y se debe a restricciones técnicas en cómo se almacenan las cadenas de caracteres. "
     empty_title = " "
     id_does_not_exist = 100000
     negative_id = -10
     project_does_not_exist = "/no_existe"
     type_string = "soy_letras"
     value_does_not_exist = 1000
+    empty_id = "  "
+    special_id = "*[¨]["

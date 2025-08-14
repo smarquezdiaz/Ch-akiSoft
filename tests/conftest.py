@@ -22,6 +22,7 @@ from src.common.static_verbs import StaticDataVerbs
 from src.common.static_data_plans import StaticDataPlans
 from src.headers.headers import *
 from src.utils.api_calls import request_function
+from src.resources.payloads.payloads_case.payloads_post_case import *
 from src.common.logger import log_api_call
 from src.resources.payloads.payloads_suite.payloads_suite import create_request_suite_payload, \
     create_destination_id_payload
