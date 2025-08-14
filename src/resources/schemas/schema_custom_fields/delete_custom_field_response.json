@@ -1,0 +1,73 @@
+{
+"delete_correcto":{
+"type": "object",
+    "required": [
+        "status"
+    ],
+    "properties": {
+        "status": {
+            "type": "boolean"
+        }
+    }
+  },
+
+"delete_schema_salida_400":{
+ "type": "object",
+    "required": [
+        "errorFields",
+        "errorMessage",
+        "status"
+    ],
+    "properties": {
+        "status": {
+            "type": "boolean"
+        },
+        "errorMessage": {
+            "type": "string"
+        },
+        "errorFields": {
+            "type": "object",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+    },
+
+   "delete_schema_salida_404":{
+    "type": "object",
+    "required": [
+        "errorMessage",
+        "status"
+    ],
+    "properties": {
+        "status": {
+            "type": "boolean"
+        },
+        "errorMessage": {
+            "type": "string"
+        }
+    }
+
+},
+
+  "delete_schema_salida_401":{
+    "type": "object",
+    "required": [
+        "error"
+    ],
+    "properties": {
+        "error": {
+            "type": "string"
+        }
+    }
+}
+}
