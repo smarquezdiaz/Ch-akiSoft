@@ -2,7 +2,7 @@ import random
 import string
 
 
-def assert_request_suite_payload(
+def create_request_suite_payload(
         title: str | int | None = None,
         description: str | int | None = None,
         preconditions: str | int | None = None,
@@ -29,3 +29,12 @@ def get_random_title():
 def get_random_property():
     random_string = ''.join(random.choices(string.ascii_letters + string.digits, k=100))
     return random_string
+
+def create_destination_id_payload(
+        destination_id = None,
+) -> dict:
+    payload = {
+        "destination_id": destination_id
+    }
+
+    return payload

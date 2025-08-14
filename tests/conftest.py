@@ -7,7 +7,8 @@ current_dir = os.path.dirname(__file__)
 parent_dir = os.path.dirname(current_dir)
 sys.path.append(parent_dir)
 from src.common.logger import log_api_call
-from src.resources.payloads.payloads_suite.payloads_suite import assert_request_suite_payload
+from src.resources.payloads.payloads_suite.payloads_suite import create_request_suite_payload, \
+    create_destination_id_payload
 from src.utils.load_resources import assert_response_schema, assert_response_status_code_global
 
 current_dir = os.path.dirname(__file__)
@@ -87,9 +88,9 @@ def post_resource_case(get_url):
 """
 Setup para agregar suite
 """
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="function")
 def setup_add_suite(get_url):
-    payload = assert_request_suite_payload()
+    payload = create_request_suite_payload()
     assert_response_schema(payload, "add_suite_schema_request.json", "schema_suite")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.suite.value,
                                 StaticDataSuites.default_url_suffix.value, StaticDataHeaders.default_header.value,
@@ -103,3 +104,12 @@ def setup_add_suite(get_url):
                  )
     assert_response_status_code_global(200, response.status_code)
     return response.json()
+
+"""
+Setup para crear suite y devolver destination_id
+"""
+@pytest.fixture(scope="function")
+def setup_add_suite_for_destination_id(setup_add_suite):
+    destination_id = setup_add_suite["result"]["id"]
+    payload = create_destination_id_payload(destination_id)
+    return payload
