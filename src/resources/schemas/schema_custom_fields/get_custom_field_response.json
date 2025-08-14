@@ -1,228 +1,291 @@
 {
     "custom_field_schema": {
-    "type": "object",
-    "required": [
-        "result",
-        "status"
-    ],
-    "properties": {
-        "result": {
-            "type": "object",
-            "required": [
-                "created",
-                "created_at",
-                "default_value",
-                "entity",
-                "id",
-                "is_enabled_for_all_projects",
-                "is_filterable",
-                "is_required",
-                "is_visible",
-                "placeholder",
-                "projects_codes",
-                "title",
-                "type",
-                "updated",
-                "updated_at"
-            ],
-            "properties": {
-                "id": {
-                    "type": "integer"
-                },
-                "title": {
-                    "type": "string"
-                },
-                "entity": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "placeholder": {
-                    "type": "string"
-                },
-                "default_value": {
-                    "type": "string"
-                },
-                "is_required": {
-                    "type": "boolean"
-                },
-                "is_visible": {
-                    "type": "boolean"
-                },
-                "is_filterable": {
-                    "type": "boolean"
-                },
-                "is_enabled_for_all_projects": {
-                    "type": "boolean"
-                },
-                "created": {
-                    "type": "string"
-                },
-                "updated": {
-                    "type": "string"
-                },
-                "created_at": {
-                    "type": "string"
-                },
-                "updated_at": {
-                    "type": "string"
-                },
-                "projects_codes": {
-                    "type": "array"
-                }
-            }
-        },
-        "status": {
-            "type": "boolean"
-        }
-    }
-},
-
-
-
-
-"error_message_schema": {
-    "type": "object",
-    "required": [
-        "message"
-    ],
-    "properties": {
-        "message": {
-            "type": "string"
-        }
-    }
-},
-
-
-     "error_fields_schema": {
-    "type": "object",
-    "required": [
-        "errorFields",
-        "errorMessage",
-        "status"
-    ],
-    "properties": {
-        "status": {
-            "type": "boolean"
-        },
-        "errorMessage": {
-            "type": "string"
-        },
-        "errorFields": {
-            "type": "object",
-            "required": [
-                "id"
-            ],
-            "properties": {
-                "id": {
-                    "type": "array",
-                    "items": {
+        "type": "object",
+        "required": [
+            "result",
+            "status"
+        ],
+        "properties": {
+            "result": {
+                "type": "object",
+                "required": [
+                    "created",
+                    "created_at",
+                    "default_value",
+                    "entity",
+                    "id",
+                    "is_enabled_for_all_projects",
+                    "is_filterable",
+                    "is_required",
+                    "is_visible",
+                    "placeholder",
+                    "projects_codes",
+                    "title",
+                    "type",
+                    "updated",
+                    "updated_at"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "title": {
                         "type": "string"
+                    },
+                    "entity": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "placeholder": {
+                        "type": "string"
+                    },
+                    "default_value": {
+                        "type": "string"
+                    },
+                    "is_required": {
+                        "type": "boolean"
+                    },
+                    "is_visible": {
+                        "type": "boolean"
+                    },
+                    "is_filterable": {
+                        "type": "boolean"
+                    },
+                    "is_enabled_for_all_projects": {
+                        "type": "boolean"
+                    },
+                    "created": {
+                        "type": "string"
+                    },
+                    "updated": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": "string"
+                    },
+                    "updated_at": {
+                        "type": "string"
+                    },
+                    "projects_codes": {
+                        "type": "array"
+                    }
+                }
+            },
+            "status": {
+                "type": "boolean"
+            }
+        }
+    },
+    "error_message_schema": {
+        "type": "object",
+        "required": [
+            "message"
+        ],
+        "properties": {
+            "message": {
+                "type": "string"
+            }
+        }
+    },
+    "error_fields_schema": {
+        "type": "object",
+        "required": [
+            "errorFields",
+            "errorMessage",
+            "status"
+        ],
+        "properties": {
+            "status": {
+                "type": "boolean"
+            },
+            "errorMessage": {
+                "type": "string"
+            },
+            "errorFields": {
+                "type": "object",
+                "required": [
+                    "id"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
                     }
                 }
             }
         }
-    }
-},
-
-"error_Not_Found": {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "type": "object",
-    "required": [
-        "errorMessage",
-        "status"
-    ],
-    "properties": {
-        "status": {
-            "type": "boolean"
-        },
-        "errorMessage": {
-            "type": "string"
-        }
-    }
-},
-
-    "error_Unauthenticated":{
-    "type": "object",
-    "required": [
-        "error"
-    ],
-    "properties": {
-        "error": {
-            "type": "string"
-        }
-    }
-},
-    "schema_salida_valido":{
-     "type": "object",
-    "required": [
-        "result",
-        "status"
-    ],
-    "properties": {
-        "result": {
-            "type": "object",
-            "required": [
-                "created",
-                "created_at",
-                "entity",
-                "id",
-                "is_enabled_for_all_projects",
-                "is_filterable",
-                "is_required",
-                "is_visible",
-                "projects_codes",
-                "title",
-                "type",
-                "updated",
-                "updated_at"
-            ],
-            "properties": {
-                "id": {
-                    "type": "integer"
-                },
-                "title": {
-                    "type": "string"
-                },
-                "entity": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "is_required": {
-                    "type": "boolean"
-                },
-                "is_visible": {
-                    "type": "boolean"
-                },
-                "is_filterable": {
-                    "type": "boolean"
-                },
-                "is_enabled_for_all_projects": {
-                    "type": "boolean"
-                },
-                "created": {
-                    "type": "string"
-                },
-                "updated": {
-                    "type": "string"
-                },
-                "created_at": {
-                    "type": "string"
-                },
-                "updated_at": {
-                    "type": "string"
-                },
-                "projects_codes": {
-                    "type": "array"
-                }
+    },
+    "error_Not_Found": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "required": [
+            "errorMessage",
+            "status"
+        ],
+        "properties": {
+            "status": {
+                "type": "boolean"
+            },
+            "errorMessage": {
+                "type": "string"
             }
-        },
-        "status": {
-            "type": "boolean"
+        }
+    },
+    "error_Unauthenticated": {
+        "type": "object",
+        "required": [
+            "error"
+        ],
+        "properties": {
+            "error": {
+                "type": "string"
+            }
+        }
+    },
+    "schema_salida_valido": {
+        "type": "object",
+        "required": [
+            "result",
+            "status"
+        ],
+        "properties": {
+            "result": {
+                "type": "object",
+                "required": [
+                    "created",
+                    "created_at",
+                    "entity",
+                    "id",
+                    "is_enabled_for_all_projects",
+                    "is_filterable",
+                    "is_required",
+                    "is_visible",
+                    "projects_codes",
+                    "title",
+                    "type",
+                    "updated",
+                    "updated_at"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "entity": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "is_required": {
+                        "type": "boolean"
+                    },
+                    "is_visible": {
+                        "type": "boolean"
+                    },
+                    "is_filterable": {
+                        "type": "boolean"
+                    },
+                    "is_enabled_for_all_projects": {
+                        "type": "boolean"
+                    },
+                    "created": {
+                        "type": "string"
+                    },
+                    "updated": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": "string"
+                    },
+                    "updated_at": {
+                        "type": "string"
+                    },
+                    "projects_codes": {
+                        "type": "array"
+                    }
+                }
+            },
+            "status": {
+                "type": "boolean"
+            }
+        }
+    },
+    "schema_get_salida_e2e": {
+        "type": "object",
+        "required": [
+            "result",
+            "status"
+        ],
+        "properties": {
+            "result": {
+                "type": "object",
+                "required": [
+                    "created",
+                    "created_at",
+                    "entity",
+                    "id",
+                    "is_enabled_for_all_projects",
+                    "is_filterable",
+                    "is_required",
+                    "is_visible",
+                    "projects_codes",
+                    "title",
+                    "type",
+                    "updated",
+                    "updated_at"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "entity": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "is_required": {
+                        "type": "boolean"
+                    },
+                    "is_visible": {
+                        "type": "boolean"
+                    },
+                    "is_filterable": {
+                        "type": "boolean"
+                    },
+                    "is_enabled_for_all_projects": {
+                        "type": "boolean"
+                    },
+                    "created": {
+                        "type": "string"
+                    },
+                    "updated": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": "string"
+                    },
+                    "updated_at": {
+                        "type": "string"
+                    },
+                    "projects_codes": {
+                        "type": "array"
+                    }
+                }
+            },
+            "status": {
+                "type": "boolean"
+            }
         }
     }
-}
 }
