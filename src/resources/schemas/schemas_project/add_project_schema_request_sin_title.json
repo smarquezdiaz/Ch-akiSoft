@@ -1,0 +1,21 @@
+{
+       "type": "object",
+       "required": [
+           "code",
+           "description"
+       ],
+       "properties": {
+           "title": {
+               "type": "string"
+           },
+           "code": {
+               "type": "string"
+           },
+           "description": {
+               "type": "string"
+           },
+           "access": {
+               "type": "string"
+           }
+       }
+}
