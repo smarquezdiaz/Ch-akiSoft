@@ -1,8 +1,15 @@
+import json
 import os
 import sys
 
 import pytest
+
+from src.common.logger import log_api_call
 from src.common.static_data_project import StaticDataProject
+from src.resources.payloads.payloads_project.payloads_project import create_request_project_payload, \
+    create_request_project_payload_super_modified
+from src.utils.load_resources import assert_response_schema, assert_response_status_code_global
+
 current_dir = os.path.dirname(__file__)
 parent_dir = os.path.dirname(current_dir)
 sys.path.append(parent_dir)
@@ -89,3 +96,55 @@ def setup_delete_project_by_code(get_url):
         response = request_function(StaticDataVerbs.delete.value, get_url, StaticDataModules.project.value,
                                     f"{StaticDataProject.valid_project_default.value}/{project_code_to_delete}",StaticDataHeaders.default_header.value)
         assert response.status_code == 200
+
+
+"""
+Setup para agregar proyect
+"""
+
+
+def _add_project(get_url, **kwargs):
+    payload = create_request_project_payload_super_modified(**kwargs)
+
+    assert_response_schema(payload, "add_project_schema_request.json", "schemas_project")
+
+    response = request_function(
+        StaticDataVerbs.post.value,
+        get_url,
+        StaticDataModules.project.value,
+        StaticDataProject.valid_project_default.value,
+        StaticDataHeaders.default_header.value,
+        json.dumps(payload)
+    )
+
+    log_api_call(
+        method="POST",
+        url=response.url,
+        headers=response.headers,
+        payload=payload,
+        token=TOKEN,
+        response=response
+    )
+
+    assert_response_schema(response.json(), "add_project_schema_response.json", "schemas_project")
+    assert_response_status_code_global(200, response.status_code)
+
+    return response.json()
+
+
+@pytest.fixture(scope="function")
+def setup_add_project(get_url):
+    return _add_project(get_url)
+
+
+@pytest.fixture(scope="function")
+def setup_add_project_2_character(get_url):
+    return _add_project(get_url, code=2)
+
+@pytest.fixture(scope="function")
+def setup_add_project_10_character(get_url):
+    return _add_project(get_url, code=10)
+
+@pytest.fixture(scope="function")
+def setup_add_project_minus(get_url):
+    return _add_project(get_url, code="casa")

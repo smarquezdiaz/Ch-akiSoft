@@ -60,3 +60,34 @@ def create_request_project_payload_modificado(
     return payload
 
 
+import random
+import string
+from typing import Union
+
+def create_request_project_payload_super_modified(
+    title: Union[str, int, None] = None,
+    code: Union[str, int, None] = None,
+    description: Union[str, int, None] = None,
+) -> dict:
+
+    payload = {
+        "title": _generate_value(title, default_length=8),
+        "code": _generate_value(code, default_length=5),
+        "description": _generate_value(description, default_length=10),
+    }
+    return payload
+
+def _generate_value(value, default_length=5):
+
+    if value is None:
+        return _random_string(default_length)
+
+    if isinstance(value, int):
+        return _random_string(value)
+
+    return str(value)
+
+def _random_string(length):
+    return ''.join(random.choices(string.ascii_letters + string.digits, k=length))
+
+

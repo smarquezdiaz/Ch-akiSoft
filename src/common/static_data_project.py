@@ -27,3 +27,16 @@ class StaticDataProjectPorCode(Enum):
     invalid_code_param_special = "%$#^@"
     invalid_code_param_space = "/DE MO"
     invalid_code_param_number = "/12345"
+    invalid_code_param_bug = "/#$&@"
+
+
+class StaticDataProjectDeletePorCode(Enum):
+    invalid_code_param_delete = ""
+    invalid_code_param_delete_1 = "/A"
+    invalid_code_param_delete_10 = "/Aabbccddeeff"
+    invalid_code_param_delete_no = "Abejita"
+    invalid_code_param_delete_spacial = "%#$^@"
+    invalid_code_param_delete_number = "12345"
+    invalid_code_param_delete_space = "CA SA"
+    invalid_code_param_delete_none = None
+    invalid_code_param_delete_decimal = "123,12"

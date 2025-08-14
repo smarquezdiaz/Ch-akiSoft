@@ -14,12 +14,13 @@ from src.utils.load_resources import assert_response_schema, assert_response_sta
 @pytest.mark.smoke
 @pytest.mark.regression
 @pytest.mark.positive
-def test_GCTC001_Obtener_un_proyecto_existente_con_codigo_valido(get_url):
+def test_GCTC001_Obtener_un_proyecto_existente_con_codigo_valido(get_url, setup_add_project, setup_delete_project_by_code):
         """
         Descripción: Verificar que el servicio API de Qase responde correctamente con la información del proyecto cuando se consulta con un code válido.
         """
+        id_to_create = setup_add_project["result"]["code"]
         response = request_function(StaticDataVerbs.get.value, get_url, StaticDataModules.project.value,
-                                    StaticDataProjectPorCode.valid_code_param.value, StaticDataHeaders.default_header.value)
+                                    f"/{id_to_create}", StaticDataHeaders.default_header.value)
         log_api_call(method="GET",
                      url=response.url,
                      headers=response.headers,
@@ -29,11 +30,12 @@ def test_GCTC001_Obtener_un_proyecto_existente_con_codigo_valido(get_url):
                      )
         assert_response_schema(response.json(), "get_project_response_by_code.json", "schemas_project")
         assert_response_status_code_global(200, response.status_code)
+        setup_delete_project_by_code(response.json()["result"]["code"])
 
-# Media
+#Alta
 @pytest.mark.regression
 @pytest.mark.negative
-def test_GCTC002_URL_mal_formada(get_url):
+def test_GCTC002_Verificar_que_se_muestre_error_al_mandar_la_URL_mal_formada(get_url):
         """
         Descripción: Validar que el servicio retorna error cuando la URL del recurso está mal escrita.
         """
@@ -51,7 +53,7 @@ def test_GCTC002_URL_mal_formada(get_url):
 # Media
 @pytest.mark.regression
 @pytest.mark.negative
-def test_GCTC003_Token_incorrecto(get_url):
+def test_GCTC003_Obtener_un_proyecto_con_token_incorrecto(get_url):
         """
         Descripción: Verificar que la API deniegue la solicitud con credenciales inválidas.
         """
@@ -71,7 +73,7 @@ def test_GCTC003_Token_incorrecto(get_url):
 # Media
 @pytest.mark.regression
 @pytest.mark.negative
-def test_GCTC004_Proyecto_inexistente(get_url):
+def test_GCTC004_Obtener_un_proyecto_inexistente(get_url):
         """
         Descripción: Verificar que la API retorne error cuando el proyecto no existe.
         """
@@ -113,12 +115,13 @@ def test_GCTC005_Obtener_un_proyecto_con_codigo_en_mayusculas(get_url):
 @pytest.mark.smoke
 @pytest.mark.regression
 @pytest.mark.positive
-def test_GCTC006_Obtener_un_proyecto_con_codigo_en_minusculas(get_url):
+def test_GCTC006_Obtener_un_proyecto_con_codigo_en_minusculas(get_url, setup_add_project_minus, setup_delete_project_by_code):
         """
         Descripción: Confirmar que códigos en minúsculas son aceptados.
         """
+        id_to_create = setup_add_project_minus["result"]["code"]
         response = request_function(StaticDataVerbs.get.value, get_url, StaticDataModules.project.value,
-                                    StaticDataProjectPorCode.valid_code_param.value, StaticDataHeaders.default_header.value)
+                                    f"/{id_to_create}", StaticDataHeaders.default_header.value)
         log_api_call(method="GET",
                      url=response.url,
                      headers=response.headers,
@@ -128,17 +131,19 @@ def test_GCTC006_Obtener_un_proyecto_con_codigo_en_minusculas(get_url):
                      )
         assert_response_schema(response.json(), "get_project_response_by_code.json", "schemas_project")
         assert_response_status_code_global(200, response.status_code)
+        setup_delete_project_by_code(response.json()["result"]["code"])
 
 # Media
 @pytest.mark.smoke
 @pytest.mark.regression
 @pytest.mark.positive
-def test_GCTC007_Obtener_un_proyecto_con_codigo_minimo_valido_2(get_url):
+def test_GCTC007_Obtener_un_proyecto_con_código_de_2_aracteres(get_url, setup_add_project_2_character, setup_delete_project_by_code):
         """
         Descripción: Verificar que la API retorna el proyecto cuando el code tiene 2 caracteres.
         """
+        id_to_create = setup_add_project_2_character["result"]["code"]
         response = request_function(StaticDataVerbs.get.value, get_url, StaticDataModules.project.value,
-                                    StaticDataProjectPorCode.valid_code_param.value, StaticDataHeaders.default_header.value)
+                                    f"/{id_to_create}", StaticDataHeaders.default_header.value)
         log_api_call(method="GET",
                      url=response.url,
                      headers=response.headers,
@@ -148,17 +153,19 @@ def test_GCTC007_Obtener_un_proyecto_con_codigo_minimo_valido_2(get_url):
                      )
         assert_response_schema(response.json(), "get_project_response_by_code.json", "schemas_project")
         assert_response_status_code_global(200, response.status_code)
+        setup_delete_project_by_code(response.json()["result"]["code"])
 
 # Media
 @pytest.mark.smoke
 @pytest.mark.regression
 @pytest.mark.positive
-def test_GCTC008_Obtener_un_proyecto_con_codigo_maximo_valido_10(get_url):
+def test_GCTC008_Obtener_un_proyecto_con_codigo_maximo_valido_10(get_url, setup_add_project_10_character, setup_delete_project_by_code):
         """
         Descripción: Verificar respuesta correcta con code de 10 caracteres.
         """
+        id_to_create = setup_add_project_10_character["result"]["code"]
         response = request_function(StaticDataVerbs.get.value, get_url, StaticDataModules.project.value,
-                                    StaticDataProjectPorCode.valid_code_param.value, StaticDataHeaders.default_header.value)
+                                    f"/{id_to_create}", StaticDataHeaders.default_header.value)
         log_api_call(method="GET",
                      url=response.url,
                      headers=response.headers,
@@ -168,13 +175,14 @@ def test_GCTC008_Obtener_un_proyecto_con_codigo_maximo_valido_10(get_url):
                      )
         assert_response_schema(response.json(), "get_project_response_by_code.json", "schemas_project")
         assert_response_status_code_global(200, response.status_code)
+        setup_delete_project_by_code(response.json()["result"]["code"])
 
 
 
 # Media
 @pytest.mark.regression
 @pytest.mark.negative
-def test_GCTC009_Codigo_de_1_caracter(get_url):
+def test_GCTC009_Verificar_que_no_permita_obtener_un_proyecto_con_código_de_1_carácter(get_url):
         """
         Descripción: Validar que se retorne error por longitud mínima inválida.
         """
@@ -361,7 +369,7 @@ def test_GCTC018_Obtener_un_proyecto_sin_autentificarse(get_url):
         """
         response = request_function(StaticDataVerbs.get.value, get_url, StaticDataModules.project.value,
                                     StaticDataProjectPorCode.valid_code_param.value,
-                                    StaticDataHeaders.no_content_header.value)
+                                    StaticDataHeaders.no_token_header.value)
         log_api_call(method="GET",
                      url=response.url,
                      headers=response.headers,
@@ -369,8 +377,28 @@ def test_GCTC018_Obtener_un_proyecto_sin_autentificarse(get_url):
                      token=TOKEN,
                      response=response
                      )
-        assert_response_schema(response.json(), "get_error404_project_response_exclusive.json", "schemas_project")
+        assert_response_schema(response.json(), "get_error401_project_response.json", "schemas_project")
+        assert_response_status_code_global(401, response.status_code)
+
+
+
+#Alta
+@pytest.mark.xfail(reason="No deberia devolver proyectos con un code invalido e inexistente")
+@pytest.mark.smoke
+@pytest.mark.regression
+@pytest.mark.positive
+def test_GCTC019_Error_Obtener_un_proyecto_con_codigo_con_caracteres_especiales(get_url):
+        """
+        Descripción: Confirmar que códigos en mayúsculas son aceptados.
+        """
+        response = request_function(StaticDataVerbs.get.value, get_url, StaticDataModules.project.value,
+                                    StaticDataProjectPorCode.invalid_code_param_bug.value, StaticDataHeaders.default_header.value)
+        log_api_call(method="GET",
+                     url=response.url,
+                     headers=response.headers,
+                     payload=None,
+                     token=TOKEN,
+                     response=response
+                     )
+        assert_response_schema(response.json(), "get_error404_project_response.json", "schemas_project")
         assert_response_status_code_global(404, response.status_code)
-
-
-
