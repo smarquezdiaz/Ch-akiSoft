@@ -11,6 +11,7 @@ from src.common.static_data_modules import StaticDataModules
 from src.common.static_data_suites import StaticDataSuites
 from src.common.static_headers import StaticDataHeaders
 from src.common.static_verbs import StaticDataVerbs
+from src.common.static_data_plans import StaticDataPlans
 from src.headers.headers import *
 from src.utils.api_calls import request_function
 
@@ -75,3 +76,24 @@ def post_resource_case(get_url):
                 print(f"[post_resource_single teardown] warning: delete {cid} devolvió {resp.status_code}")
         except Exception as e:
             print(f"[post_resource_single teardown] error al eliminar {cid}: {e}")
+
+@pytest.fixture(scope="function")
+def setup_delete_plan_by_id(get_url):
+    plan_id_to_delete = None
+
+    def registrar_id(plan_id):
+        nonlocal plan_id_to_delete
+        plan_id_to_delete = plan_id
+
+    yield registrar_id
+
+    if plan_id_to_delete:
+        response = request_function(
+            StaticDataVerbs.delete.value,
+            get_url,
+             StaticDataModules.plan.value,
+            f"{StaticDataPlans.default_url_suffix.value}/{plan_id_to_delete}",
+            StaticDataHeaders.default_header.value
+        )
+        assert response.status_code == 200
+
