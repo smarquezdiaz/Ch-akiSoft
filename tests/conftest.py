@@ -1,7 +1,5 @@
 import os
 import sys
-import random
-from hmac import compare_digest
 
 import pytest
 import json

@@ -14,6 +14,7 @@ from src.resources.payloads.payloads_case.payloads_post_case import *
 @pytest.mark.positive
 @pytest.mark.regression
 def test_DR_TC107_Verificar_el_flujo_completo_de_un_caso_de_prueba(get_url):
+    "Este caso de prueba verifica el flujo del ciclo de vida de un caso de prueba en Qase, creación, actualización, obtención y eliminación, en un escenario smoke-positive-regression"
     #Post crear un caso de prueba solo con el nombre por que tenia prisa el usuario
     request_post = case_request_payload(title=name_random_cases())
     response_post = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.case.value,StaticDataSuites.default_url_suffix.value,header_type=StaticDataHeaders.default_header.value, payload=json.dumps(request_post))
@@ -23,7 +24,10 @@ def test_DR_TC107_Verificar_el_flujo_completo_de_un_caso_de_prueba(get_url):
     #Patch editar los campos severidad,prioridad,tipo,status y automation
     request_patch = case_request_payload(name_random_cases(), random_severity_case(), random_priority_case(),random_type_case(), random_status_case(), random_automation_case())
     response_patch = request_function(StaticDataVerbs.patch.value, get_url, StaticDataModules.case.value,case_patch_join(StaticDataSuites.default_url_suffix.value, save_ID),header_type=StaticDataHeaders.default_header.value, payload=json.dumps(request_patch))
-    log_api_call(method=StaticDataVerbs.delete.value, url=response_patch.url, headers=response_patch.headers,payload=request_patch, token=response_patch.request.headers.get("Token"), response=response_patch)
+    log_api_call(method=StaticDataVerbs.patch.value, url=response_patch.url, headers=response_patch.headers,payload=request_patch, token=response_patch.request.headers.get("Token"), response=response_patch)
+    #Obtenemos el caso de prueba
+    response_get = request_function(StaticDataVerbs.get.value, get_url, StaticDataModules.case.value,case_patch_join(StaticDataSuites.default_url_suffix.value, save_ID),header_type=StaticDataHeaders.default_header.value)
+    log_api_call(method=StaticDataVerbs.get.value, url=response_get.url, headers=response_get.headers,payload=None, token=response_get.request.headers.get("Token"), response=response_get)
     #Eliminar el caso de prueba
     response_delete = request_function(StaticDataVerbs.delete.value, get_url, StaticDataModules.case.value,case_patch_join(StaticDataSuites.default_url_suffix.value, save_ID),header_type=StaticDataHeaders.default_header.value)
     log_api_call(method=StaticDataVerbs.delete.value,url=response_delete.url,headers=response_delete.headers,payload=None,token=response_delete.request.headers.get("Token"),response=response_delete)
