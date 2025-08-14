@@ -28,3 +28,4 @@ def assert_patch_custom_field_response_schema(response,schema_key):
         return True
     except jsonschema.exceptions.ValidationError as err:
         pytest.fail(f"JSON schema validation error for '{schema_key}': {err}")
+

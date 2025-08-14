@@ -153,5 +153,76 @@
             "type": "string"
         }
     }
+},
+    "schema_salida_valido":{
+     "type": "object",
+    "required": [
+        "result",
+        "status"
+    ],
+    "properties": {
+        "result": {
+            "type": "object",
+            "required": [
+                "created",
+                "created_at",
+                "entity",
+                "id",
+                "is_enabled_for_all_projects",
+                "is_filterable",
+                "is_required",
+                "is_visible",
+                "projects_codes",
+                "title",
+                "type",
+                "updated",
+                "updated_at"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "entity": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "is_required": {
+                    "type": "boolean"
+                },
+                "is_visible": {
+                    "type": "boolean"
+                },
+                "is_filterable": {
+                    "type": "boolean"
+                },
+                "is_enabled_for_all_projects": {
+                    "type": "boolean"
+                },
+                "created": {
+                    "type": "string"
+                },
+                "updated": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "projects_codes": {
+                    "type": "array"
+                }
+            }
+        },
+        "status": {
+            "type": "boolean"
+        }
+    }
 }
 }

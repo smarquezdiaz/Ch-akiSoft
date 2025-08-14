@@ -3,10 +3,10 @@ from enum import Enum
 class StaticDataCustomField(Enum):
     delete_custom_field1=""
     valido_custom_post="/"
-    valido_custom_field = "/5"
-    vacio_custom_field = "/%20"
-    negativo_custom_field = "/-1"
-    decimal_positivo_custom_field = "/0.5"
+    valido_custom_field ="/1"
+    vacio_custom_field ="/%20"
+    negativo_custom_field ="/-1"
+    decimal_positivo_custom_field ="/0.5"
     decimal_negativo_custom_field= "/-0.9"
     letras_custom_field = "/a"
     simbolo_custom_field = "/@"
@@ -26,4 +26,7 @@ class StaticDataCustomField(Enum):
     patch_custom_field_simbolo = "/@"
     patch_custom_field_no_existe = "/300"
 
-
+    delete_custom_field2 = "/26"
+    delete_custom_field3 = "/24"
+    delete_custom_field4 = "/25"
+    delete_custom_inexistente="/9000"
