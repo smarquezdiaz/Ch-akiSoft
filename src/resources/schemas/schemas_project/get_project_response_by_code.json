@@ -1,0 +1,79 @@
+{
+    "type": "object",
+    "required": [
+        "result",
+        "status"
+    ],
+    "properties": {
+        "status": {
+            "type": "boolean"
+        },
+        "result": {
+            "type": "object",
+            "required": [
+                "code",
+                "counts",
+                "title"
+            ],
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "counts": {
+                    "type": "object",
+                    "required": [
+                        "cases",
+                        "defects",
+                        "milestones",
+                        "runs",
+                        "suites"
+                    ],
+                    "properties": {
+                        "cases": {
+                            "type": "integer"
+                        },
+                        "suites": {
+                            "type": "integer"
+                        },
+                        "milestones": {
+                            "type": "integer"
+                        },
+                        "runs": {
+                            "type": "object",
+                            "required": [
+                                "active",
+                                "total"
+                            ],
+                            "properties": {
+                                "total": {
+                                    "type": "integer"
+                                },
+                                "active": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "defects": {
+                            "type": "object",
+                            "required": [
+                                "open",
+                                "total"
+                            ],
+                            "properties": {
+                                "total": {
+                                    "type": "integer"
+                                },
+                                "open": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
