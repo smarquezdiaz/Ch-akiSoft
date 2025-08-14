@@ -26,6 +26,7 @@ from src.common.logger import log_api_call
 from src.resources.payloads.payloads_suite.payloads_suite import create_request_suite_payload, \
     create_destination_id_payload
 from src.utils.load_resources import assert_response_schema, assert_response_status_code_global
+from src.resources.payloads.payloads_case.payloads_post_case import *
 
 @pytest.fixture(scope='session')
 def get_url():
@@ -82,12 +83,29 @@ def post_resource_case(get_url):
     # TEARDOWN: eliminar si existe
     cid = client.get("created_id")
     if cid:
-        try:
-            resp = request_function(StaticDataVerbs.delete.value,base_url,StaticDataModules.case.value,f"{StaticDataSuites.default_url_suffix.value}/{cid}",StaticDataHeaders.default_header.value)
-            if resp.status_code not in (200, 204, 404):
-                print(f"[post_resource_single teardown] warning: delete {cid} devolvió {resp.status_code}")
-        except Exception as e:
-            print(f"[post_resource_single teardown] error al eliminar {cid}: {e}")
+        delete_case_created(cid, base_url)
+
+@pytest.fixture(scope="function")
+def patch_add_case(get_url):
+    request = assert_request_payload(name_random_cases(), random_severity_case(), random_priority_case(),
+                                   random_type_case(), random_status_case(), random_automation_case())
+    response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.case.value,
+                                StaticDataSuites.default_url_suffix.value,
+                                header_type=StaticDataHeaders.default_header.value, payload=json.dumps(request))
+    id_case = response.json()["result"]["id"]
+    yield response.json()
+    delete_case_created(id_case,get_url)
+
+def delete_case_created(id_case,get_url):
+    base_url = get_url
+    try:
+        resp = request_function(StaticDataVerbs.delete.value, base_url, StaticDataModules.case.value,
+                                f"{StaticDataSuites.default_url_suffix.value}/{id_case}",
+                                StaticDataHeaders.default_header.value)
+        if resp.status_code not in (200, 204, 404):
+            print(f"[post_resource_single teardown] warning: delete {id_case} devolvió {resp.status_code}")
+    except Exception as e:
+        print(f"[post_resource_single teardown] error al eliminar {id_case}: {e}")
 
 @pytest.fixture(scope="function")
 def setup_delete_plan_by_id(get_url):

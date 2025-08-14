@@ -50,12 +50,3 @@ def assert_equals(result, expected_result):
 def assert_get_cases_assertion(method, url, headers, payload=None):
     response = requests.request(method, url, headers=headers, data=payload)
     return response
-
-def assert_entities_field_equal (response , search, attribute):
-    entities = response.json()["result"]["entities"]
-    assert entities, "No hay casos de prueba registrados"
-    for counter in entities:
-        if counter[attribute] != search:
-            pytest.fail(
-                f"Prueba fallada: el caso de prueba {counter['id']} tiene {attribute}={counter[f'{attribute}']} "
-            )
