@@ -1,7 +1,5 @@
 import json
-
 import pytest
-
 from config import TOKEN
 from src.common.logger import log_api_call
 from src.common.static_data_modules import StaticDataModules
