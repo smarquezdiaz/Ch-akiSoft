@@ -13,7 +13,7 @@ from src.utils.load_resources import assert_response_schema, assert_response_sta
 
 @pytest.mark.smoke
 @pytest.mark.regression
-@pytest.mark.funtional
+@pytest.mark.positive
 def test_SM016_Crear_un_nuevo_conjunto_de_pruebas(get_url, setup_delete_suite_by_id):
     payload = create_request_suite_payload()
     assert_response_schema(payload, "add_suite_schema_request.json", "schema_suite")
