@@ -200,3 +200,26 @@ def setup_add_suite_for_destination_id(setup_add_suite):
     destination_id = setup_add_suite["result"]["id"]
     payload = create_destination_id_payload(destination_id)
     return payload
+
+"""
+Tierdown para obtener y eliminar suite
+"""
+@pytest.fixture(scope="function")
+def setup_get_and_delete_suite_by_id(get_url):
+    suite_id_to_delete = None
+    def registrar_id(suite_id):
+        get_suite_by_id(get_url, suite_id)
+        nonlocal suite_id_to_delete
+        suite_id_to_delete = suite_id
+
+    yield registrar_id
+    if suite_id_to_delete:
+        response = request_function(StaticDataVerbs.delete.value, get_url, StaticDataModules.suite.value,
+                                    f"{StaticDataSuites.default_url_suffix.value}/{suite_id_to_delete}",StaticDataHeaders.default_header.value)
+        assert response.status_code == 200
+
+def get_suite_by_id(get_url,suite_id):
+    response = request_function(StaticDataVerbs.get.value, get_url, StaticDataModules.suite.value,
+                                f"{StaticDataSuites.default_url_suffix.value}/{suite_id}",
+                                StaticDataHeaders.default_header.value)
+    assert response.status_code == 200

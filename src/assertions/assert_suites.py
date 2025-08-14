@@ -26,3 +26,18 @@ def suite_not_found_schema_items(response):
 
 def suite_destination_id_invalid_schema_items(response):
     assert response.json()["errorMessage"] == "Destination id is not valid"
+
+def assert_patch_not_supported_schema_items(response, id_to_delete):
+    assert response.json()["message"] == f"The PATCH method is not supported for route api/v1/{StaticDataModules.suite.value}/{id_to_delete}. Supported methods: GET, HEAD, POST."
+
+def assert_empty_json_schema_items(status, errorMessage):
+    assert status == False
+    assert errorMessage == "Invalid payload, expected valid json."
+
+def assert_data_invalid_schema_items(status, errorMessage = None):
+    assert status == False
+    if errorMessage is not None:
+        assert errorMessage == "Data is invalid."
+
+def assert_patch_not_supported_and_id_empty_schema_items(response):
+    assert response.json()["message"] == f"The PATCH method is not supported for route api/v1/{StaticDataModules.suite.value}{StaticDataSuites.default_url_suffix.value}. Supported methods: GET, HEAD, POST."

@@ -17,6 +17,7 @@ from src.utils.suites_utils import generate_random_code_project, generate_random
     generate_random_destination_id
 
 
+#Alta
 @pytest.mark.smoke
 @pytest.mark.regression
 @pytest.mark.positive
@@ -40,6 +41,7 @@ def test_SM_TC038_Eliminar_un_conjunto_de_pruebas_con_un_ID_valido(get_url, setu
     assert_response_status_code_global(200, response.status_code)
     assert_200_schema_items(response.json()["result"]["id"], response.json()["status"],  id_to_delete)
 
+#Media
 @pytest.mark.regression
 @pytest.mark.negative
 def test_SM_TC039_Eliminar_un_conjunto_de_pruebas_con_URL_base_mal_formada(get_url, setup_add_suite):
@@ -61,6 +63,7 @@ def test_SM_TC039_Eliminar_un_conjunto_de_pruebas_con_URL_base_mal_formada(get_u
     assert_response_status_code_global(404, response.status_code)
     assert_not_found_route_schema_items(response, id_to_delete)
 
+#Media
 @pytest.mark.regression
 @pytest.mark.negative
 def test_SM_TC040_Eliminar_un_conjunto_de_pruebas_sin_autenticacion(get_url, setup_add_suite):
@@ -82,6 +85,7 @@ def test_SM_TC040_Eliminar_un_conjunto_de_pruebas_sin_autenticacion(get_url, set
     assert_response_status_code_global(401, response.status_code)
     assert_unauthenticated_schema_items(response)
 
+#Media
 @pytest.mark.regression
 @pytest.mark.negative
 def test_SM_TC041_Eliminar_un_conjunto_de_pruebas_para_un_codigo_de_proyecto_inexistente(get_url, setup_add_suite):
@@ -104,6 +108,7 @@ def test_SM_TC041_Eliminar_un_conjunto_de_pruebas_para_un_codigo_de_proyecto_ine
     assert_response_status_code_global(404, response.status_code)
     project_not_found_schema_items(response)
 
+#Media
 @pytest.mark.regression
 @pytest.mark.negative
 def test_SM_TC042_Eliminar_un_conjunto_de_pruebas_con_el_codigo_de_proyecto_vacio(get_url, setup_add_suite):
@@ -126,6 +131,7 @@ def test_SM_TC042_Eliminar_un_conjunto_de_pruebas_con_el_codigo_de_proyecto_vaci
     assert_response_status_code_global(405, response.status_code)
     assert_method_not_supported_schema_items(response, id_to_delete)
 
+#Media
 @pytest.mark.regression
 @pytest.mark.negative
 def test_SM_TC044_Eliminar_un_conjunto_de_pruebas_con_el_ID_vacio(get_url):
@@ -147,13 +153,13 @@ def test_SM_TC044_Eliminar_un_conjunto_de_pruebas_con_el_ID_vacio(get_url):
     assert_response_status_code_global(405, response.status_code)
     assert_method_not_supported_and_id_empty_schema_items(response)
 
-
+#Media
 @pytest.mark.parametrize("id_to_delete", [-1, "a", 0.1, True, False])
 @pytest.mark.regression
 @pytest.mark.negative
 def test_Eliminar_un_conjunto_de_pruebas_con_id_invalido(get_url, id_to_delete):
     """
-    Descripción: Función para eliminar un conjunto de pruebas, con id inválido (-1, "a", 0.1, True, False)S
+    Descripción: Función para eliminar un conjunto de pruebas, con id inválido (-1, "a", 0.1, True, False)
     , para obtener resultado 404.
     Incluye los TC:
     - SM-TC043: Verificar error al eliminar un conjunto con un ID negativo
@@ -176,6 +182,7 @@ def test_Eliminar_un_conjunto_de_pruebas_con_id_invalido(get_url, id_to_delete):
     assert_response_status_code_global(404, response.status_code)
     suite_not_found_schema_items(response)
 
+#Media
 @pytest.mark.regression
 @pytest.mark.negative
 @pytest.mark.xfail(reason="Redondea el decimal a entero y si ese id entero existe elimina exitosamente")
@@ -196,6 +203,7 @@ def test_SM_TC046_Eliminar_un_conjunto_de_pruebas_con_un_ID_de_tipo_flotante(get
                  )
     assert response.status_code in (404, 200)
 
+#Media
 @pytest.mark.regression
 @pytest.mark.negative
 def test_SM_TC050_Eliminar_un_conjunto_de_pruebas_y_mover_sus_casos_a_un_destination_id_valido(get_url, setup_add_suite, setup_add_suite_for_destination_id):
@@ -219,6 +227,7 @@ def test_SM_TC050_Eliminar_un_conjunto_de_pruebas_y_mover_sus_casos_a_un_destina
     assert_response_status_code_global(200, response.status_code)
     assert_200_schema_items(response.json()["result"]["id"], response.json()["status"],  id_to_delete)
 
+#Media
 @pytest.mark.regression
 @pytest.mark.negative
 @pytest.mark.xfail(reason="Elimina un conjunto de pruebas cuando el id de destino es string")
@@ -243,6 +252,7 @@ def test_SM_TC051_Eliminar_un_conjunto_de_pruebas_y_mover_casos_a_un_destination
     assert_response_status_code_global(404, response.status_code)
     suite_destination_id_invalid_schema_items(response)
 
+#Media
 @pytest.mark.regression
 @pytest.mark.negative
 @pytest.mark.xfail(reason="Elimina un conjunto de pruebas cuando el id de destino es decimal")
