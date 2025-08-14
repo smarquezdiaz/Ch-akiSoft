@@ -75,8 +75,8 @@ def post_resource_case(get_url):
 
 @pytest.fixture(scope="function")
 def patch_add_case(get_url):
-    request = assert_request_payload(name_random_cases(), random_severity_case(), random_priority_case(),
-                                     random_type_case(), random_status_case(), random_automation_case())
+    request = case_request_payload(name_random_cases(), random_severity_case(), random_priority_case(),
+                                   random_type_case(), random_status_case(), random_automation_case())
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.case.value,
                                 StaticDataSuites.default_url_suffix.value,
                                 header_type=StaticDataHeaders.default_header.value, payload=json.dumps(request))

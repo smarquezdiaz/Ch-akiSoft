@@ -6,7 +6,6 @@ from urllib.parse import urlparse
 import requests
 
 def setup_logger():
-    # Crea o recupera un logger nombrado "api_logger"
     logger = logging.getLogger("api_logger")
     # Establece el nivel mínimo que registra (DEBUG incluye todo)
     logger.setLevel(logging.DEBUG)
@@ -44,6 +43,10 @@ def log_api_call(
       • DEBUG Response headers
       • DEBUG Response payload
     """
+    # INFO: HTTP method
+    with allure.step("INFO: HTTP method"):
+        logger.info(f"HTTP method: {method}")
+        allure.attach(method or "", name="HTTP Method", attachment_type=allure.attachment_type.TEXT)
     # Extraemos URL
     domain = urlparse(url).netloc
     # Fecha y hora actual del sistema

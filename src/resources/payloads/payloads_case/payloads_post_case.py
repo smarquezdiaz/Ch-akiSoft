@@ -2,9 +2,9 @@ import uuid
 import random
 from src.common.static_data_cases import StaticDataCases
 
-def assert_request_payload(title: str | None = None, severity: int | None = None, priority: int | None = None,
-                           type_: int | None = None, status: int | None = None, automation: int | None = None,
-                           no_existe: str | None = None) -> dict:
+def case_request_payload(title: str | None = None, severity: int | None = None, priority: int | None = None,
+                         type_: int | None = None, status: int | None = None, automation: int | None = None,
+                         no_existe: str | None = None) -> dict:
     payload = {}
 
     if title is not None: payload["title"] = title
