@@ -3,14 +3,7 @@ import os
 import sys
 
 import pytest
-current_dir = os.path.dirname(__file__)
-parent_dir = os.path.dirname(current_dir)
-sys.path.append(parent_dir)
-from src.common.logger import log_api_call
-from src.resources.payloads.payloads_suite.payloads_suite import create_request_suite_payload, \
-    create_destination_id_payload
-from src.utils.load_resources import assert_response_schema, assert_response_status_code_global
-
+from src.common.static_data_project import StaticDataProject
 current_dir = os.path.dirname(__file__)
 parent_dir = os.path.dirname(current_dir)
 sys.path.append(parent_dir)
@@ -22,6 +15,10 @@ from src.common.static_headers import StaticDataHeaders
 from src.common.static_verbs import StaticDataVerbs
 from src.headers.headers import *
 from src.utils.api_calls import request_function
+from src.common.logger import log_api_call
+from src.resources.payloads.payloads_suite.payloads_suite import create_request_suite_payload, \
+    create_destination_id_payload
+from src.utils.load_resources import assert_response_schema, assert_response_status_code_global
 
 @pytest.fixture(scope='session')
 def get_url():
@@ -85,6 +82,18 @@ def post_resource_case(get_url):
         except Exception as e:
             print(f"[post_resource_single teardown] error al eliminar {cid}: {e}")
 
+@pytest.fixture(scope="function")
+def setup_delete_project_by_code(get_url):
+    project_code_to_delete = None
+    def registrar_code(project_code):
+        nonlocal project_code_to_delete
+        project_code_to_delete = project_code
+
+    yield registrar_code
+    if project_code_to_delete:
+        response = request_function(StaticDataVerbs.delete.value, get_url, StaticDataModules.project.value,
+                                    f"{StaticDataProject.valid_project_default.value}/{project_code_to_delete}",StaticDataHeaders.default_header.value)
+        assert response.status_code == 200
 """
 Setup para agregar suite
 """
