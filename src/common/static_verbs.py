@@ -6,3 +6,4 @@ class StaticDataVerbs(Enum):
     put = "PUT"
     delete = "DELETE"
     patch = "PATCH"
+

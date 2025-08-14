@@ -1,0 +1,132 @@
+{
+  "schema_entrada_valida": {
+    "type": "object",
+    "required": [
+      "title"
+    ],
+    "properties": {
+      "title": {
+        "type": "string"
+      }
+    }
+  },
+  "schema_entrada_value_id": {
+    "type": "object",
+    "required": [
+      "title",
+      "value"
+    ],
+    "properties": {
+      "title": {
+        "type": "string"
+      },
+      "value": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    }
+    },
+    "schema_entrada_id_title": {
+      "type": "object",
+      "required": [
+        "title",
+        "value"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "value": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "title"
+            ],
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "title": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "schema_entrada_project_code": {
+      "type": "object",
+      "required": [
+        "projects_codes",
+        "title"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "projects_codes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "schema_entrada_is_visible": {
+      "type": "object",
+      "required": [
+        "is_visible",
+        "title"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "is_visible": {
+          "type": "string"
+        }
+      }
+    },
+    "schema_entrada_is_filterable": {
+      "type": "object",
+      "required": [
+        "is_filterable",
+        "title"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "is_filterable": {
+          "type": "string"
+        }
+      }
+    },
+    "schema_entrada_is_required": {
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "is_required": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "is_required",
+        "title"
+      ],
+      "type": "object"
+    }
+  }

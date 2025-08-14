@@ -1,0 +1,12 @@
+{
+    "type": "object",
+    "properties": {
+        "error": { "type": "string" },
+        "errorMessage": { "type": "string" },
+        "status": { "type": "boolean" }
+    },
+    "anyOf": [
+        { "required": ["error"] },
+        { "required": ["errorMessage", "status"] }
+    ]
+}
