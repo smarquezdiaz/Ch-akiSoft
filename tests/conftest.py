@@ -109,6 +109,7 @@ def setup_delete_plan_by_id(get_url):
         )
         assert response.status_code == 200
 
+@pytest.fixture(scope="function")
 def setup_delete_project_by_code(get_url):
     project_code_to_delete = None
     def registrar_code(project_code):
