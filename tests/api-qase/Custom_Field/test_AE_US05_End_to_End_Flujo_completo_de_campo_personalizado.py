@@ -14,10 +14,11 @@ from src.common.static_verbs import StaticDataVerbs
 from src.resources.payloads.payloads_custom_field.payloads_custom_field import get_payload_by_id
 from src.utils.api_calls import request_function
 
+@pytest.mark.smoke
 @pytest.mark.positive
 @pytest.mark.regression
-@pytest.mark.e2e
-def test_AE_US06_Flujo_completo_campo_personalizado(get_url):
+@pytest.mark.e2e.CustomField
+def test_AE_US06_Custom_Field(get_url):
     """
     Flujo completo:
     1. Crear (POST) un campo personalizado con datos válidos.

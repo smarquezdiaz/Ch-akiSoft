@@ -10,11 +10,11 @@ from src.assertions.get_cases_assertions import *
 from src.common.url import case_patch_join
 from src.resources.payloads.payloads_case.payloads_post_case import *
 
-@pytest.mark.e2e
+@pytest.mark.e2e.Case
 @pytest.mark.smoke
 @pytest.mark.positive
 @pytest.mark.regression
-def test_DR_TC107_Verificar_el_flujo_completo_de_un_caso_de_prueba(get_url):
+def test_DR_TC107_Case(get_url):
     "Este caso de prueba verifica el flujo del ciclo de vida de un caso de prueba en Qase, creación, actualización, obtención y eliminación, en un escenario smoke-positive-regression"
     #Post crear un caso de prueba solo con el nombre por que tenia prisa el usuario
     request_post = case_request_payload(title=name_random_cases())

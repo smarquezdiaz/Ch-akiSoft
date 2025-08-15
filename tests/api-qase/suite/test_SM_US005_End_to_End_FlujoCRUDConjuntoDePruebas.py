@@ -15,8 +15,8 @@ from src.utils.api_calls import request_function
 @pytest.mark.smoke
 @pytest.mark.regression
 @pytest.mark.positive
-@pytest.mark.endtoend
-def test_SM_TC079_Verificar_flujo_crud_de_conjunto_de_pruebas_con_datos_validos(get_url):
+@pytest.mark.e2e.Suite
+def test_SM_TC079_Suite(get_url):
     """
     Descripción: Función para realizar un CRUD, crear, actualizar, obtener y eliminar un conjunto de pruebas
     resultado 200.
