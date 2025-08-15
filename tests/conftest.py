@@ -1,16 +1,13 @@
 import json
 import os
 import sys
-import random
-from hmac import compare_digest
 
 import pytest
-
-from src.common.logger import log_api_call
+current_dir = os.path.dirname(__file__)
+parent_dir = os.path.dirname(current_dir)
+sys.path.append(parent_dir)
 from src.common.static_data_project import StaticDataProject
-from src.resources.payloads.payloads_project.payloads_project import create_request_project_payload, \
-    create_request_project_payload_super_modified
-from src.utils.load_resources import assert_response_schema, assert_response_status_code_global
+from src.resources.payloads.payloads_project.payloads_project import create_request_project_payload_super_modified
 
 current_dir = os.path.dirname(__file__)
 parent_dir = os.path.dirname(current_dir)
@@ -24,7 +21,6 @@ from src.common.static_verbs import StaticDataVerbs
 from src.common.static_data_plans import StaticDataPlans
 from src.headers.headers import *
 from src.utils.api_calls import request_function
-from src.resources.payloads.payloads_case.payloads_post_case import *
 from src.common.logger import log_api_call
 from src.resources.payloads.payloads_suite.payloads_suite import create_request_suite_payload, \
     create_destination_id_payload
