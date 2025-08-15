@@ -10,7 +10,7 @@ from src.assertions.get_cases_assertions import *
 from src.common.url import case_patch_join
 from src.resources.payloads.payloads_case.payloads_post_case import *
 
-@pytest.mark.e2e.Case
+@pytest.mark.e2e_Case
 @pytest.mark.smoke
 @pytest.mark.positive
 @pytest.mark.regression

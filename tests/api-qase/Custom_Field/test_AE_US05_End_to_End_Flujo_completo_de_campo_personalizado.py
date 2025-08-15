@@ -17,7 +17,7 @@ from src.utils.api_calls import request_function
 @pytest.mark.smoke
 @pytest.mark.positive
 @pytest.mark.regression
-@pytest.mark.e2e.CustomField
+@pytest.mark.e2e_customfield
 def test_AE_US06_Custom_Field(get_url):
     """
     Flujo completo:

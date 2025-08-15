@@ -15,7 +15,7 @@ from src.utils.api_calls import request_function
 @pytest.mark.smoke
 @pytest.mark.regression
 @pytest.mark.positive
-@pytest.mark.e2e.Suite
+@pytest.mark.e2e_Suite
 def test_SM_TC079_Suite(get_url):
     """
     Descripción: Función para realizar un CRUD, crear, actualizar, obtener y eliminar un conjunto de pruebas

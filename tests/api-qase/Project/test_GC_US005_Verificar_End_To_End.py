@@ -15,7 +15,7 @@ from src.utils.load_resources import assert_response_status_code_global
 @pytest.mark.smoke
 @pytest.mark.regression
 @pytest.mark.positive
-@pytest.mark.e2e.Project
+@pytest.mark.e2e_Project
 def test_GCTC001_Project(get_url):
         """
         Descripción: Verificar que el todo el flujp de crear, obtener y eliminar un proyecto se lleve de manera correcta y secuencial

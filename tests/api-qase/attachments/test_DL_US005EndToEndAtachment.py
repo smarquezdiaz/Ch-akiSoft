@@ -8,7 +8,7 @@ from src.utils.load_resources import assert_response_schema
 from src.utils.attachment_utils_request import build_attachment_url, get_request, delete_request
 from src.utils.getHash import obtener_hash_archivo
 import requests
-@pytest.mark.e2e.attachment
+@pytest.mark.e2e_attachment
 @pytest.mark.positive
 @pytest.mark.smoke
 @pytest.mark.regression
