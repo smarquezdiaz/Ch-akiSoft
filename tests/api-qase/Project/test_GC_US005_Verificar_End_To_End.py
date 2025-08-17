@@ -8,7 +8,7 @@ from src.common.static_headers import StaticDataHeaders
 from src.common.static_verbs import StaticDataVerbs
 from src.resources.payloads.payloads_project.payloads_project import create_request_project_payload_super_modified
 from src.utils.api_calls import request_function
-from src.utils.load_resources import assert_response_status_code_global
+from src.assertions.global_assertions import assert_response_status_code_global
 
 
 #Alta

@@ -18,7 +18,7 @@ from src.utils.api_calls import request_function
 @pytest.mark.positive
 @pytest.mark.regression
 @pytest.mark.e2e_customfield
-def test_AE_US06_Custom_Field(get_url):
+def test_AE_US065_Custom_Field(get_url):
     """
     Flujo completo:
     1. Crear (POST) un campo personalizado con datos válidos.

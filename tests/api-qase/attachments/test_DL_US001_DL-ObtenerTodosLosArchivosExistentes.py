@@ -1,10 +1,12 @@
 import pytest
 import requests
+
+from src.assertions.global_assertions import assert_response_schema
 from src.headers.headers import get_header_with_token1,get_header_with_invalid_token
 from config import BASE_URI,TOKEN
 from src.common.logger import log_api_call
 from src.assertions.asserts_attachment import assert_response_status_code_global
-from src.utils.load_resources import assert_response_schema
+
 @pytest.mark.smoke
 @pytest.mark.regression
 @pytest.mark.positive
