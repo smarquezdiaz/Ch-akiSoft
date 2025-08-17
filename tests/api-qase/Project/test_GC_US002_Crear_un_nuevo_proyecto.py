@@ -12,7 +12,7 @@ from src.resources.payloads.payloads_project.payloads_project import create_requ
     create_request_project_payload_Sin_title, create_request_project_payload_Sin_descripcion, \
     create_request_project_payload_super_modified
 from src.utils.api_calls import request_function
-from src.utils.load_resources import assert_response_schema, assert_response_status_code_global
+from src.assertions.global_assertions import assert_response_schema, assert_response_status_code_global
 
 
 #Alta

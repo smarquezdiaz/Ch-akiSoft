@@ -3,6 +3,7 @@ import requests
 
 from config import BASE_URI, TOKEN
 from src.assertions.get_project_assertions import assert_get_project_assertion, assert_get_project_response_schema
+from src.assertions.global_assertions import assert_response_schema, assert_response_status_code_global
 from src.common.logger import log_api_call
 from src.common.static_data_modules import StaticDataModules
 from src.common.static_data_project import StaticDataProject
@@ -11,7 +12,6 @@ from src.common.static_headers import StaticDataHeaders
 from src.common.static_verbs import StaticDataVerbs
 from src.headers.headers import get_header_with_token
 from src.utils.api_calls import request_function
-from src.utils.load_resources import assert_response_schema, assert_response_status_code_global
 
 
 #Media

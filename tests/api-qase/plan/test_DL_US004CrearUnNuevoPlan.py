@@ -1,5 +1,7 @@
 import pytest
 import json
+
+from src.assertions.global_assertions import assert_response_schema
 from src.headers.headers import get_header_with_token1,get_header_with_tokenPlans
 from config import BASE_URI,TOKEN
 from src.common.logger import log_api_call
@@ -8,7 +10,6 @@ from src.common.static_data_plans import StaticDataPlans
 from src.common.static_headers import StaticDataHeaders
 from src.common.static_verbs import StaticDataVerbs
 from src.assertions.asserts_attachment import assert_response_status_code_global
-from src.utils.load_resources import assert_response_schema
 from src.resources.payloads.payloads_plans.payloads_plans import assert_request_plan_payload
 from src.utils.api_calls import request_function
 #Descripcion:  Crea un plan de manera correcta

@@ -17,7 +17,7 @@ from src.utils.api_calls import request_function
 @pytest.mark.positive
 @pytest.mark.regression
 @pytest.mark.e2e
-def test_AE_US06_Flujo_completo_campo_personalizado(get_url):
+def test_AE_US065_Flujo_completo_campo_personalizado(get_url):
     """
     Flujo completo:
     1. Crear (POST) un campo personalizado con datos válidos.
