@@ -28,7 +28,7 @@ jobs:
           pytest tests/api-qase
       
       - name: Generar reporte de Allure
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: allure-report
           path: reports
