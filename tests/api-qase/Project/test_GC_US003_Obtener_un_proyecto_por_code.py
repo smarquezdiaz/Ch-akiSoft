@@ -384,9 +384,8 @@ def test_GCTC018_Obtener_un_proyecto_sin_autentificarse(get_url):
 
 #Alta
 @pytest.mark.xfail(reason="No deberia devolver proyectos con un code invalido e inexistente")
-@pytest.mark.smoke
 @pytest.mark.regression
-@pytest.mark.positive
+@pytest.mark.netative
 def test_GCTC019_Error_Obtener_un_proyecto_con_codigo_con_caracteres_especiales(get_url):
         """
         Descripción: Confirmar que códigos en mayúsculas son aceptados.
