@@ -24,7 +24,7 @@ from src.utils.api_calls import request_function
 from src.common.logger import log_api_call
 from src.resources.payloads.payloads_suite.payloads_suite import create_request_suite_payload, \
     create_destination_id_payload
-from src.utils.load_resources import assert_response_schema, assert_response_status_code_global
+from src.assertions.global_assertions import assert_response_schema, assert_response_status_code_global
 from src.resources.payloads.payloads_case.payloads_post_case import *
 
 @pytest.fixture(scope='session')
