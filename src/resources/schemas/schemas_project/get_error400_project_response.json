@@ -1,0 +1,27 @@
+{
+    "type": "object",
+    "required": [
+        "errorFields",
+        "status"
+    ],
+    "properties": {
+      "status": {
+        "type": "boolean"
+      },
+      "errorMessage": {
+        "type": "string"
+      },
+      "errorFields": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "error",
+            "field"
+          ],
+          "properties": {
+          }
+        }
+      }
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "type": "object",
+    "properties": {
+        "title": {
+            "type": "string"
+        },
+        "severity": {
+            "type": "integer"
+        },
+        "priority": {
+            "type": "integer"
+        },
+        "type": {
+            "type": "integer"
+        },
+        "status": {
+            "type": "integer"
+        },
+        "automation": {
+            "type": "integer"
+        }
+    }
+}

@@ -1,3 +1,11 @@
+# PyCharm IDE
 .idea/
 
-_pycache_/
+# Directorios de caché de Python
+__pycache__/
+
+# Directorio de reportes
+reports/
+
+# Loggger
+api.log

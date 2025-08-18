@@ -1,0 +1,66 @@
+{
+    "type": "object",
+    "required": [
+        "result",
+        "status"
+    ],
+    "properties": {
+        "status": {
+            "type": "boolean"
+        },
+        "result": {
+            "type": "object",
+            "required": [
+                "count",
+                "entities",
+                "filtered",
+                "total"
+            ],
+            "properties": {
+                "total": {
+                    "type": "integer"
+                },
+                "filtered": {
+                    "type": "integer"
+                },
+                "count": {
+                    "type": "integer"
+                },
+                "entities": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "extension",
+                            "file",
+                            "full_path",
+                            "hash",
+                            "mime",
+                            "size"
+                        ],
+                        "properties": {
+                            "hash": {
+                                "type": "string"
+                            },
+                            "file": {
+                                "type": "string"
+                            },
+                            "mime": {
+                                "type": "string"
+                            },
+                            "size": {
+                                "type": "integer"
+                            },
+                            "extension": {
+                                "type": "string"
+                            },
+                            "full_path": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

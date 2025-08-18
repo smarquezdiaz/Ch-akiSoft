@@ -1,0 +1,86 @@
+{
+    "type": "object",
+    "required": [
+        "result",
+        "status"
+    ],
+    "properties": {
+        "status": {
+            "type": "boolean"
+        },
+        "result": {
+            "type": "object",
+            "required": [
+                "count",
+                "entities",
+                "filtered",
+                "total"
+            ],
+            "properties": {
+                "total": {
+                    "type": "integer"
+                },
+                "filtered": {
+                    "type": "integer"
+                },
+                "count": {
+                    "type": "integer"
+                },
+                "entities": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "integer"
+                            },
+                            "title": {
+                                "type": "string"
+                            },
+                            "description": {
+                                "type": "string"
+                            },
+                            "preconditions": {
+                                "type": "string"
+                            },
+                            "position": {
+                                "type": "integer"
+                            },
+                            "cases_count": {
+                                "type": "integer"
+                            },
+                            "parent_id": {
+                                "type": "null"
+                            },
+                            "created": {
+                                "type": "string"
+                            },
+                            "updated": {
+                                "type": "string"
+                            },
+                            "created_at": {
+                                "type": "string"
+                            },
+                            "updated_at": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "cases_count",
+                            "created",
+                            "created_at",
+                            "description",
+                            "id",
+                            "parent_id",
+                            "position",
+                            "preconditions",
+                            "title",
+                            "updated",
+                            "updated_at"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

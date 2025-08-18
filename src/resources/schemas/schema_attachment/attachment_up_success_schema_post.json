@@ -1,0 +1,46 @@
+{
+    "type": "object",
+    "required": [
+        "result",
+        "status"
+    ],
+    "properties": {
+        "status": {
+            "type": "boolean"
+        },
+        "result": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "extension",
+                    "filename",
+                    "hash",
+                    "mime",
+                    "team",
+                    "url"
+                ],
+                "properties": {
+                    "filename": {
+                        "type": "string"
+                    },
+                    "url": {
+                        "type": "string"
+                    },
+                    "extension": {
+                        "type": "string"
+                    },
+                    "hash": {
+                        "type": "string"
+                    },
+                    "mime": {
+                        "type": "string"
+                    },
+                    "team": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "type": "object",
+    "required": [
+        "result"
+    ],
+    "properties": {
+        "result": {
+            "type": "object",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,102 @@
+{
+    "schema_entrada_tc1": {
+        "type": "object",
+        "required": [
+            "default_value",
+            "entity",
+            "placeholder",
+            "title",
+            "type"
+        ],
+        "properties": {
+            "title": {
+                "type": "string"
+            },
+            "entity": {
+                "type": "integer"
+            },
+            "type": {
+                "type": "integer"
+            },
+            "placeholder": {
+                "type": "string"
+            },
+            "default_value": {
+                "type": "string"
+            }
+        }
+    },
+    "schema_entrada_tc": {
+        "type": "object",
+        "required": [
+            "entity",
+            "title",
+            "type"
+        ],
+        "properties": {
+            "title": {
+                "type": "string"
+            },
+            "entity": {
+                "type": "integer"
+            },
+            "type": {
+                "type": "integer"
+            }
+        }
+    },
+    "schema_entrada_especial": {
+        "type": "object",
+        "required": [
+            "entity",
+            "title",
+            "type",
+            "value"
+        ],
+        "properties": {
+            "title": {
+                "type": "string"
+            },
+            "entity": {
+                "type": "integer"
+            },
+            "type": {
+                "type": "integer"
+            },
+            "value": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "title"
+                    ]
+                }
+            }
+        }
+    },
+
+    "schema_entrada_tc02": {
+        "type": "object",
+        "required": [
+            "entity",
+            "type"
+        ],
+        "properties": {
+            "entity": {
+                "type": "integer"
+            },
+            "type": {
+                "type": "number"
+            }
+        }
+    }
+}
