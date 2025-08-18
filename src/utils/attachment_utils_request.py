@@ -1,11 +1,9 @@
-import pytest
 import requests
-from config import BASE_URI, TOKEN
-from src.headers.headers import get_header_with_token1, get_header_with_invalid_token
-from src.common.logger import log_api_call
-from src.assertions.asserts_attachment import assert_response_status_code_global
-from src.utils.load_resources import assert_response_schema
-from src.utils.getHash import obtener_hash_archivo
+from config import BASE_URI
+import requests
+
+from config import BASE_URI
+
 
 def delete_request(url: str, headers=None, token_override=None):
     #Envía una petición DELETE
