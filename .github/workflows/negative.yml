@@ -23,6 +23,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Ejecutar por etiqueta smoke
+      - name: Ejecutar por etiqueta negative
         run: |
          pytest -m "negative"

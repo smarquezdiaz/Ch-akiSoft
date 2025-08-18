@@ -1,4 +1,4 @@
-name: ejecucionPositive.yml
+name: E2e_CustomField.yml
 
 on: [push]
 
@@ -23,6 +23,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Ejecutar por etiqueta positive
+      - name: Ejecutar por etiqueta e2e
         run: |
-         pytest -m "positive"
+         pytest -m "e2e_customfield"
