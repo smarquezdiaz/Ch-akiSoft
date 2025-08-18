@@ -27,15 +27,11 @@ irm get.scoop.sh | iex
 
 Luego, instala Allure:
 
-PowerShell
-
 ```
 scoop install allure
 ```
 
 Puedes verificar la instalación ejecutando:
-
-PowerShell
 
 ```
 allure --version
@@ -46,8 +42,6 @@ Una vez que el plugin y la herramienta de Allure están instalados, puedes ejecu
 
 Ejecuta tus pruebas con Pytest, indicando la carpeta donde se guardarán los resultados. La bandera --alluredir es obligatoria.
 
-Bash
-
 ```
 pytest
 ```
@@ -55,11 +49,38 @@ Esto creará una carpeta llamada reports (puedes nombrarla como quieras) con los
 
 Genera y visualiza el reporte HTML. Este comando tomará los archivos de la carpeta reports y creará un reporte visual que se abrirá automáticamente en tu navegador.
 
-Bash
-
 ```
 allure serve reports
 ```
+
+### Comandos para ejecutar pruebas
+
+#### Feature
+
+* Attachments
+  ```
+  pytest tests/api-qase/attachments
+  ```
+* Cases
+   ```
+  pytest tests/api-qase/Cases
+  ```
+* Custom_Field
+  ```
+  pytest tests/api-qase/Custom_Field
+  ```
+* plan
+   ```
+  pytest tests/api-qase/plan
+  ```
+* Project
+   ```
+  pytest tests/api-qase/Project
+  ```
+* Suite
+   ```
+  pytest tests/api-qase/suite
+  ```        
 
 ## Test Plan
 
