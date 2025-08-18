@@ -112,7 +112,6 @@ def test_GCTC005_Verificar_que_retorne_error_404_al_intentar_eliminar_un_proyect
 #Alta
 @pytest.mark.regression
 @pytest.mark.negative
-@pytest.mark.high
 def test_GCTC006_Verificar_que_retorne_error_401_al_intentar_eliminar_un_proyecto_sin_autenticación(get_url, setup_add_project):
     """
     Descripción: Validar que no se pueda eliminar un proyecto si no se envía token de autorización.
@@ -215,6 +214,7 @@ def test_GCTC010_Verificar_que_retorne_error_al_enviar_un_código_de_proyecto_co
 #Alta
 @pytest.mark.smoke
 @pytest.mark.positive
+@pytest.mark.regression
 def test_GCTC011_Verificar_que_se_elimine_un_proyecto_con_código_en_mayúsculas(get_url, setup_add_project):
     """
     Descripción: Confirmar que el API permita eliminar un proyecto cuyo código esté en mayúsculas.
@@ -235,6 +235,7 @@ def test_GCTC011_Verificar_que_se_elimine_un_proyecto_con_código_en_mayúsculas
 #Media
 @pytest.mark.smoke
 @pytest.mark.positive
+@pytest.mark.regression
 def test_GCTC012_Verificar_que_se_elimine_un_proyecto_con_código_en_minúsculas(get_url, setup_add_project):
     """
     Descripción: Confirmar que se pueda eliminar un proyecto usando código en minúsculas.
@@ -255,6 +256,7 @@ def test_GCTC012_Verificar_que_se_elimine_un_proyecto_con_código_en_minúsculas
 #Media
 @pytest.mark.smoke
 @pytest.mark.positive
+@pytest.mark.regression
 def test_GCTC013_Verificar_que_se_elimine_un_proyecto_cuyo_código_tenga_exactamente_2_caracteres(get_url, setup_add_project_2_character):
     """
     Descripción: Validar que la API acepte el mínimo de caracteres permitidos para eliminar un proyecto.
@@ -275,6 +277,7 @@ def test_GCTC013_Verificar_que_se_elimine_un_proyecto_cuyo_código_tenga_exactam
 #Media
 @pytest.mark.smoke
 @pytest.mark.positive
+@pytest.mark.regression
 def test_GCTC014_Verificar_que_se_elimine_un_proyecto_cuyo_código_tenga_exactamente_10_caracteres(get_url, setup_add_project_10_character):
     """
     Descripción: Validar que la API acepte el máximo permitido de caracteres.
@@ -338,8 +341,8 @@ def test_GCTC016_Verificar_que_retorne_error_al_enviar_un_código_de_proyecto_nu
 
 #Media
 @pytest.mark.regression
-@pytest.mark.positive
-def test_GCTC017_Verificar_error_al_eliminar_un_code_con_desimales(get_url):
+@pytest.mark.negative
+def test_GCTC017_Verificar_error_al_eliminar_un_code_con_decimales(get_url):
     """
     Verificar que el sistema no permita eliminar un code con desimales
     """
