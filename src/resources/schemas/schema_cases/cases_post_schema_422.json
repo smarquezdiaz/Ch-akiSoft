@@ -17,6 +17,12 @@
                         "type": "string"
                     }
                 },
+                "title": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "severity": {
                     "type": "array",
                     "items": {

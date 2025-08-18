@@ -7,12 +7,12 @@ from src.common.static_data_suites import StaticDataSuites
 from src.common.static_headers import StaticDataHeaders
 from src.common.static_verbs import StaticDataVerbs
 from src.utils.api_calls import request_function
-from src.utils.load_resources import assert_response_schema, assert_response_status_code_global
+from src.assertions.global_assertions import assert_response_schema, assert_response_status_code_global
 
 
 @pytest.mark.smoke
 @pytest.mark.regression
-@pytest.mark.funtional
+@pytest.mark.positive
 def test_SM001_Obtener_todos_los_casos_de_prueba_con_datos_validos(get_url):
     response = request_function(StaticDataVerbs.get.value ,get_url, StaticDataModules.suite.value ,StaticDataSuites.default_url_suffix.value, StaticDataHeaders.default_header.value)
     log_api_call(method="GET",
@@ -138,7 +138,7 @@ def test_SM008_Obtener_todos_los_casos_de_prueba_con_codigo_vacio(get_url):
 
 @pytest.mark.smoke
 @pytest.mark.regression
-@pytest.mark.funtional
+@pytest.mark.positive
 def test_SM009_Obtener_todos_los_casos_de_prueba_con_limite_valido(get_url):
     response = request_function(StaticDataVerbs.get.value, get_url, StaticDataModules.suite.value,
                                 StaticDataSuites.valid_limit_param.value,
@@ -203,7 +203,7 @@ def test_SM012_Obtener_todos_los_casos_de_prueba_con_limite_string(get_url):
 
 @pytest.mark.smoke
 @pytest.mark.regression
-@pytest.mark.funtional
+@pytest.mark.positive
 def test_SM013_Obtener_todos_los_casos_de_prueba_con_offset_valido(get_url):
     response = request_function(StaticDataVerbs.get.value, get_url, StaticDataModules.suite.value,
                                 StaticDataSuites.valid_offset_param.value,

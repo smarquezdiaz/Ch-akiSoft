@@ -1,8 +1,6 @@
 import json
 import os
-import jsonschema
-import pytest
-import requests
+
 
 def load_schema_resource(json_name):
     base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
@@ -30,32 +28,4 @@ def load_schema_resource_by_directory(json_name,directory,schema_key=None):
 
     return all_schemas
 
-def assert_response_schema(response, json_file, directory):
-    schema = load_schema_resource_by_directory_for_compare(json_file, directory)
-    try:
-        jsonschema.validate(instance=response, schema=schema)
-        return True
-    except jsonschema.exceptions.ValidationError as err:
-        pytest.fail(f"JSON schema dont match: {err}")
 
-def assert_response_status_code(status_code, expected_code):
-    assert status_code == expected_code, f"Status esperado {expected_code}, Status obtenido {status_code}"
-
-def assert_response_status_code_global(expected_code, status_code):
-        assert status_code == expected_code, f"Status esperado {expected_code}, Status obtenido {status_code}"
-
-def assert_equals(result, expected_result):
-    assert result == expected_result, f"Resultado esperado {result}, resultado obtenido {expected_result}"
-
-def assert_get_cases_assertion(method, url, headers, payload=None):
-    response = requests.request(method, url, headers=headers, data=payload)
-    return response
-
-def assert_entities_field_equal (response , search, attribute):
-    entities = response.json()["result"]["entities"]
-    assert entities, "No hay casos de prueba registrados"
-    for counter in entities:
-        if counter[attribute] != search:
-            pytest.fail(
-                f"Prueba fallada: el caso de prueba {counter['id']} tiene {attribute}={counter[f'{attribute}']} "
-            )

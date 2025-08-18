@@ -1,10 +1,10 @@
 import pytest
 import requests
 from config import BASE_URI, TOKEN
+from src.assertions.global_assertions import assert_response_schema
 from src.headers.headers import get_header_with_token1, get_header_with_invalid_token
 from src.common.logger import log_api_call
 from src.assertions.asserts_attachment import assert_response_status_code_global
-from src.utils.load_resources import assert_response_schema
 from src.utils.getHash import obtener_hash_archivo
 from src.utils.attachment_utils_request import delete_request, get_request, build_attachment_url, build_invalid_url
 @pytest.mark.smoke

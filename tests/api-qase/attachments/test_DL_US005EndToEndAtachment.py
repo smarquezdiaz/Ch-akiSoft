@@ -1,18 +1,18 @@
 import io
 import pytest
 from config import BASE_URI, TOKEN
+from src.assertions.global_assertions import assert_response_schema
 from src.headers.headers import get_header_with_token1
 from src.common.logger import log_api_call
 from src.assertions.asserts_attachment import assert_response_status_code_global
-from src.utils.load_resources import assert_response_schema
 from src.utils.attachment_utils_request import build_attachment_url, get_request, delete_request
 from src.utils.getHash import obtener_hash_archivo
 import requests
-@pytest.mark.e2e
+@pytest.mark.e2e_attachment
 @pytest.mark.positive
 @pytest.mark.smoke
 @pytest.mark.regression
-def test_DL_E2E_gestion_completa_archivo():
+def test_DL_E2E_attachment():
     #Obtener lista inicial
     url_list = f"{BASE_URI}/attachment"
     response_list = get_request(url_list, headers=get_header_with_token1())

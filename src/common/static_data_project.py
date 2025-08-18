@@ -16,13 +16,27 @@ class StaticDataProject(Enum):
     invalid_url_suffix_project = "/INVALID_PROJECT"
 
 
-    non_existent_project_code = "/suite/TB"
-    single_char_project_code = "/suite/T"
-    eleven_char_project_code = "/suite/TTTTTTTTTTT"
-    numeric_project_code = "/suite/111"
-    zero_limit_param = "/suite/DEMO?limit=0"
-    one_hundred_one_limit_param = "/suite/DEMO?limit=101"
-    string_limit_param = "/suite/DEMO?limit=a"
-    valid_offset_param = "/suite/DEMO?offset=5"
-    invalid_offset_param = "/suite/DEMO?offset=100001"
-    string_offset_param = "/suite/DEMO?offset=a"
+class StaticDataProjectPorCode(Enum):
+    valid_code_param = "/DEMO"
+    valid_code_param2 = "/EEEE"
+    invalid_url_code= "ss/DEMO"
+    invalid_no_exist_code = "/%DEmo"
+    invalid_code_param = "/D"
+    invalid_code_param_mas_limit = "/Dabcdefghijk"
+    invalid_code_param_null = "   "
+    invalid_code_param_special = "%$#^@"
+    invalid_code_param_space = "/DE MO"
+    invalid_code_param_number = "/12345"
+    invalid_code_param_bug = "/#$&@"
+
+
+class StaticDataProjectDeletePorCode(Enum):
+    invalid_code_param_delete = ""
+    invalid_code_param_delete_1 = "/A"
+    invalid_code_param_delete_10 = "/Aabbccddeeff"
+    invalid_code_param_delete_no = "Abejita"
+    invalid_code_param_delete_spacial = "%#$^@"
+    invalid_code_param_delete_number = "12345"
+    invalid_code_param_delete_space = "CA SA"
+    invalid_code_param_delete_none = None
+    invalid_code_param_delete_decimal = "123,12"
