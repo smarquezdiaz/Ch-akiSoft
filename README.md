@@ -127,23 +127,174 @@ La primera y principal razón es que los usuarios de Qase (equipos de QA y desar
 2. Funcionalidades
 Como equipo, determinamos escoger estas funcionalidades debido a la cantidad  de  métodos HTTP que ofrecen  de la API de Qase
 
-**Attachments** 
-Permite ver los archivos existentes, subir  archivos (como imágenes o documentos), buscar un archivo en especifico y eliminar un archivo en especifico.
+#### **Attachments**
+* Permite ver los archivos existentes, subir archivos (como imágenes o documentos), buscar un archivo en específico y eliminar un archivo en específico.
 
-1. Obtener todo los archivos adjuntos 
-Permite listar una determinada cantidad de archivos y también omitir cierta cantidad de archivos con 
-* Limit
-* offset 
-2. subir archivo adjunto
-Permite subir un archivo que pese menos de 30MB y subir 20 archivos en conjunto a un proyecto. 
-* Code
-* File
-3. Obtener un archivo adjunto por Hash
-Permite obtener un archivo en específico de un proyecto utilizando el Hash 
-* Hash
-3. Eliminar un archivo adjunto mediante Hash
-Permite eliminar un archivo en específico de un proyecto utilizando el Hash
-* Hash
+1.  **Obtener todos los archivos adjuntos**
+    Permite listar una determinada cantidad de archivos y también omitir cierta cantidad de archivos con los siguientes parámetros:
+    * `limit`
+    * `offset`
+    
+2.  **Subir archivo adjunto**
+    Permite subir un archivo que pese menos de 30MB y subir 20 archivos en conjunto a un proyecto.
+    * `Code`
+    * `File`
+    
+3.  **Obtener un archivo adjunto por Hash**
+    Permite obtener un archivo en específico de un proyecto utilizando el Hash.
+    * `Hash`
+    
+4.  **Eliminar un archivo adjunto mediante Hash**
+    Permite eliminar un archivo en específico de un proyecto utilizando el Hash.
+    * `Hash`
+
+<br>
+
+#### **Cases**
+* Gestiona los casos de prueba individuales, incluyendo su creación, edición, recuperación y eliminación. Cada caso puede incluir pasos, resultados esperados y otros detalles clave.
+
+1.  **Crear caso de prueba**
+    Permite definir un nuevo caso de prueba, especificando:
+    * Título y descripción
+    * Pasos a seguir
+    * Prioridad (baja, media, alta)
+    * Severidad (baja, media, alta)
+    * Tipo
+    * Estado
+    * Estado de automatización
+    
+2.  **Obtener un caso de prueba en específico**
+    Recupera los detalles completos de un caso de prueba existente mediante su identificador único, mostrando todos los atributos, pasos y metadatos asociados.
+    
+3.  **Obtener todos los casos de prueba**
+    Muestra un listado paginado de todos los casos de prueba de un proyecto, con filtros opcionales por:
+    * Título y descripción
+    * Pasos a seguir
+    * Prioridad (baja, media, alta)
+    * Severidad (baja, media, alta)
+    * Tipo
+    * Estado
+    * Estado de automatización
+    
+4.  **Actualizar un caso de prueba**
+    Modifica las propiedades de un caso ya creado, como:
+    * Título y descripción
+    * Pasos a seguir
+    * Prioridad (baja, media, alta)
+    * Severidad (baja, media, alta)
+    * Tipo
+    * Estado
+    * Estado de automatización
+    
+5.  **Eliminar un caso de prueba**
+    Borra de manera permanente un caso de prueba, retirándolo de la lista de casos disponibles en el proyecto.
+
+<br>
+
+#### **Custom Fields**
+* Campos personalizados que se pueden crear para adaptarse a las necesidades específicas de documentación o flujo de trabajo del equipo.
+
+1.  **Crear campo personalizado**
+    Permite definir un nuevo campo adicional para adaptar los formularios a necesidades específicas del equipo.
+    
+2.  **Obtener todos los campos personalizados**
+    Muestra una lista con todos los campos personalizados existentes creados en la cuenta.
+    
+3.  **Actualizar campo personalizado**
+    Modifica las propiedades de un campo ya creado, como:
+    * Nombre,
+    * Tipo de dato o entidad asociada.
+    
+4.  **Eliminar campo personalizado**
+    Borra un campo personalizado, eliminándolo de la lista de campos disponibles.
+    
+5.  **Asignar campo a una entidad específica**
+    Especifica en qué módulo se utilizará el campo:
+    * `Case`
+    * `Run`
+    * `Defect`
+    
+6.  **Definir tipo de dato del campo**
+    Establece el formato del campo:
+    * `number`
+    * `string`
+    * `text`
+    * `selectbox`
+    * `checkbox`
+    * `radio`
+    * `multiselect`
+    * `url`
+    * `user`
+    * `datetime`
+
+<br>
+
+#### **Projects**
+* El módulo Projects permite a los equipos de pruebas crear, visualizar, administrar y colaborar en diferentes proyectos de testing. Cada proyecto agrupa casos de prueba, suites, defectos, milestones y usuarios asignados. Es el punto de entrada para gestionar todos los artefactos de prueba de forma organizada y centralizada.
+
+1.  **Create new project**
+    Inicia el proceso de creación de un nuevo proyecto, especificando:
+    * Nombre del proyecto
+    * Código
+    * Descripción
+    * Visibilidad.
+    
+2.  **Barra de búsqueda y filtros**
+    Permite buscar proyectos por su nombre. Los filtros disponibles son:
+    * `Search for projects`
+    * `Status: Active`
+    * `Add filter`: Permite aplicar filtros personalizados adicionales.
+    
+3.  **Settings**
+    Permite la configuración del proyecto (editar nombre, código, permisos, etc.).
+    
+4.  **Remove**
+    Permite eliminar o archivar el proyecto.
+
+<br>
+
+#### **Suites**
+* Agrupa los casos de prueba en conjuntos organizados por funcionalidades, módulos o criterios definidos por el equipo, facilitando la ejecución estructurada y el seguimiento de resultados.
+
+1.  **Obtener todos los conjuntos de pruebas**
+    Este método permite recuperar todos los conjuntos de pruebas de un proyecto.
+    * **Filtrando por los parámetros:** `search`, `limit`, `offset`.
+    * Se debe enviar el campo `code` como parámetro en la URL.
+    
+2.  **Crear un nuevo conjunto de pruebas**
+    Este método crea un nuevo conjunto de pruebas a través de la API, enviando las propiedades:
+    * `title` (requerido)
+    * `description`
+    * `preconditions`
+    * `parent_id`
+    
+3.  **Obtener un conjunto de pruebas específico**
+    Este método permite recuperar un conjunto de pruebas específico.
+    * **Filtrando por los parámetros:** `search`, `limit`, `offset`.
+    * Se deben enviar los campos `code` e `id` como parámetros en la URL.
+    
+4.  **Eliminar conjunto de pruebas**
+    Este método elimina por completo un conjunto de pruebas del repositorio, enviando el campo `id` como parámetro en la URL.
+    
+5.  **Actualizar el conjunto de pruebas**
+    Este método actualiza un conjunto de pruebas a través de la API, enviando las propiedades:
+    * `title` (requerido)
+    * `description`
+    * `preconditions`
+    * `parent_id`
+
+<br>
+
+#### **Plans**
+* Permite crear un nuevo plan en un proyecto específico.
+
+1.  **Crear un nuevo plan**
+    Este método permite crear un plan en el proyecto seleccionado y contiene los siguientes puntos:
+    * `Code`
+    * `Title`
+    * `Description`
+    * `Cases`
+
 
 
 
