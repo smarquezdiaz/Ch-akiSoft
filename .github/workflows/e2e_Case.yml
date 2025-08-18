@@ -1,4 +1,4 @@
-name: Ejecutar Test Cases de Case
+name: Ejecutar e2e de Case
 on: [push]
 
 jobs:
@@ -22,6 +22,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Ejecutar los test case de Case
+      - name: Ejecutar Pytest del e2e Case
         run: |
-          pytest tests/api-qase/Cases
+          pytest -m "e2e_Case"
