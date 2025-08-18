@@ -17,7 +17,7 @@ from src.utils.api_calls import request_function
 @pytest.mark.positive
 @pytest.mark.smoke
 @pytest.mark.regression
-def test_DL_TC034_crear_un_plan(get_url,setup_delete_plan_by_id):
+def test_DL_TC033_crear_un_plan(get_url,setup_delete_plan_by_id):
     payload = assert_request_plan_payload()
     assert_response_schema(payload, "plan_schema_request.json", "schema_plan_create")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.plan.value,
@@ -30,11 +30,11 @@ def test_DL_TC034_crear_un_plan(get_url,setup_delete_plan_by_id):
     assert response.json()["status"] is True
     setup_delete_plan_by_id(response.json()["result"]["id"])
 
-#Descripcion: Crea un plan con descripocion devuelve codigo 200 de que se creo correctamente ya que no es un campo obligatorio
+#Descripcion: Crea un plan con descripcion devuelve codigo 200 de que se creo correctamente ya que no es un campo obligatorio
 #Prioridad: Baja
 @pytest.mark.positive
 @pytest.mark.regression
-def test_DL_TC035_crear_plan_con_descripcion(get_url, setup_delete_plan_by_id):
+def test_DL_TC034_crear_plan_con_descripcion(get_url, setup_delete_plan_by_id):
     payload = assert_request_plan_payload(description="Descripción del plan de prueba")
     assert_response_schema(payload, "plan_schema_request.json", "schema_plan_create")
 
@@ -56,7 +56,7 @@ def test_DL_TC035_crear_plan_con_descripcion(get_url, setup_delete_plan_by_id):
 #Prioridad:  Baja
 @pytest.mark.regression
 @pytest.mark.positive
-def test_DL_TC036_crear_plan_sin_descripcion(get_url, setup_delete_plan_by_id):
+def test_DL_TC035_crear_plan_sin_descripcion(get_url, setup_delete_plan_by_id):
     payload = assert_request_plan_payload(description=None)
     assert_response_schema(payload, "plan_schema_request.json", "schema_plan_create")
     response = request_function(
@@ -77,7 +77,7 @@ def test_DL_TC036_crear_plan_sin_descripcion(get_url, setup_delete_plan_by_id):
 #Prioridad: Alta
 @pytest.mark.regression
 @pytest.mark.negative
-def test_DL_TC037_Crear_un_plan_sin_autenticación(get_url):
+def test_DL_TC036_Crear_un_plan_sin_autenticación(get_url):
     payload = assert_request_plan_payload()
     assert_response_schema(payload, "plan_schema_request.json", "schema_plan_create")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.suite.value,
@@ -98,7 +98,7 @@ def test_DL_TC037_Crear_un_plan_sin_autenticación(get_url):
 #Prioridad: Alta
 @pytest.mark.regression
 @pytest.mark.negative
-def test_DL_TC038_Crear_un_plan_Con_token_caducado(get_url):
+def test_DL_TC037_Crear_un_plan_Con_token_caducado(get_url):
     payload = assert_request_plan_payload()
     assert_response_schema(payload, "plan_schema_request.json", "schema_plan_create")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.suite.value,
@@ -115,11 +115,11 @@ def test_DL_TC038_Crear_un_plan_Con_token_caducado(get_url):
     assert_response_schema(response.json(), "plan_error_401_noToken.json", "schema_plan_create")
     assert_response_status_code_global(401, response.status_code)
 
-#Descripcion: Debuelve un error 400 al sobrepasar el limite maximo del campo code
+#Descripcion: Debuelve un error 400 al sobrepasar el limite minimo del campo code
 #Prioridad: Media
 @pytest.mark.regression
 @pytest.mark.negative
-def test_DL_TC039_Verificar_el_límite_mínimo_de_caracteres_en_el_campo_code(get_url):
+def test_DL_TC038_Verificar_el_límite_mínimo_de_caracteres_en_el_campo_code(get_url):
     payload = assert_request_plan_payload()
     assert_response_schema(payload, "plan_schema_request.json", "schema_plan_create")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.plan.value,
@@ -131,11 +131,11 @@ def test_DL_TC039_Verificar_el_límite_mínimo_de_caracteres_en_el_campo_code(ge
     assert_response_schema(response.json(), "plan_error_400.json", "schema_plan_create")
     assert_response_status_code_global(400, response.status_code)
 
-#Descripcion: Debuelve un error 400 al verificar el limite min en el campo code
+#Descripcion: Debuelve un error 400 al verificar el limite maximo en el campo code
 #Prioridad: Meda
 @pytest.mark.regression
 @pytest.mark.negative
-def test_DL_TC040_Verificar_el_límite_maximo_de_caracteres_en_el_campo_code(get_url):
+def test_DL_TC039_Verificar_el_límite_maximo_de_caracteres_en_el_campo_code(get_url):
     payload = assert_request_plan_payload()
     assert_response_schema(payload, "plan_schema_request.json", "schema_plan_create")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.plan.value,
@@ -151,7 +151,7 @@ def test_DL_TC040_Verificar_el_límite_maximo_de_caracteres_en_el_campo_code(get
 #Prioridad: Media
 @pytest.mark.regression
 @pytest.mark.negative
-def test_DL_TC041_Colocar_valores_negativos_en_el_campo_code(get_url):
+def test_DL_TC040_Colocar_valores_negativos_en_el_campo_code(get_url):
     payload = assert_request_plan_payload()
     assert_response_schema(payload, "plan_schema_request.json", "schema_plan_create")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.plan.value,
@@ -165,7 +165,7 @@ def test_DL_TC041_Colocar_valores_negativos_en_el_campo_code(get_url):
 #Prioridad: Media
 @pytest.mark.regression
 @pytest.mark.negative
-def test_DL_TC042_Colocar_caracteres_especiales_en_el_campo_code(get_url):
+def test_DL_TC041_Colocar_caracteres_especiales_en_el_campo_code(get_url):
     payload = assert_request_plan_payload()
     assert_response_schema(payload, "plan_schema_request.json", "schema_plan_create")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.plan.value,
@@ -180,7 +180,7 @@ def test_DL_TC042_Colocar_caracteres_especiales_en_el_campo_code(get_url):
 #Prioridad: Media
 @pytest.mark.regression
 @pytest.mark.negative
-def test_DL_TC043_Colocar_solo_carácter_espacio_en_el_campo_code(get_url):
+def test_DL_TC042_Colocar_solo_carácter_espacio_en_el_campo_code(get_url):
     payload = assert_request_plan_payload()
     assert_response_schema(payload, "plan_schema_request.json", "schema_plan_create")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.plan.value,
@@ -195,7 +195,7 @@ def test_DL_TC043_Colocar_solo_carácter_espacio_en_el_campo_code(get_url):
 #Prioridad: Alta
 @pytest.mark.regression
 @pytest.mark.negative
-def test_DL_TC044_Crear_plan_sin_colocar_el_proyecto_en_el_campo_code(get_url):
+def test_DL_TC043_Crear_plan_sin_colocar_el_proyecto_en_el_campo_code(get_url):
     payload = assert_request_plan_payload()
     assert_response_schema(payload, "plan_schema_request.json", "schema_plan_create")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.plan.value,
@@ -210,7 +210,7 @@ def test_DL_TC044_Crear_plan_sin_colocar_el_proyecto_en_el_campo_code(get_url):
 #Prioridad: Media
 @pytest.mark.regression
 @pytest.mark.negative
-def test_DL_TC045_Colocar_un_mal_formato_de_URL(get_url):
+def test_DL_TC044_Colocar_un_mal_formato_de_URL(get_url):
     payload = assert_request_plan_payload()
     assert_response_schema(payload, "plan_schema_request.json", "schema_plan_create")
     response = request_function(StaticDataVerbs.post.value, get_url, StaticDataModules.plan.value,
@@ -225,7 +225,7 @@ def test_DL_TC045_Colocar_un_mal_formato_de_URL(get_url):
 #Prioridad: Alta
 @pytest.mark.regression
 @pytest.mark.negative
-def test_DL_TC046_Verificar_el_límite_máximo_de_caracteres_en_el_campo_title(get_url):
+def test_DL_TC045_Verificar_el_límite_máximo_de_caracteres_en_el_campo_title(get_url):
     payload = assert_request_plan_payload(title="A" * 300)
     assert_response_schema(payload, "plan_schema_request.json", "schema_plan_create")
     response = request_function(
@@ -244,7 +244,7 @@ def test_DL_TC046_Verificar_el_límite_máximo_de_caracteres_en_el_campo_title(g
 #Prioridad: Baja
 @pytest.mark.regression
 @pytest.mark.positive
-def test_DL_TC047_title_valores_negativos(get_url,setup_delete_plan_by_id):
+def test_DL_TC046_title_valores_negativos(get_url,setup_delete_plan_by_id):
     payload = assert_request_plan_payload(title="-123")
     assert_response_schema(payload, "plan_schema_request.json", "schema_plan_create")
     response = request_function(
@@ -266,7 +266,7 @@ def test_DL_TC047_title_valores_negativos(get_url,setup_delete_plan_by_id):
 #Prioridad: Baja
 @pytest.mark.regression
 @pytest.mark.positive
-def test_DL_TC048_title_caracteres_especiales(get_url,setup_delete_plan_by_id):
+def test_DL_TC047_title_caracteres_especiales(get_url,setup_delete_plan_by_id):
     payload = assert_request_plan_payload(title="@@@###")
     assert_response_schema(payload, "plan_schema_request.json", "schema_plan_create")
     response = request_function(
@@ -288,7 +288,7 @@ def test_DL_TC048_title_caracteres_especiales(get_url,setup_delete_plan_by_id):
 #Prioridad: Media
 @pytest.mark.regression
 @pytest.mark.negative
-def test_DL_TC049_title_solo_espacios(get_url):
+def test_DL_TC048_title_solo_espacios(get_url):
     payload = assert_request_plan_payload(title="   ")
     assert_response_schema(payload, "plan_schema_request.json", "schema_plan_create")
     response = request_function(
@@ -308,7 +308,7 @@ def test_DL_TC049_title_solo_espacios(get_url):
 #Prioridad: Alta
 @pytest.mark.regression
 @pytest.mark.negative
-def test_DL_TC050_cases_valores_negativos(get_url):
+def test_DL_TC049_cases_valores_negativos(get_url):
     payload = assert_request_plan_payload(cases=[-1])
     assert_response_schema(payload, "plan_schema_request.json", "schema_plan_create")
     response = request_function(
@@ -327,7 +327,7 @@ def test_DL_TC050_cases_valores_negativos(get_url):
 #Prioridad: Media
 @pytest.mark.regression
 @pytest.mark.negative
-def test_DL_TC051_cases_caracteres_especiales(get_url):
+def test_DL_TC050_cases_caracteres_especiales(get_url):
     payload = assert_request_plan_payload(cases=["@#!"])
     assert_response_schema(payload, "plan_create_success_test52.json", "schema_plan_create")
     response = request_function(
@@ -346,7 +346,7 @@ def test_DL_TC051_cases_caracteres_especiales(get_url):
 #Prioridad:Media
 @pytest.mark.regression
 @pytest.mark.negative 
-def test_DL_TC052_cases_solo_espacios(get_url):
+def test_DL_TC051_cases_solo_espacios(get_url):
     payload = assert_request_plan_payload(cases=["   "])
     assert_response_schema(payload, "plan_create_success_test52.json", "schema_plan_create")
     response = request_function(
