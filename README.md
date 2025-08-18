@@ -356,6 +356,15 @@ Para este primer Sprint se contemplarán 10 endpoints de los cuales:
     * **Endpoints**:
         * Obtener todos los `suite` de prueba (`GET`)
         * Crear un nuevo `suite` (`POST`)
+     
+| Módulo | smoke | negative | positive | regression |
+| :--- | :--- | :--- | :--- | :--- |
+| Project | 12 | 21 | 14 | 35 |
+| Attachment | 2 | 19 | 4 | 23 |
+| custom field | 8 | 18 | 11 | 29 |
+| cases | 3 | 23 | 30 | 53 |
+| suite | 3 | 31 | 3 | 37 |
+| **total** | **28** | **112** | **123** | **177** |
 
 
 
