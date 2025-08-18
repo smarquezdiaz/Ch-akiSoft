@@ -367,6 +367,86 @@ Para este primer Sprint se contemplarán 10 endpoints de los cuales:
 | **total** | **28** | **112** | **123** | **177** |
 
 
+### 2do Sprint
+
+Para este segundo Sprint se contemplarán los siguientes *endpoints* y flujos de trabajo:
+
+* **Diego Armando Lomar Jain**
+    * **Módulo**: `Project`
+    * **Submódulo**: `Plan`
+    * **Endpoints**:
+        * Crear un nuevo plan (`POST`)
+    * **Módulo**: `Workspace`
+    * **Submódulo**: `Attachment`
+    * **Endpoints**:
+        * Eliminar archivo adjunto en específico (`DELETE`)
+    * **User Story**: `DL-US005: End-to-End – Flujo Attachment`
+
+* **David Gregori Rodriguez Calle**
+    * **Módulo**: `Project`
+    * **Submódulo**: `Cases`
+    * **Endpoints**:
+        * Actualizar un caso de prueba existente (`PATCH`)
+        * Eliminar un caso de prueba por su ID (`DELETE`)
+    * **User Story**: `DR-US05: End-to-End – Flujo Caso de prueba`
+
+* **Andres Adrian Estrada Uzeda**
+    * **Módulo**: `Workspace`
+    * **Submódulo**: `Custom Fields`
+    * **Endpoints**:
+        * Crear nuevo campo personalizado (`DELETE`)
+        * Actualizar campo personalizado por ID (`PATCH`)
+    * **User Story**:
+        * `AE-US03: Actualizar campo personalizado por ID`
+        * `AE-US04: Eliminar campo personalizado por ID`
+        * `AE-US05: End-to-End-Flujo completo de campo personalizado`
+
+* **Sol Abril Marquez Diaz**
+    * **Módulo**: `Suites`
+    * **Endpoints**:
+        * Actualizar un *suite* de prueba (`PATCH`)
+        * Eliminar un *suite* de prueba (`DELETE`)
+    * **User Story**: `SM-US005: End-to-End – Flujo Suite`
+
+* **Gualberto Choque Choque**
+    * **Módulo**: `Project`
+    * **Endpoints**:
+        * Eliminar un proyecto por `code` (`DELETE`)
+        * Obtener un proyecto por `code` (`GET`)
+    * **Observación**: Mejora del 1er Sprint (Refactorización de métodos del 1er sprint).
+    * **User Story**: `GC-US005: End-to-End – Flujo Project`
+
+| módulo | smoke | negative | positive | End to End | regresión |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Project | 11 | 26 | 11 | 1 | 37 |
+| Attachment | 2 | 8 | 2 | 1 | 10 |
+| Plan | 1 | 14 | 5 | 0 | 19 |
+| custom field | 3 | 30 | 6 | 1 | 36 |
+| cases | 5 | 33 | 21 | 1 | 54 |
+| suite | 3 | 39 | 3 | 1 | 42 |
+| **total** | **25** | **150** | **48** | **5** | **198** |
+
+5. Herramientas
+* Postman 11.55.5
+* Git
+* Git Hub
+* Jira
+* Python 3.13.4
+* Pycharm 1.3.1
+
+6. Tiempos Cronograma
+   
+   <img width="825" height="284" alt="image" src="https://github.com/user-attachments/assets/cbc0f9d8-8af8-4043-8b2d-cd0bc8d3d719" />
+
+7. Recursos
+
+* QA LEAD Gualberto Choque Choque
+* QA Andres Adrian Estrada Uzeda
+* QA David Gregori Rodriguez Calle
+* QA Sol Abril Marquez Diaz
+* QA Diego Armando Lomar Jain
+
+
 
 
 
