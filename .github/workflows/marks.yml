@@ -1,0 +1,65 @@
+name: Ejecutar tests por etiqueta (markers) - Pytest + Allure
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  run-by-marker:
+    name: Ejecutar pruebas - ${{ matrix.marker }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.13.4"]
+        marker: ["positive", "smoke", "negative", "regression", "e2e_customfield"]
+    steps:
+      - name: Checkout del repo
+        uses: actions/checkout@v3
+
+      - name: Configurar Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Instalar dependencias
+        shell: bash
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          # plugin para Allure (si no está ya en requirements.txt)
+          pip install allure-pytest
+
+      - name: Mostrar tests recolectados para el marker '${{ matrix.marker }}'
+        shell: bash
+        run: |
+          echo "=== Collecting tests for marker: ${{ matrix.marker }} ==="
+          pytest tests/api-qase/Custom-Field -m "${{ matrix.marker }}" --collect-only -q || true
+
+      - name: Ejecutar pytest (marker = '${{ matrix.marker }}')
+        shell: bash
+        run: |
+          set -o errexit
+          RESULTS_DIR="results/${{ matrix.marker }}"
+          mkdir -p "$RESULTS_DIR"
+          # Ejecuta tests filtrando por marker, guarda resultados para Allure y JUnit
+          pytest tests/api-qase/Custom-Field -m "${{ matrix.marker }}" --alluredir="$RESULTS_DIR/allure-results" --junitxml="$RESULTS_DIR/junit.xml" -q
+
+      - name: Subir resultados (Allure + JUnit) como artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: results-${{ matrix.marker }}
+          path: results/${{ matrix.marker }}
+
+      # Opcional: generar reporte HTML de Allure en el runner (requiere allure-commandline).
+      # Si quieres esto, descomenta e instala allure-commandline previamente o usa una acción que lo provea.
+      # - name: Generar reporte Allure (opcional)
+      #   shell: bash
+      #   run: |
+      #     pip install allure-commandline
+      #     REPORT_DIR="report/${{ matrix.marker }}"
+      #     allure generate results/${{ matrix.marker }}/allure-results -o "${REPORT_DIR}" --clean
+      #     tar -czf "${REPORT_DIR}.tar.gz" "${REPORT_DIR}"
+      # - name: Subir reporte Allure HTML
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: allure-report-${{ matrix.marker }}
+      #     path: report/${{ matrix.marker }}.tar.gz
