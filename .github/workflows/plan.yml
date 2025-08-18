@@ -1,4 +1,4 @@
-name: Ejecutar Test Cases con Pytest y Allure
+name: Ejecutar Test Cases con Pytest de plan
 
 on: [push]
 
@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Descargar el código
-        uses: actions/checkout@v3git
+        uses: actions/checkout@v3
 
       - name: Configurar Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
