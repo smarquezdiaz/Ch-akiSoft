@@ -295,6 +295,68 @@ Como equipo, determinamos escoger estas funcionalidades debido a la cantidad  de
     * `Description`
     * `Cases`
 
+  
+3. Estrategia
+
+Se emplearán las siguientes técnicas y tipos de pruebas para la validación de la API:
+
+* Exploratory Testing: Se empleará esta técnica para explorar y comprender el comportamiento general de la aplicación, identificando posibles áreas de interés o problemas no documentados.
+
+* Smoke Testing: Consiste en verificar que la API responda correctamente a las solicitudes básicas (código 200), asegurando que los componentes principales funcionen antes de realizar pruebas más exhaustivas. @pytest.mark.smoke
+
+* Functional positive: Se valida que cada endpoint cumpla con su propósito y entregue los resultados esperados, asegurando el correcto funcionamiento según los requerimientos. Se usará la etiqueta @pytest.mark.positive
+
+* Regression Testing: Se ejecutan pruebas para confirmar que los cambios o actualizaciones realizadas no afecten ni deterioren las funcionalidades previamente implementadas. Se aplicarán a todos los test cases. Se usará la etiqueta @pytest.mark.regression
+
+* Functional negative: Se valida que el sistema maneje los errores de manera adecuada y permita observar el mensaje de error. Se usará la etiqueta @pytest.mark.negative
+
+* End-to-End: Se demostrarán los flujos de funciones que evalúan un sistema completo desde el principio hasta el final, tal como lo haría un usuario real. Su objetivo es simular un flujo de trabajo completo para verificar que todas las partes de la aplicación funcionan juntas correctamente y sin interrupciones. Se usará la etiqueta @pytest.mark.e2e_{nombre_feature}
+
+4. Alcance y Limitaciones
+
+El presente plan de pruebas está enfocado en la validación funcional de los módulos workspace y project de Qase, con sus submódulos (Attachments, Cases,Custom Fields, Projects, Suites, Plan) Cualquier funcionalidad que no se menciona en este documento no se testeara
+
+### Funcionalidades a ser Probadas
+
+El proyecto consta de 20 endpoints pertenecientes a los módulos: `Attachments`, `Cases`, `Custom Fields`, `Projects`, `Suites`, y `Plans`.
+
+#### 1er Sprint
+
+Para este primer Sprint se contemplarán 10 endpoints de los cuales:
+
+* **Diego Armando Lomar Jain**
+    * **Módulo**: `Workspace`
+    * **Submódulo**: `Attachment`
+    * **Endpoints**:
+        * Obtener todos los archivos adjuntos (`GET ALL`)
+        * Subir archivo adjunto (`POST`)
+
+* **Gualberto Choque Choque**
+    * **Módulo**: `Project`
+    * **Endpoints**:
+        * Obtener todos los proyectos (`GET ALL`)
+        * Crear nuevo proyecto (`POST`)
+
+* **David Gregori Rodriguez Calle**
+    * **Módulo**: `Project`
+    * **Submódulo**: `Cases`
+    * **Endpoints**:
+        * Obtener todos los casos de prueba de un proyecto (`GET ALL`)
+        * Crear un nuevo caso de prueba (`POST`)
+
+* **Andres Adrian Estrada Uzeda**
+    * **Módulo**: `Workspace`
+    * **Submódulo**: `Custom Fields`
+    * **Endpoints**:
+        * Crear nuevo campo personalizado (`POST`)
+        * Obtener campo personalizado por ID (`GET`)
+
+* **Sol Abril Marquez Diaz**
+    * **Módulo**: `Suites`
+    * **Endpoints**:
+        * Obtener todos los `suite` de prueba (`GET`)
+        * Crear un nuevo `suite` (`POST`)
+
 
 
 
