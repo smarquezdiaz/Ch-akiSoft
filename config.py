@@ -1,5 +1,12 @@
 # URL BASE
-BASE_URI = 'https://api.qase.io/v1'
+import pytest
+
+
+@pytest.fixture()
+def datos():
+    return 'https://api.qase.io/v1'
+
+
 
 # URL INVALIDA
 BASE_INVALID_URI = 'https://api.qase.io/v2'
